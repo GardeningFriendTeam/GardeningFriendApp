@@ -20,7 +20,7 @@ Proyecto integrador II - Aplicación Móvil sobre cultivos
 - Angelica Soledad Quiroz (SoledadQuiroz)
 - Cristian Valles (valles1710)
 - Francisco Ignacio Junco Lasagno (FranJL075)
-- Fabián Paez (FabiPaez)
+- ~~Fabián Paez (FabiPaez)~~
 - Mariquena Allosa (mariquenaallosa)
 - Braian Maximiliano Oviedo (BraianOviedo)
 
