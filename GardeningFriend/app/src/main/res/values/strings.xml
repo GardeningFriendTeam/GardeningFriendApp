@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Gardening Friend</string>
+    <string name="registro_username">Username</string>
+    <string name="registro_email">Email</string>
+    <string name="registro_password">Password</string>
+    <string name="registro_btn">Registrarse</string>
+    <string name="registro_text">Ya tienes una cuenta? Inicia Sesión.</string>
 </resources>
