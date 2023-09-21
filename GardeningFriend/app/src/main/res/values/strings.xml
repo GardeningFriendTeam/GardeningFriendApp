@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Gardening Friend</string>
+
+    <string name="menu">Menu</string>
+    <string name="inicio">Inicio</string>
+    <string name="enciclopedia">Enciclopedia</string>
+    <string name="recomendaciones">Recomendaciones</string>
+    <string name="login_registro">Login / Registro</string>
+    <string name="perfil">Perfil</string>
+    <string name="panel_admin">Panel admin</string>
+
 </resources>
