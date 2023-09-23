@@ -123,16 +123,26 @@ public class Recomendaciones extends MainActivity {
         avisoSelec.show();
     }
 
-    public void buscarCultivos(){
+    public void buscarCultivos(View view){
         // 1 - se crea intent
         Intent intent = new Intent(Recomendaciones.this, RecomendacionesCultivos.class);
 
         // toast que muestra mensaje de error (en caso de ocurrir):
         Toast toast = Toast.makeText(Recomendaciones.this, "no seleccionaste todos los parametros", Toast.LENGTH_SHORT);
 
-        // TODO: 2 - se pasan los valores seleccionados a la siguiente actividad
+        // 2 - se crea un objeto parceable que contiene los valores que se pasaran
+        // a la siguiente activity (RecomendacionesCultivos)
+        CultivosReco datosRecomendaciones = new CultivosReco(temperatura, estacion, region);
 
+        // 3 - se pasa el objeto parceable
+        intent.putExtra("datosReco", datosRecomendaciones);
 
+        // 4 - si las flags son true se inicializa la actividad
+        if(flagTemp && flagEstac && flagReg){
+            startActivity(intent);
+        } else {
+            toast.show();
+        }
 
     }
 
