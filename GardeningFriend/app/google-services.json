@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "835823840648",
+    "project_id": "gardeningfriendbd",
+    "storage_bucket": "gardeningfriendbd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835823840648:android:2583375fa8ae74c7c25e3d",
+        "android_client_info": {
+          "package_name": "com.maid.gardeningfriend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0_CZhYhxuUWNjgPm_yDT8V2MuyBtB2z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,4 +5,5 @@
     <string name="registro_password">Password</string>
     <string name="registro_btn">Registrarse</string>
     <string name="registro_text">Ya tienes una cuenta? Inicia Sesión.</string>
+    <string name="imagen_registro">user logo</string>
 </resources>
