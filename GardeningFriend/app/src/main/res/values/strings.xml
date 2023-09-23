@@ -10,4 +10,43 @@
     <string name="perfil">Perfil</string>
     <string name="panel_admin">Panel admin</string>
 
+    <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>
+    <string name="logo">logotipo</string>
+
+    <string name="bienvenido">
+        Bienvenido a GardeningFriend! aqui encontraras todo lo que necesitas para comenzar a cultivar!
+    </string>
+
+    <string name="titulo_temp">Temperatura Promedio </string>
+    <string name="hint_temp">Ingresa la temperatura (valor entero)</string>
+    <string name="titulo_estacion">Estación de siembra</string>
+    <string name="hint_estacion">Ingresa la estación</string>
+    <string name="titulo_region">Selecciona tu region</string>
+    <string name="hint_region">Ingresa tu region</string>
+    <string name="buscar_btn">Buscar</string>
+
+    <string name="rango_temp_0">-0°C</string>
+    <string name="rango_temp_1">0°C - 10°C</string>
+    <string name="rango_temp_2">10°C - 20°C</string>
+    <string name="rango_temp_3">20°C - 30°C</string>
+    <string name="rango_temp_4">+30°C</string>
+
+    <string name="est_verano">Verano</string>
+    <string name="est_otono">Otoño</string>
+    <string name="est_invierno">Invierno</string>
+    <string name="est_primavera">Primavera</string>
+
+    <string name="val_selec">Valores seleccionados</string>
+    <string name="temp_selec">Temperatura: </string>
+    <string name="est_selec">Estacion: </string>
+    <string name="reg_selec">Region: </string>
+    <string name="volver_btn">volver</string>
+
+    <string name="reg_norte">Norte</string>
+    <string name="reg_centro">Centro - Pampeana</string>
+    <string name="reg_cuyo">Cuyo</string>
+    <string name="reg_patagonica">Patagonica</string>
+    <string name="cultivo">cultivo</string>
+
+    <string name="buscar_otro">Buscar otro</string>
 </resources>

@@ -2,6 +2,7 @@ package com.maid.gardeningfriend;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,31 +29,31 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         // valida que seccion fue seleccionada
         if(item.getItemId() == R.id.inicio){
-            Toast.makeText(this, "inicio", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Inicio.class));
             return true;
 
         } else if(item.getItemId() == R.id.enciclopedia) {
-            Toast.makeText(this, "enciclopedia", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "enciclopedia (seccion aun no creada)", Toast.LENGTH_SHORT).show();
             return true;
 
         } else if(item.getItemId() == R.id.recomendaciones){
-            Toast.makeText(this, "recomendaciones", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Recomendaciones.class));
             return true;
 
         } else if(item.getItemId() == R.id.registro){
-            Toast.makeText(this, "registro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "registro (seccion aun no creada)", Toast.LENGTH_SHORT).show();
             return true;
 
         } else if(item.getItemId() == R.id.login_logout){
-            Toast.makeText(this, "login / logout", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "login / logout (seccion aun no creada)", Toast.LENGTH_SHORT).show();
             return true;
 
         } else if(item.getItemId() == R.id.perfil){
-            Toast.makeText(this, "login / logout", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "login / logout (seccion aun no creada)", Toast.LENGTH_SHORT).show();
             return true;
 
         } else if(item.getItemId() == R.id.panel_admin){
-            Toast.makeText(this, "login / logout", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "login / logout (seccion aun no creada)", Toast.LENGTH_SHORT).show();
             return true;
 
         } else{

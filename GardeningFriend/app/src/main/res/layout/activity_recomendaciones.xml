@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Recomendaciones">
+
+    <RelativeLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/header"/>
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_below="@+id/header_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recomedaciones_descp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_margin="20dp"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/titulo_temperatura"/>
+
+        <TextView
+            android:id="@+id/titulo_temperatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_temp"
+            android:layout_below="@+id/titulo"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rango_temperatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titulo_temperatura"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp">
+
+            <RadioButton
+                android:id="@+id/rango0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnTempClicked"
+                android:text="@string/rango_temp_0" />
+
+            <RadioButton
+                android:id="@+id/rango1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnTempClicked"
+                android:text="@string/rango_temp_1" />
+
+            <RadioButton
+                android:id="@+id/rango2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnTempClicked"
+                android:text="@string/rango_temp_2" />
+
+            <RadioButton
+                android:id="@+id/rango3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnTempClicked"
+                android:text="@string/rango_temp_3" />
+
+            <RadioButton
+                android:id="@+id/rango4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnTempClicked"
+                android:text="@string/rango_temp_4" />
+
+
+        </RadioGroup>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/titulo_estacion"/>
+
+        <TextView
+            android:id="@+id/titulo_estacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_estacion"
+            android:layout_below="@+id/rango_temperatura"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/opc_estaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titulo_estacion"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp">
+
+            <RadioButton
+                android:id="@+id/opc_verano"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnEstacClicked"
+                android:text="@string/est_verano" />
+
+            <RadioButton
+                android:id="@+id/opc_otono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnEstacClicked"
+                android:text="@string/est_otono" />
+
+            <RadioButton
+                android:id="@+id/opc_invierno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnEstacClicked"
+                android:text="@string/est_invierno" />
+
+            <RadioButton
+                android:id="@+id/opc_primavera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnEstacClicked"
+                android:text="@string/est_primavera" />
+
+        </RadioGroup>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/titulo_region"/>
+
+        <TextView
+            android:id="@+id/titulo_region"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_region"
+            android:layout_below="@+id/opc_estaciones"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+
+        <RadioGroup
+            android:id="@+id/opc_regiones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titulo_region"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp">
+
+            <RadioButton
+                android:id="@+id/reg_norte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnRegClicked"
+                android:text="@string/reg_norte" />
+
+            <RadioButton
+                android:id="@+id/reg_centro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:onClick="btnRegClicked"
+                android:text="@string/reg_centro" />
+
+            <RadioButton
+                android:id="@+id/reg_cuyo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reg_cuyo"
+                android:minHeight="48dp"
+                android:onClick="btnRegClicked"/>
+
+            <RadioButton
+                android:id="@+id/reg_patagonica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reg_patagonica"
+                android:minHeight="48dp"
+                android:onClick="btnRegClicked"/>
+
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_buscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buscar_btn"
+            android:textSize="18sp"
+            android:padding="15dp"
+            android:layout_below="@+id/opc_regiones"
+            android:background="@drawable/btn_verde"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="25dp"
+            android:onClick="buscarCultivos"/>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
