@@ -16,6 +16,9 @@
             android:name=".PanelAdmin"
             android:exported="false" />
         <activity
+            android:name=".RegistroActivity"
+            android:exported="false" />
+        <activity
             android:name=".ContactoSeccion"
             android:exported="false" />
         <activity

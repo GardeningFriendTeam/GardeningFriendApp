@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class RegistroActivity extends AppCompatActivity {
+public class RegistroActivity extends MainActivity {
 
     private TextInputEditText editTextUsername;
     private TextInputEditText editTextEmail;

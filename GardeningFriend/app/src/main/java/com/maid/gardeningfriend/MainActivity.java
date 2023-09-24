@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
 
         } else if(item.getItemId() == R.id.registro){
-            Toast.makeText(this, "registro (seccion aun no creada)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, RegistroActivity.class));
             return true;
 
         } else if(item.getItemId() == R.id.login_logout){
