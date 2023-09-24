@@ -7,7 +7,7 @@ package com.maid.gardeningfriend;
  */
 public class CultivosGenerador {
     //atributos
-    int ID;
+    String ID;
     String nombre;
     String tipo;
     String duracionCrecimiento;
@@ -18,7 +18,7 @@ public class CultivosGenerador {
     int imagen;
 
     //constructor
-    public CultivosGenerador(int ID, String nombre, String tipo, String duracionCrecimiento, String caracteristicas, String temperatura, String estacionSiembra, String region, int imagen) {
+    public CultivosGenerador(String ID, String nombre, String tipo, String duracionCrecimiento, String caracteristicas, String temperatura, String estacionSiembra, String region, int imagen) {
         this.ID = ID;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -31,7 +31,7 @@ public class CultivosGenerador {
     }
 
     //getters
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
