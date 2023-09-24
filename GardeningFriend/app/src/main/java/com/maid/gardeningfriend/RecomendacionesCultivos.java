@@ -5,11 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class RecomendacionesCultivos extends AppCompatActivity {
+/**
+ * segunda pantalla de "recomendaciones"
+ * se muestran los cultivos filtrados
+ */
+public class RecomendacionesCultivos extends MainActivity {
 
+    //variables que contienen los parametros selec
     String tempSelec;
     String estSelec;
     String regSelec;
+    // array que contiene los cultivos que coinciden con los parametros
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +31,7 @@ public class RecomendacionesCultivos extends AppCompatActivity {
         estSelec = opcSeleccionadas.getEstacionSelec();
         regSelec = opcSeleccionadas.getRegSelec();
 
-        //se muestran los valores seleccionados
-        Toast.makeText(this, tempSelec, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, estSelec, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, regSelec, Toast.LENGTH_SHORT).show();
+        //
 
 
     }

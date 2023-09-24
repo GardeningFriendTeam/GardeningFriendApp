@@ -8,7 +8,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
+/**
+ * Contiene la logica / funcion para implementar el menu
+ * todas las activities deben extenderse de esta clase
+ * @return menu navegacion
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -54,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         } else if(item.getItemId() == R.id.panel_admin){
             Toast.makeText(this, "login / logout (seccion aun no creada)", Toast.LENGTH_SHORT).show();
+            return true;
+
+        } else if(item.getItemId() == R.id.contacto){
+            Toast.makeText(this, "contacto (seccion aun no creada)", Toast.LENGTH_SHORT).show();
             return true;
 
         } else{

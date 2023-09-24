@@ -3,9 +3,12 @@ package com.maid.gardeningfriend;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Crea un objeto parceable con los parametros selec por el usuario en recomendaciones
+ * para lugar enviarlo a la segunda pantalla de la seccion
+ * @return objeto parceable con param selecionados
+ */
 public class CultivosReco implements Parcelable{
-    // esta clase sirve para crear objetos parceables y poder pasarlos via intent mas ordenadamente
-    // atributos
     private String temperaturaSelec;
     private String estacionSelec;
     private String regSelec;

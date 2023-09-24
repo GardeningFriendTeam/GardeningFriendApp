@@ -34,8 +34,14 @@
         android:icon="@drawable/ic_perfil"/>
 
     <item
+        android:id="@+id/contacto"
+        android:title="@string/contacto"
+        android:icon="@drawable/ic_contacto"/>
+
+    <item
         android:id="@+id/panel_admin"
         android:title="@string/panel_admin"
         android:icon="@drawable/ic_admin"/>
-    
+
+
 </menu>

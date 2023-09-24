@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+/**
+ * Contiene la logica relacionada a la primer pantalla de "recomendaciones"
+ * (donde el user seleciona los parametros adecuadas a su caso)
+ */
 public class Recomendaciones extends MainActivity {
 
     // variables que almacenan los valores seleccionados
