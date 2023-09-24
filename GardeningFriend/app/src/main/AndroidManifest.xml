@@ -13,27 +13,38 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
+            android:name=".PanelAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".ContactoSeccion"
+            android:exported="false" />
+        <activity
+            android:name=".Perfil"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".Enciclopedia"
+            android:exported="false" />
+        <activity
             android:name=".Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".RecomendacionesCultivos"
             android:exported="false" />
-
         <activity
             android:name=".Recomendaciones"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
-
+            android:exported="true" />
     </application>
 
 </manifest>

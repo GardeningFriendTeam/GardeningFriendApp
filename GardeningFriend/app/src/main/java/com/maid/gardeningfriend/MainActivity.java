@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
 
         } else if(item.getItemId() == R.id.enciclopedia) {
-            Toast.makeText(this, "enciclopedia (seccion aun no creada)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Enciclopedia.class));
             return true;
 
         } else if(item.getItemId() == R.id.recomendaciones){
@@ -49,19 +49,19 @@ public class MainActivity extends AppCompatActivity {
             return true;
 
         } else if(item.getItemId() == R.id.login_logout){
-            Toast.makeText(this, "login / logout (seccion aun no creada)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Login.class));
             return true;
 
         } else if(item.getItemId() == R.id.perfil){
-            Toast.makeText(this, "login / logout (seccion aun no creada)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, Perfil.class));
             return true;
 
         } else if(item.getItemId() == R.id.panel_admin){
-            Toast.makeText(this, "login / logout (seccion aun no creada)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, PanelAdmin.class ));
             return true;
 
         } else if(item.getItemId() == R.id.contacto){
-            Toast.makeText(this, "contacto (seccion aun no creada)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ContactoSeccion.class));
             return true;
 
         } else{
