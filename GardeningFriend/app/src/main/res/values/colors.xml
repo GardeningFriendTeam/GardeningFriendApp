@@ -2,6 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cambridge_blue">#83B692</color>
+    <color name="mindaro">#CEF7A0</color>
+    <color name="light_green">#70EE9C</color>
+    <color name="sea_green">#2D936C</color>
+    <color name="kelly_green">#5FAD41</color>
+    <color name="jasper">#D66853</color>
 
     <color name="verde_claro">#4CAF50</color>
     <color name="verde_medio">#02AE9E</color>
