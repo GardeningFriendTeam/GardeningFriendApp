@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * segunda pantalla de "recomendaciones"
  * se muestran los cultivos filtrados
  */
-public class RecomendacionesCultivos extends MainActivity {
+public class RecomendacionesCultivos extends MainActivity implements RecomendacionesInterface{
 
     //variables que contienen los parametros selec
     String tempSelec;
@@ -44,7 +45,7 @@ public class RecomendacionesCultivos extends MainActivity {
         addModelsCultivos();
 
         // se activa el "adapter" para que pase las tarjetas al recycler
-        RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this,cultivosFiltrados);
+        RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this,cultivosFiltrados,this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
 
@@ -94,6 +95,24 @@ public class RecomendacionesCultivos extends MainActivity {
             Toast.makeText(this, "ningun cultivo coincide con los parametros seleccionados, lo sentimos", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    /**
+     * pasa los valores de la tarjeta seleccionada
+     * a la siguiente vista donde se muestran los detalles
+     * @param position
+     */
+    @Override
+    public void onItemClick(int position) {
+        // 1 - se crea intent para dirigir al user a la pantalla con info extra:
+        Intent intent = new Intent(RecomendacionesCultivos.this, RecomendacionesDetalles.class);
+
+        // 2 - se pasan las propiedades necesarias:
+        intent.putExtra("NOMBRE_CULTIVO", cultivosFiltrados.get(position).getNombre());
+        intent.putExtra("INFO_CULTIVO", cultivosFiltrados.get(position).getCaracteristicas());
+
+        // 3 - se inicialza la nueva actividad (intent)
+        startActivity(intent);
     }
 
 
