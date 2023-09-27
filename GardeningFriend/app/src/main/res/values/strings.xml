@@ -1,3 +1,166 @@
 <resources>
     <string name="app_name">Gardening Friend</string>
+    <string name="registro_username">Username</string>
+    <string name="registro_email">Email</string>
+    <string name="registro_password">Password</string>
+    <string name="registro_btn">Registrarse</string>
+    <string name="registro_text">Ya tienes una cuenta? Inicia Sesión.</string>
+    <string name="imagen_registro">user logo</string>
+
+    <!-- nombre secciones !-->
+    <string name="menu">Menu</string>
+    <string name="inicio">Inicio</string>
+    <string name="enciclopedia">Enciclopedia</string>
+    <string name="recomendaciones">Recomendaciones</string>
+    <string name="contacto">Contacto</string>
+    <string name="registro">Registro</string>
+    <string name="login"> Login / logout</string>
+    <string name="perfil">Perfil</string>
+    <string name="panel_admin">Panel admin</string>
+
+    <!-- seccion "recomendaciones" !-->
+    <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>
+    <string name="logo">logotipo</string>
+    <string name="titulo_temp">Temperatura Promedio </string>
+    <string name="hint_temp">Ingresa la temperatura (valor entero)</string>
+    <string name="titulo_estacion">Estación de siembra</string>
+    <string name="hint_estacion">Ingresa la estación</string>
+    <string name="titulo_region">Selecciona tu region</string>
+    <string name="hint_region">Ingresa tu region</string>
+    <string name="buscar_btn">Buscar</string>
+    <string name="rango_temp_0">-0°C</string>
+    <string name="rango_temp_1">0°C - 10°C</string>
+    <string name="rango_temp_2">10°C - 20°C</string>
+    <string name="rango_temp_3">20°C - 30°C</string>
+    <string name="rango_temp_4">+30°C</string>
+    <string name="est_verano">Verano</string>
+    <string name="est_otono">Otoño</string>
+    <string name="est_invierno">Invierno</string>
+    <string name="est_primavera">Primavera</string>
+    <string name="val_selec">Valores seleccionados</string>
+    <string name="temp_selec">Temperatura: </string>
+    <string name="est_selec">Estacion: </string>
+    <string name="reg_selec">Region: </string>
+    <string name="volver_btn">volver</string>
+    <string name="reg_norte">Norte</string>
+    <string name="reg_centro">Centro - Pampeana</string>
+    <string name="reg_cuyo">Cuyo</string>
+    <string name="reg_patagonica">Patagonica</string>
+    <string name="cultivo">cultivo</string>
+    <string name="buscar_otro">Buscar otro</string>
+
+    <!-- seccion "inicio" !-->
+    <string name="bienvenido">
+        Bienvenido a GardeningFriend! aqui encontraras todo lo que necesitas para comenzar a cultivar!
+    </string>
+
+
+    <!-- contiene info de prueba para generar cultivos !-->
+    <string-array name="cultivos_nombres">
+        <item>Aceituna</item>
+        <item>Calabaza</item>
+        <item>Cebolla</item>
+        <item>Lechuga</item>
+    </string-array>
+
+    <string-array name="cultivos_region">
+        <item>Centro - Pampeana</item>
+        <item>Centro - Pampeana</item>
+        <item>Centro - Pampeana</item>
+        <item>Centro - Pampeana</item>
+    </string-array>
+
+    <string-array name="culvtivos_temp">
+        <item>20°C - 30°C</item>
+        <item>20°C - 30°C</item>
+        <item>20°C - 30°C</item>
+        <item>20°C - 30°C</item>
+    </string-array>
+
+    <string-array name="cultivos_estacion">
+        <item>Verano</item>
+        <item>Verano</item>
+        <item>Otoño</item>
+        <item>Primavera</item>
+    </string-array>
+
+    <string-array name="cultivos_img">
+        <item>"@minmap/ic_aceituna.png"</item>
+        <item>"@minmap/ic_calabaza.png"</item>
+        <item>"@minmap/ic_cebolla.png"</item>
+        <item>"@minmap/ic_lechuga.png"</item>
+    </string-array>
+
+    <string-array name="cultivos_tipos">
+        <item>vegetal</item>
+        <item>vegetal</item>
+        <item>vegetal</item>
+        <item>vegetal</item>
+    </string-array>
+
+    <string-array name="cultivos_id">
+        <item>1_aceituna</item>
+        <item>2_calabaza</item>
+        <item>3_cebolla</item>
+        <item>4_lechuga</item>
+    </string-array>
+
+    <string-array name="cultivos_crecimiento">
+        <item>10 semanas</item>
+        <item>10 semanas</item>
+        <item>10 semanas</item>
+        <item>10 semanas</item>
+    </string-array>
+
+    <string-array name="cultivos_info">
+        <item>La aceituna u oliva es el fruto del olivo (Olea europaea), árbol que procede
+            de Grecia y Asia Menor, donde todavía pueden hallarse en bosques de olivos silvestres o
+            «acebuches», donde no tiene el característico alineamiento regular propio de las plantas
+            cultivadas. Las aceitunas se consumen tanto molidas (como aceite) como en fresco pasando
+            primero por un proceso de maceración que elimina el sabor amargo que tienen debido a un
+            glucósido conocido como oleuropeína, o luego de un proceso de curado del fruto.
+            En España son muy populares las aceitunas aliñadas tomadas como aperitivo.</item>
+        <item>La calabaza es una baya de cáscara dura.
+            Es el fruto de las cucurbitáceas (del género Cucurbita) y es un fruto de tipo pepónide.
+            Algunos autores también incluyen a los frutos del género Lagenaria, y a los frutos de
+            las plantas de la familia de las bignoniáceas, como los "árboles de calabazas" Crescentia
+            y Amphitecna. Las calabazas se encuentran tanto de manera silvestre como cultivada.
+            Las calabazas, incluidas las silvestres, son de tamaño grande, de más de 5 cm de
+            diámetro.1​ Presentan una gran variedad de formas, tamaños, texturas, sabores y colores
+            . Los frutos se pueden cosechar tanto maduros como inmaduros, dependiendo del uso fina
+            l que se le de al fruto.2​</item>
+        <item>
+            Allium cepa, comúnmente conocida como cebolla,
+            es una planta herbácea bienal perteneciente a la familia de las amarilidáceas.
+            Es la especie más cultivada del género Allium, el cual contiene varias especies que se
+            denominan «cebollas» y que se cultivan como alimento. Ejemplos de las mismas son la
+            cebolla de verdeo (Allium fistulosum), la cebolla escalonia (Allium ascalonicum) y
+            la cebolla de hoja o ciboulette (Allium schoenoprasum).2​3​
+        </item>
+        <item>
+            La lechuga (Lactuca sativa) es una planta anual de la familia Asteraceae.
+            Se cultiva sobre todo como verdura de hoja, pero a veces también por su tallo y sus semillas.
+            La lechuga se utiliza sobre todo para las ensaladas, aunque también se ve en otros tipos
+            de comida, como sopas, emparedados, sándwiches y envoltorios; también se puede asar
+            a la parrilla.1​ Una variedad, la lechuga china (lechuga espárrago), se cultiva por
+            sus tallos, que se consumen crudos o cocidos. Además de su uso principal como hoja verde,
+            también ha adquirido un significado religioso y medicinal durante siglos de consumo humano.
+            Originalmente, Europa y América del Norte dominaban el mercado de la lechuga, pero a
+            finales del siglo xx el consumo de lechuga se había extendido por todo el mundo. En 2021,
+            la producción mundial de lechuga y achicoria era de 27 millones de toneladas,
+            el 53 % de las cuales procedía de China.2​
+        </item>
+    </string-array>
+
+    <!-- para textos de prueba !-->
+    <string name="lorem_ipsum">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum."
+    </string>
+
+
 </resources>

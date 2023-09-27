@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/inicio"
+        android:title="@string/inicio"
+        android:icon="@drawable/ic_inicio"/>
+
+    <item
+        android:id="@+id/enciclopedia"
+        android:title="@string/enciclopedia"
+        android:icon="@drawable/ic_enciclopedia"/>
+
+    <item
+        android:id="@+id/recomendaciones"
+        android:title="@string/recomendaciones"
+        android:icon="@drawable/ic_recomendaciones"/>
+
+    <item
+        android:id="@+id/registro"
+        android:title="@string/registro"
+        android:icon="@drawable/ic_registro"/>
+
+    <item
+        android:id="@+id/login_logout"
+        android:title="@string/login"
+        android:icon="@drawable/ic_registro"/>
+
+    <item
+        android:id="@+id/perfil"
+        android:title="@string/perfil"
+        android:icon="@drawable/ic_perfil"/>
+
+    <item
+        android:id="@+id/contacto"
+        android:title="@string/contacto"
+        android:icon="@drawable/ic_contacto"/>
+
+    <item
+        android:id="@+id/panel_admin"
+        android:title="@string/panel_admin"
+        android:icon="@drawable/ic_admin"/>
+
+
+</menu>
