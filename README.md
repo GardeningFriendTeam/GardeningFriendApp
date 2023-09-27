@@ -1,6 +1,8 @@
 # Gardening Friend App
 Proyecto integrador II - Aplicación Móvil sobre cultivos
 
+Link video muestra navegación: https://www.loom.com/share/63aee668fad04bf1b2edbf2062ae7fef?sid=927b5baf-ef01-4d7b-8d30-3b3c88620c2e
+
 ¡Bienvenido al repositorio de Gardening Friend, la aplicación nativa de Android para entusiastas de la jardinería y la agricultura! Esta aplicación se basa en nuestra aplicación web [Gardening Friend](https://github.com/SoledadQuiroz/FullStack-ProyectoIntegrador) y ofrece información, consejos y tutoriales sobre cultivos y huertos. Además, agregaremos emocionantes funcionalidades nuevas para brindarte una experiencia completa y conveniente en tu dispositivo móvil.
 
 # Características a implementar
