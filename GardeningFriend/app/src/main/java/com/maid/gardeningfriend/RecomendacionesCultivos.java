@@ -1,14 +1,25 @@
 package com.maid.gardeningfriend;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * segunda pantalla de "recomendaciones"
@@ -22,7 +33,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
     String regSelec;
     // array que contiene los cultivos que coinciden con los parametros
     ArrayList<CultivosGenerador> cultivosFiltrados = new ArrayList<>();
-    int[] imagenesCultivos = {R.mipmap.ic_aceituna, R.mipmap.ic_calabaza, R.mipmap.ic_cebolla, R.mipmap.ic_lechuga};
+    int[] imagenesCultivos = {R.mipmap.ic_aceituna, R.mipmap.ic_calabaza, R.mipmap.ic_cebolla, R.mipmap.ic_lechuga, R.mipmap.logo};
 
 
     @Override
@@ -56,45 +67,72 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      * @return cultivos que se añaden a un array
      */
     private void addModelsCultivos(){
-        // flag que se activa si hay resultados que coinciden con la busqueda
-        boolean resultados = false;
+        // 1 - se crea una instancia de la BD para acceder a la coleccion
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 1 - se extraen todos los recursos para instanciar los cultivos
-        String[] cultivosNombre = getResources().getStringArray(R.array.cultivos_nombres);
-        String[] cultivosTemp = getResources().getStringArray(R.array.culvtivos_temp);
-        String[] cultivosEst = getResources().getStringArray(R.array.cultivos_estacion);
-        String[] cultivosReg = getResources().getStringArray(R.array.cultivos_region);
-        String[] cultivosInfo = getResources().getStringArray(R.array.cultivos_info);
-        String[] cultivosID = getResources().getStringArray(R.array.cultivos_id);
-        String[] cultivosCrecimiento = getResources().getStringArray(R.array.cultivos_crecimiento);
-        String[] cultivosTipos = getResources().getStringArray(R.array.cultivos_tipos);
+        //prueba valores seleccionados
+        Log.i("tag", tempSelec);
+        Log.i("tag", estSelec);
+        Log.i("tag", regSelec);
 
-        // 2 - se iteran los arrays con la informacion y se generan nuevas instancias
-        for (int i = 0; i < cultivosNombre.length; i++) {
-            // se valida que coincida con los parametros del usuario
-            if(cultivosTemp[i].toString().equals(tempSelec) && cultivosEst[i].toString().equals(estSelec) && cultivosReg[i].toString().equals(regSelec)){
-                // si es correcto se crean las instancias correspondientes
-                cultivosFiltrados.add(new CultivosGenerador(
-                        cultivosID[i],
-                        cultivosNombre[i],
-                        cultivosTipos[i],
-                        cultivosCrecimiento[i],
-                        cultivosInfo[i],
-                        cultivosTemp[i],
-                        cultivosEst[i],
-                        cultivosReg[i],
-                        imagenesCultivos[i]));
-                // se activa flag
-                resultados = true;
-            }
+        // 2 - se realiza una get request para consumir los datos de los cultivos
+        db.collection("cultivos")
+                .get()
+                //listener que verifica si la peticion fue exitosa
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            Log.i("tag","peticion exitosa");
+                            // se recorre la coleccion y se extraen los datos necesarios
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // se guarda la info consumida en un map
+                                Map<String, Object> data = document.getData();
+
+                                // se accede a las propiedades del elem iterado
+                                String nombre = (String) data.get("nombre");
+                                String temperatura = (String) data.get("temperatura");
+                                String estacion = (String) data.get("estacion");
+                                String region = (String) data.get("region");
+                                String informacion = (String) data.get("informacion");
+                                String crecimiento = (String) data.get("crecimiento");
+                                String tipo = (String) data.get("tipo");
+
+                                Log.i("tag", nombre);
+                                Log.i("tag", temperatura);
+                                Log.i("tag", estacion);
+                                Log.i("tag", region);
+
+                                // se compara con la seleccion del usuario
+                                if(tempSelec.equals(temperatura) &&
+                                estSelec.equals(estacion)&&
+                                regSelec.equals(region)){
+                                    // se agrega al array que va a ser usado x recyclerview
+                                    cultivosFiltrados.add(new CultivosGenerador(nombre,
+                                            nombre,
+                                            tipo,
+                                            crecimiento,
+                                            informacion,
+                                            temperatura,
+                                            estacion,
+                                            region,
+                                            imagenesCultivos[4]));
+                                    Log.i("tag", "cultivo agregado");
+                                }
+
+                            }
+                        } else {
+                            // fracaso la peticion & se muestra mensaje
+                            Toast.makeText(RecomendacionesCultivos.this,"hubo un error al conectarse con la BD", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+        // 3 - en caso de no haber resultados se muestra un mensaje de error:
+        if(cultivosFiltrados.size() == 0){
+            Toast.makeText(RecomendacionesCultivos.this, "no se han encontrado resultados", Toast.LENGTH_SHORT).show();
         }
-
-        // si ningun resultado coincide con la busqueda
-        if(!resultados){
-            //mensaje de error
-            Toast.makeText(this, "ningun cultivo coincide con los parametros seleccionados, lo sentimos", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     /**
