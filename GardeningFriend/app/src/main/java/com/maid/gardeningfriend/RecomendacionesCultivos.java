@@ -49,6 +49,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         estSelec = opcSeleccionadas.getEstacionSelec();
         regSelec = opcSeleccionadas.getRegSelec();
 
+        //se activa el adaptar pasar estos valores al recyclerview
         //se identifica el recyclerview de la activity
         RecyclerView recycler = findViewById(R.id.recycler_cultivos);
 
@@ -60,6 +61,9 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
 
+        //muestra la cant de elems en el array de cultivos
+        cantidadCultivos();
+
     }
 
     /**
@@ -69,11 +73,6 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
     private void addModelsCultivos(){
         // 1 - se crea una instancia de la BD para acceder a la coleccion
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        //prueba valores seleccionados
-        Log.i("tag", tempSelec);
-        Log.i("tag", estSelec);
-        Log.i("tag", regSelec);
 
         // 2 - se realiza una get request para consumir los datos de los cultivos
         db.collection("cultivos")
@@ -89,7 +88,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                 // se guarda la info consumida en un map
                                 Map<String, Object> data = document.getData();
 
-                                // se accede a las propiedades del elem iterado
+                                // se extraen las propiedades del elem iterado
                                 String nombre = (String) data.get("nombre");
                                 String temperatura = (String) data.get("temperatura");
                                 String estacion = (String) data.get("estacion");
@@ -98,17 +97,14 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                 String crecimiento = (String) data.get("crecimiento");
                                 String tipo = (String) data.get("tipo");
 
-                                Log.i("tag", nombre);
-                                Log.i("tag", temperatura);
-                                Log.i("tag", estacion);
-                                Log.i("tag", region);
 
                                 // se compara con la seleccion del usuario
                                 if(tempSelec.equals(temperatura) &&
                                 estSelec.equals(estacion)&&
                                 regSelec.equals(region)){
-                                    // se agrega al array que va a ser usado x recyclerview
-                                    cultivosFiltrados.add(new CultivosGenerador(nombre,
+                                    // se crea objeto para agregar cultivo al array
+                                    CultivosGenerador nuevoCultivo = new CultivosGenerador(
+                                            nombre,
                                             nombre,
                                             tipo,
                                             crecimiento,
@@ -116,11 +112,14 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                             temperatura,
                                             estacion,
                                             region,
-                                            imagenesCultivos[4]));
-                                    Log.i("tag", "cultivo agregado");
-                                }
+                                            imagenesCultivos[4]);
 
+                                    cultivosFiltrados.add(nuevoCultivo);
+
+                                    Log.i("tag", "cultivo agregado: " + nombre);
+                                }
                             }
+                            Log.i("tag", "tamaño array: " + cultivosFiltrados.size());
                         } else {
                             // fracaso la peticion & se muestra mensaje
                             Toast.makeText(RecomendacionesCultivos.this,"hubo un error al conectarse con la BD", Toast.LENGTH_SHORT).show();
@@ -128,11 +127,14 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                     }
                 });
 
-
         // 3 - en caso de no haber resultados se muestra un mensaje de error:
         if(cultivosFiltrados.size() == 0){
             Toast.makeText(RecomendacionesCultivos.this, "no se han encontrado resultados", Toast.LENGTH_SHORT).show();
+        } else{
+            int cantidad = cultivosFiltrados.size();
+            Toast.makeText(RecomendacionesCultivos.this, "resultados encontrados: " + cantidad, Toast.LENGTH_SHORT).show();
         }
+
     }
 
     /**
@@ -151,6 +153,10 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
 
         // 3 - se inicialza la nueva actividad (intent)
         startActivity(intent);
+    }
+
+    public void cantidadCultivos(){
+        Toast.makeText(RecomendacionesCultivos.this, "Cantidad de cultivos: " + cultivosFiltrados.size(), Toast.LENGTH_SHORT).show();
     }
 
 
