@@ -49,20 +49,8 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         estSelec = opcSeleccionadas.getEstacionSelec();
         regSelec = opcSeleccionadas.getRegSelec();
 
-        //se activa el adaptar pasar estos valores al recyclerview
-        //se identifica el recyclerview de la activity
-        RecyclerView recycler = findViewById(R.id.recycler_cultivos);
-
         //se inicializa funcion para agregar las tarjetas
         addModelsCultivos();
-
-        // se activa el "adapter" para que pase las tarjetas al recycler
-        RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this,cultivosFiltrados,this);
-        recycler.setAdapter(adapter);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-
-        //muestra la cant de elems en el array de cultivos
-        cantidadCultivos();
 
     }
 
@@ -85,7 +73,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                             Log.i("tag","peticion exitosa");
                             // se recorre la coleccion y se extraen los datos necesarios
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                // se guarda la info consumida en un map
+                                // se guarda la info consumida en un objeto map
                                 Map<String, Object> data = document.getData();
 
                                 // se extraen las propiedades del elem iterado
@@ -96,7 +84,6 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                 String informacion = (String) data.get("informacion");
                                 String crecimiento = (String) data.get("crecimiento");
                                 String tipo = (String) data.get("tipo");
-
 
                                 // se compara con la seleccion del usuario
                                 if(tempSelec.equals(temperatura) &&
@@ -114,11 +101,12 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                             region,
                                             imagenesCultivos[4]);
 
-                                    cultivosFiltrados.add(nuevoCultivo);
-
-                                    Log.i("tag", "cultivo agregado: " + nombre);
+                                    agregarCultivo(nuevoCultivo);
                                 }
                             }
+                            // una vez que se iteran todos los documentos se activa el recyclerview adapter
+                            activarAdapter();
+
                             Log.i("tag", "tamaño array: " + cultivosFiltrados.size());
                         } else {
                             // fracaso la peticion & se muestra mensaje
@@ -126,16 +114,34 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                         }
                     }
                 });
-
-        // 3 - en caso de no haber resultados se muestra un mensaje de error:
-        if(cultivosFiltrados.size() == 0){
-            Toast.makeText(RecomendacionesCultivos.this, "no se han encontrado resultados", Toast.LENGTH_SHORT).show();
-        } else{
-            int cantidad = cultivosFiltrados.size();
-            Toast.makeText(RecomendacionesCultivos.this, "resultados encontrados: " + cantidad, Toast.LENGTH_SHORT).show();
-        }
-
     }
+
+    /**
+     * debido a que la get request es una
+     * funcion asincronica el objeto de cada cultivo
+     * filtrado se añade aparte
+     * @param cultivoSelec
+     */
+    public void agregarCultivo(CultivosGenerador cultivoSelec){
+        cultivosFiltrados.add(cultivoSelec);
+        Log.i("tag", "cultivo agreagado: " + cultivoSelec.nombre);
+    }
+
+    /**
+     * activa el adapter de recycler view
+     * para pasar todos los cultivos
+     * guardados en el array "cultivosFiltrados"
+     */
+    public void activarAdapter(){
+        //se identifica el recyclerview de la activity
+        RecyclerView recycler = findViewById(R.id.recycler_cultivos);
+
+        // se activa el "adapter" para que pase las tarjetas al recycler
+        RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this,cultivosFiltrados,this);
+        recycler.setAdapter(adapter);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+    }
+
 
     /**
      * pasa los valores de la tarjeta seleccionada
@@ -155,9 +161,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         startActivity(intent);
     }
 
-    public void cantidadCultivos(){
-        Toast.makeText(RecomendacionesCultivos.this, "Cantidad de cultivos: " + cultivosFiltrados.size(), Toast.LENGTH_SHORT).show();
-    }
+
 
 
 }
