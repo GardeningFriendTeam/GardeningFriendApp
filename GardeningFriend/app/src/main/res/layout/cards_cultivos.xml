@@ -22,10 +22,10 @@
             <ImageView
                 android:id="@+id/ic_cultivo"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_lechuga"
+                android:layout_height="100dp"
                 android:layout_marginHorizontal="20dp"
-                android:contentDescription="@string/cultivo"/>
+                android:contentDescription="@string/cultivo"
+                android:layout_centerVertical="true"/>
 
             <TextView
                 android:id="@+id/titulo_cult_card"

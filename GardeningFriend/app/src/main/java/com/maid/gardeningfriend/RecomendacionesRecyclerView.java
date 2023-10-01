@@ -2,6 +2,7 @@ package com.maid.gardeningfriend;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -49,7 +52,13 @@ public class RecomendacionesRecyclerView extends RecyclerView.Adapter<Recomendac
         holder.temperatura.setText(cultModel.get(position).getTemperatura());
         holder.estacion.setText(cultModel.get(position).getEstacionSiembra());
         holder.region.setText(cultModel.get(position).getRegion());
-        holder.icono.setImageResource(cultModel.get(position).getImagen());
+        // se procesa la imagen a traves de una libreria "picasso"
+        Picasso.get()
+                .load(cultModel.get(position).getImagen())
+                .error(R.mipmap.logo)
+                .into(holder.icono);
+        Log.i("tag", "url: " +cultModel.get(position).getImagen());
+
     }
 
     @Override

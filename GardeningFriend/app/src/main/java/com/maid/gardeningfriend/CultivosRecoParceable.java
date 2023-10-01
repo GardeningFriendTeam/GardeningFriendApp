@@ -8,13 +8,13 @@ import android.os.Parcelable;
  * para lugar enviarlo a la segunda pantalla de la seccion
  * @return objeto parceable con param selecionados
  */
-public class CultivosReco implements Parcelable{
+public class CultivosRecoParceable implements Parcelable{
     private String temperaturaSelec;
     private String estacionSelec;
     private String regSelec;
 
     //constructor
-    public CultivosReco(String temperaturaSelec, String estacionSelec, String regSelec) {
+    public CultivosRecoParceable(String temperaturaSelec, String estacionSelec, String regSelec) {
         this.temperaturaSelec = temperaturaSelec;
         this.estacionSelec = estacionSelec;
         this.regSelec = regSelec;
@@ -47,23 +47,23 @@ public class CultivosReco implements Parcelable{
         dest.writeString(regSelec);
     }
 
-    public static final Creator<CultivosReco> CREATOR = new Creator<CultivosReco>() {
+    public static final Creator<CultivosRecoParceable> CREATOR = new Creator<CultivosRecoParceable>() {
         @Override
-        public CultivosReco createFromParcel(Parcel parcel) {
+        public CultivosRecoParceable createFromParcel(Parcel parcel) {
             // se recrea el objeto
             String temperaturaSelec = parcel.readString();
             String estacionSelec = parcel.readString();
             String regSelec = parcel.readString();
-            return new CultivosReco(temperaturaSelec, estacionSelec, regSelec);
+            return new CultivosRecoParceable(temperaturaSelec, estacionSelec, regSelec);
         }
 
         @Override
-        public CultivosReco[] newArray(int i) {
-            return new CultivosReco[i];
+        public CultivosRecoParceable[] newArray(int i) {
+            return new CultivosRecoParceable[i];
         }
     };
 
-    private CultivosReco(Parcel in){
+    private CultivosRecoParceable(Parcel in){
         temperaturaSelec = in.readString();
         estacionSelec = in.readString();
         regSelec = in.readString();

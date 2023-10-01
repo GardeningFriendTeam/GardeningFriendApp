@@ -1,7 +1,6 @@
 package com.maid.gardeningfriend;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +14,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -33,7 +30,6 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
     String regSelec;
     // array que contiene los cultivos que coinciden con los parametros
     ArrayList<CultivosGenerador> cultivosFiltrados = new ArrayList<>();
-    int[] imagenesCultivos = {R.mipmap.ic_aceituna, R.mipmap.ic_calabaza, R.mipmap.ic_cebolla, R.mipmap.ic_lechuga, R.mipmap.logo};
 
 
     @Override
@@ -42,7 +38,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         setContentView(R.layout.activity_recomendaciones_cultivos);
 
         //se recibe el objeto parceable con los datos
-        CultivosReco opcSeleccionadas = getIntent().getParcelableExtra("datosReco");
+        CultivosRecoParceable opcSeleccionadas = getIntent().getParcelableExtra("datosReco");
 
         // se reciben los datos selec en la pantalla anterior
         tempSelec = opcSeleccionadas.getTemperaturaSelec();
@@ -56,7 +52,6 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
 
     /**
      * agrega los cultivos que coinciden con los param selecionados por el user
-     * @return cultivos que se añaden a un array
      */
     private void addModelsCultivos(){
         // 1 - se crea una instancia de la BD para acceder a la coleccion
@@ -84,6 +79,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                 String informacion = (String) data.get("informacion");
                                 String crecimiento = (String) data.get("crecimiento");
                                 String tipo = (String) data.get("tipo");
+                                String imagen = (String) data.get("icono");
 
                                 // se compara con la seleccion del usuario
                                 if(tempSelec.equals(temperatura) &&
@@ -99,7 +95,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                             temperatura,
                                             estacion,
                                             region,
-                                            imagenesCultivos[4]);
+                                            imagen);
 
                                     agregarCultivo(nuevoCultivo);
                                 }
@@ -121,6 +117,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      * funcion asincronica el objeto de cada cultivo
      * filtrado se añade aparte
      * @param cultivoSelec
+     * parametro representa el cultivo validado por el filtro
      */
     public void agregarCultivo(CultivosGenerador cultivoSelec){
         cultivosFiltrados.add(cultivoSelec);
@@ -147,17 +144,31 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      * pasa los valores de la tarjeta seleccionada
      * a la siguiente vista donde se muestran los detalles
      * @param position
+     * representa el index de la tarjeta
      */
     @Override
     public void onItemClick(int position) {
         // 1 - se crea intent para dirigir al user a la pantalla con info extra:
         Intent intent = new Intent(RecomendacionesCultivos.this, RecomendacionesDetalles.class);
 
-        // 2 - se pasan las propiedades necesarias:
-        intent.putExtra("NOMBRE_CULTIVO", cultivosFiltrados.get(position).getNombre());
-        intent.putExtra("INFO_CULTIVO", cultivosFiltrados.get(position).getCaracteristicas());
+        // 2 - se crea objeto parceable para pasar las propiedades del cult selec a la siguiente
+        //pantalla
+        CultivosDetallesParceable detallesCultivo = new CultivosDetallesParceable(
+                cultivosFiltrados.get(position).getNombre(),
+                cultivosFiltrados.get(position).getTemperatura(),
+                cultivosFiltrados.get(position).getEstacionSiembra(),
+                cultivosFiltrados.get(position).getRegion(),
+                cultivosFiltrados.get(position).getCaracteristicas(),
+                cultivosFiltrados.get(position).getImagen()
+        );
 
-        // 3 - se inicialza la nueva actividad (intent)
+        //prueba
+        Log.i("tag", "nombre cultivo: " + detallesCultivo.getNombreCultivo());
+
+        // 3 - se pasa el objeto parceable al intent
+        intent.putExtra("CULTIVO_DETALLES", detallesCultivo);
+
+        // 4  - se inicialza la nueva actividad (intent)
         startActivity(intent);
     }
 
