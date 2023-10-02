@@ -81,6 +81,9 @@ public class PanelAdminCultivos extends MainActivity {
                                 // se llama a funcion para que agregue el cultivo a al arraylist
                                 agregarCultivo(cultivoIterado);
                             }
+                            // se activa el adapter una vez que se itero sobre todos los docs
+                            activarAdapter();
+
                         }else{
                             // se muestra mensaje de error en caso que falle la conexion
                             Toast.makeText(PanelAdminCultivos.this, "ha ocurrido un problema al conectar con la BD", Toast.LENGTH_SHORT).show();

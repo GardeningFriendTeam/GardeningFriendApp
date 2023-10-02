@@ -30,7 +30,7 @@ public class PanelAdminRecyclerView extends RecyclerView.Adapter<PanelAdminRecyc
     public PanelAdminRecyclerView.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // infla el layout con las tarjetas creadas
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.cards_cultivos_panel_admin,parent);
+        View view = inflater.inflate(R.layout.cards_cultivos_panel_admin,parent,false);
 
         return new PanelAdminRecyclerView.MyViewHolder(view);
     }
