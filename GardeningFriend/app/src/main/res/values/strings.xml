@@ -18,6 +18,14 @@
     <string name="perfil">Perfil</string>
     <string name="panel_admin">Panel admin</string>
 
+    <!-- seccion "panel admin" !-->
+    <string name="cultivos"> cultivos </string>
+    <string name="usuarios"> usuarios </string>
+    <string name="desc_panel_admin">Clickea el area que deseas administrar: </string>
+    <string name="eliminar">eliminar</string>
+    <string name="editar">editar</string>
+
+
     <!-- seccion "recomendaciones" !-->
     <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>
     <string name="logo">logotipo</string>
