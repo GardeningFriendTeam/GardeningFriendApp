@@ -34,7 +34,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
         android:layout_toEndOf="@+id/ic_card_cultivos"
-        android:background="@color/verde_oscuro"
+        android:backgroundTint="@color/verde_oscuro"
+        android:background="@drawable/btn_verde"
         android:text="@string/eliminar"
         android:textColor="#000000" />
 
@@ -46,7 +47,8 @@
         android:layout_marginBottom="20dp"
         android:layout_toEndOf="@+id/btn_eliminar"
         android:layout_alignParentBottom="true"
-        android:background="@color/verde_oscuro"
+        android:backgroundTint="@color/verde_oscuro"
+        android:background="@drawable/btn_verde"
         android:text="@string/editar"
         android:textColor="#000000"/>
 

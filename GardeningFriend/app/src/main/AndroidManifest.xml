@@ -16,6 +16,9 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
+            android:name=".AgregarCultivo"
+            android:exported="false" />
+        <activity
             android:name=".PanelAdminCultivos"
             android:exported="false" />
         <activity

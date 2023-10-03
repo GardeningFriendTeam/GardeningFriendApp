@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -117,6 +119,16 @@ public class PanelAdminCultivos extends MainActivity {
         PanelAdminRecyclerView adapter = new PanelAdminRecyclerView(this,cultivosBD);
         recyclerAdmin.setAdapter(adapter);
         recyclerAdmin.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    /**
+     * inicia la actividad para agregar un nuevo cultivo
+     * @param view
+     * vista que dispara la funcion
+     */
+    public void btnAgregarNuevo(View view){
+        Intent intent = new Intent(PanelAdminCultivos.this, AgregarCultivo.class);
+        startActivity(intent);
     }
 
 }
