@@ -2,128 +2,99 @@ package com.maid.gardeningfriend;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class RegistroActivity extends MainActivity {
+    Button btn_registro;
 
-    private TextInputEditText editTextUsername;
-    private TextInputEditText editTextEmail;
-    private TextInputEditText editTextPassword;
+    private EditText editTextName, editTextEmail, editTextPassword;
+    private TextView textViewGoToLogin;
 
-    private TextInputLayout textInputLayoutUsername;
-    private TextInputLayout textInputLayoutEmail;
-    private TextInputLayout textInputLayoutPassword;
-
-    Button buttonSignup;
-
+    private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-
-        // Inicialización de elementos de la interfaz de usuario
-        editTextUsername = findViewById(R.id.editTextUsername);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
-
-        textInputLayoutUsername = findViewById(R.id.textInputLayoutUsername);
-        textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
-        textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
-
-        buttonSignup = findViewById(R.id.buttonSignup);
+        mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        // Configuración del evento de clic para el botón de registro
-        buttonSignup.setOnClickListener(new View.OnClickListener() {
+        editTextName = findViewById(R.id.editTextUsername);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        btn_registro = findViewById(R.id.buttonSignup);
+
+        btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Obtener la entrada del usuario
-                String username = Objects.requireNonNull(editTextUsername.getText()).toString().trim();
-                String email = Objects.requireNonNull(editTextEmail.getText()).toString().trim();
-                String password = Objects.requireNonNull(editTextPassword.getText()).toString().trim();
+                String name = editTextName.getText().toString();
+                String email = editTextEmail.getText().toString();
+                String password = editTextPassword.getText().toString();
 
-                // Validar la entrada
-                if (isValidInput(username, email, password)) {
-                    // Registrar al usuario con Firebase
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(RegistroActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Registro exitoso
-                                        Toast.makeText(RegistroActivity.this, "Registro Exitoso!", Toast.LENGTH_SHORT).show();
-                                        // TODO: Después de un registro exitoso, se puede realizar acciones adicionales,
-                                        //  como iniciar una nueva Activity.
-                                    } else {
-                                        // Error durante el registro
-                                        FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                                        assert e != null;
-                                        Toast.makeText(RegistroActivity.this, "Registro fallido: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+                if (name.isEmpty() && email.isEmpty() && password.isEmpty()){
+                    Toast.makeText(RegistroActivity.this, "Completa los campos", Toast.LENGTH_SHORT).show();
+                }else {
+                    registerUser(name, email, password);
                 }
             }
         });
     }
 
-    // Función para validar la entrada del usuario
-    private boolean isValidInput(@NonNull String username, @NonNull String email, @NonNull String password) {
-        boolean isValid = true;
+    private void registerUser(String name, String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                String id = mAuth.getCurrentUser().getUid();
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", id);
+                map.put("name", name);
+                map.put("email", email);
+                map.put("password", password);
 
-        if (!isValidUsername(username)) {
-            textInputLayoutUsername.setError("El usuario debe contener al menos 3 caracteres");
-            isValid = false;
-        } else {
-            textInputLayoutUsername.setError(null);
-        }
-
-        if (!isValidEmail(email)) {
-            textInputLayoutEmail.setError("Dirección de email inválida");
-            isValid = false;
-        } else {
-            textInputLayoutEmail.setError(null);
-        }
-
-        if (!isStrongPassword(password)) {
-            textInputLayoutPassword.setError("La contraseña debe contener al menos 8 caracteres");
-            isValid = false;
-        } else {
-            textInputLayoutPassword.setError(null);
-        }
-
-        return isValid;
+                mFirestore.collection("user").document(id).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        finish();
+                        startActivity(new Intent(RegistroActivity.this, Enciclopedia.class));
+                        Toast.makeText(RegistroActivity.this, "Usuario registrado con exito", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(RegistroActivity.this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al registrar", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    // Función para validar el formato del nombre de usuario
-    private boolean isValidUsername(String username) {
-        return username.length() >= 3;
-    }
-
-    // Función para validar el formato de la dirección de email utilizando regex
-    private boolean isValidEmail(String email) {
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        return Pattern.matches(emailPattern, email);
-    }
-
-    // Función para verificar la fortaleza de la contraseña
-    private boolean isStrongPassword(String password) {
-        return password.length() >= 8;
-    }
 }
