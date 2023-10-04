@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/kelly_green"
+    android:layout_gravity="center_vertical"
+    style="@style/SCREEN"
     tools:context=".RegistroActivity">
 
     <RelativeLayout
@@ -13,13 +15,13 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:layout_margin="15dp"
-        android:background="@color/white">
+        style="@style/SCREEN">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/ic_user01"
+            style="@style/IMGREG"
             android:scaleType="centerCrop"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
@@ -31,20 +33,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/registro_username"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:padding="6dp"
+            android:maxWidth="350dp"
+            style="@style/TEXT"
             android:layout_below="@id/imageView"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="30dp" />
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewUsername"
-            android:padding="6dp"
-            android:hint="@string/registro_username"
+            android:autofillHints="username"
+            android:background="@drawable/border_registro"
+            android:hint="@string/registro_username_editText"
             android:inputType="textPersonName"
-            android:textSize="16sp"
-            android:background="@drawable/border_registro"/>
+            android:maxWidth="350dp"
+            android:minHeight="48dp"
+            android:padding="6dp"
+            style="@style/EDIT_TEXT"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textViewEmail"
@@ -52,19 +62,26 @@
             android:layout_height="wrap_content"
             android:text="@string/registro_email"
             android:layout_below="@id/editTextUsername"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp" />
+            android:textSize="18sp"
+            android:padding="6dp"
+            style="@style/TEXT"
+            android:layout_marginTop="10dp" />
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewEmail"
-            android:padding="6dp"
-            android:textSize="16sp"
+            android:autofillHints="emailAddress"
             android:background="@drawable/border_registro"
-            android:hint="@string/registro_email"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/registro_email_editText"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:maxWidth="350dp"
+            android:padding="6dp"
+            style="@style/EDIT_TEXT"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textViewPassword"
@@ -72,33 +89,40 @@
             android:layout_height="wrap_content"
             android:text="@string/registro_password"
             android:layout_below="@id/editTextEmail"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp" />
+            android:textSize="18sp"
+            android:padding="6dp"
+            style="@style/TEXT"
+            android:layout_marginTop="10dp" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewPassword"
-            android:padding="6dp"
-            android:textSize="16sp"
+            android:autofillHints="password"
             android:background="@drawable/border_registro"
-            android:hint="@string/registro_password"
+            android:hint="@string/registro_password_editText"
             android:inputType="textPassword"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:minHeight="48dp"
+            android:maxWidth="350dp"
+            android:padding="6dp"
+            style="@style/EDIT_TEXT"
+            android:textSize="18sp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
         <Button
             android:id="@+id/buttonSignup"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/registro_btn"
-            android:background="@drawable/btn_registro"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:elevation="9dp"
             android:layout_below="@id/editTextPassword"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp" />
+            android:layout_marginTop="44dp"
+            android:background="@drawable/btn_registro"
+            style="@style/BUTTON"
+            android:elevation="9dp"
+            android:text="@string/registro_btn"
+            android:textColor="#263238"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewGoToLogin"
@@ -110,6 +134,16 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:elevation="10dp"
+            android:visibility="gone"/>
+
 
     </RelativeLayout>
 </ScrollView>

@@ -1,8 +1,39 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.GardeningFriend" parent="Theme.AppCompat.DayNight">
-        <!-- Customize your light theme here. -->
+    <style name="Base.Theme.GardeningFriend" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/verde_medio</item>
+        <item name="colorPrimaryVariant">@color/verde_oscuro</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/light_green</item>
+        <item name="colorSecondaryVariant">@color/kelly_green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <!--  Light Mode  -->
+    <!--  Screen background light mode  -->
+    <style name="SCREEN">
+        <item name="android:background">#fff</item>
+    </style>
+    <!--  Texts background light mode  -->
+    <style name="TEXT">
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+    <!--  editText background light mode  -->
+    <style name="EDIT_TEXT">
+        <item name="android:textColorHint">#757575</item>
+    </style>
+    <!--  button background light mode  -->
+    <style name="BUTTON">
+        <item name="android:background">@color/kelly_green</item>
+        <item name="android:textColor">#263238</item>
+    </style>
+    <!--  image registro light mode  -->
+    <style name="IMGREG">
+        <item name="android:src">@drawable/ic_user01</item>
     </style>
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />

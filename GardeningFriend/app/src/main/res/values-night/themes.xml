@@ -1,7 +1,41 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.GardeningFriend" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.GardeningFriend" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/kelly_green</item>
+        <item name="colorPrimaryVariant">@color/sea_green</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/light_green</item>
+        <item name="colorSecondaryVariant">@color/kelly_green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
+
+    <!--  Dark Mode  -->
+    <!--  Screen background dark mode  -->
+    <style name="SCREEN">
+        <item name="android:background">#232323</item>
+    </style>
+    <!--  Texts background dark mode  -->
+    <style name="TEXT">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <!--  editText background light mode  -->
+    <style name="EDIT_TEXT">
+        <item name="android:textColorHint">#D2FFFFFF</item>
+    </style>
+    <!--  button background dark mode  -->
+    <style name="BUTTON">
+        <item name="android:background">@color/kelly_green</item>
+        <item name="android:textColor">#263238</item>
+    </style>
+    <!--  image registro light mode  -->
+    <style name="IMGREG">
+        <item name="android:src">@drawable/ic_dark_user01</item>
+    </style>
+
+    <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>
