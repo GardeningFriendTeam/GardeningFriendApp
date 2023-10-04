@@ -42,7 +42,7 @@
         <EditText
             android:id="@+id/info_cultivo"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/titulo_info_cultivo"
             android:hint="@string/info_cultivo"
             android:layout_marginHorizontal="20dp"
