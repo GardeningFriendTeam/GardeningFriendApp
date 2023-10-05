@@ -107,31 +107,36 @@
                 android:id="@+id/opc1_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/rango_temp_0"/>
+                android:text="@string/rango_temp_0"
+                android:onClick="btnTempClicked"/>
 
             <RadioButton
                 android:id="@+id/opc2_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/rango_temp_1"/>
+                android:text="@string/rango_temp_1"
+                android:onClick="btnTempClicked"/>
 
             <RadioButton
                 android:id="@+id/opc3_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/rango_temp_2"/>
+                android:text="@string/rango_temp_2"
+                android:onClick="btnTempClicked"/>
 
             <RadioButton
                 android:id="@+id/opc4_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/rango_temp_3"/>
+                android:text="@string/rango_temp_3"
+                android:onClick="btnTempClicked"/>
 
             <RadioButton
                 android:id="@+id/opc5_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/rango_temp_4"/>
+                android:text="@string/rango_temp_4"
+                android:onClick="btnTempClicked"/>
 
         </RadioGroup>
 
@@ -156,25 +161,29 @@
                 android:id="@+id/opc1_est"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/est_verano"/>
+                android:text="@string/est_verano"
+                android:onClick="btnEstacClicked"/>
 
             <RadioButton
                 android:id="@+id/opc2_est"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/est_otono"/>
+                android:text="@string/est_otono"
+                android:onClick="btnEstacClicked"/>
 
             <RadioButton
                 android:id="@+id/opc3_est"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/est_invierno"/>
+                android:text="@string/est_invierno"
+                android:onClick="btnEstacClicked"/>
 
             <RadioButton
                 android:id="@+id/opc4_est"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/est_primavera"/>
+                android:text="@string/est_primavera"
+                android:onClick="btnEstacClicked"/>
 
         </RadioGroup>
 
@@ -201,25 +210,29 @@
                 android:id="@+id/opc1_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/reg_norte"/>
+                android:text="@string/reg_norte"
+                android:onClick="btnRegClicked"/>
 
             <RadioButton
                 android:id="@+id/opc2_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/reg_centro"/>
+                android:text="@string/reg_centro"
+                android:onClick="btnRegClicked"/>
 
             <RadioButton
                 android:id="@+id/opc3_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/reg_cuyo"/>
+                android:text="@string/reg_cuyo"
+                android:onClick="btnRegClicked"/>
 
             <RadioButton
                 android:id="@+id/opc4_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@string/reg_patagonica"/>
+                android:text="@string/reg_patagonica"
+                android:onClick="btnRegClicked"/>
 
         </RadioGroup>
 
@@ -232,7 +245,8 @@
             android:layout_centerHorizontal="true"
             android:text="@string/btn_cultivo"
             android:background="@drawable/btn_verde"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:onClick="agregarCultivoNvo"/>
 
 
     </RelativeLayout>

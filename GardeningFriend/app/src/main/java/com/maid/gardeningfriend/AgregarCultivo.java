@@ -3,6 +3,7 @@ package com.maid.gardeningfriend;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  * Esta clase contiene todas las funcionalidades para
@@ -28,7 +31,7 @@ public class AgregarCultivo extends MainActivity {
     String inputEst;
     String inputReg;
 
-    // cada elem representa un campo:
+    // representa una flag asociada a cada campo
     boolean[] flags = new boolean[7];
     boolean validacionFinal = true;
 
@@ -39,75 +42,39 @@ public class AgregarCultivo extends MainActivity {
 
     }
 
-    /**
-     * ejecuta una serie de funciones para validar
-     * los inputs y finalmente realizar una petincion
-     * a la BD para añadir el doc nvo
-     * @param view
-     * btn que dispara el evento
-     */
-    public void agregarCultivoNvo(View view){
-        //identificando elementos de la plantilla XML
-        EditText campoNombre = findViewById(R.id.nombre_cultivo);
-        EditText campoInfo = findViewById(R.id.info_cultivo);
-        EditText campoTipo = findViewById(R.id.tipo_cultivo);
-        EditText campoImg = findViewById(R.id.link_imagen);
-        RadioGroup opcTemp = findViewById(R.id.radius_temp);
-        RadioGroup opcEst = findViewById(R.id.radius_est);
-        RadioGroup opcReg = findViewById(R.id.radius_region);
-
-        validarTextoString(campoNombre,inputNombre, flags[0]);
-        extraerTexto(campoInfo, inputInfo, flags[1]);
-        validarTextoString(campoTipo, inputTipo, flags[2]);
-        extraerTexto(campoImg, inputImg, flags[3]);
-
-        validarCultivoNuevo();
-
-    }
 
 
     /**
-     * Esta funcion valida que el campo que se pase como argumento
-     * solo contenga valores "string", para esto se usa una regex.
-     * @param textField
-     * se refiere EditText de la plantilla XML
-     * @param inputString
-     * se refiere a la variable que va a almacenar el valor
-     * extraido del otro parametro
+     * extrae el texto del editText que se pase como argumento
+     * @param editText
+     * campo xml
+     * @return textoExtraido
+     * valor string del campo
      */
-    public void validarTextoString(EditText textField, String inputString, boolean flag){
-        // mensaje de error
-        Toast mensajeError = Toast.makeText(AgregarCultivo.this,
-                "no se permiten numeros ni caracteres especiales!",
-                Toast.LENGTH_SHORT);
-
-        // se valida en base a una expresion regular
-        if (textField.getText().toString().matches(".*\\d+.*")){
-            mensajeError.show();
-            flag = false;
-        }else{
-            inputString = textField.getText().toString();
-            flag = true;
-        }
-
+    public String extraerTexto(EditText editText){
+        String textoExtraido = editText.getText().toString();
+        return textoExtraido;
     }
 
     /**
-     * simplemente extrae el text de un editText
-     * @param textField
-     * editText
-     * @param inputString
-     * variable que almacenara el valor del param anterior
+     * valida si el campo esta completo a no
+     * @param inputText
+     * string a validar
+     * @return boolean
+     * estado de la flag
      */
-    public void extraerTexto(EditText textField, String inputString, boolean flag){
-        inputString = textField.getText().toString();
-        if(!inputString.isEmpty()){
-            // se valida que el campo no este vacio
-            flag = true;
+    public boolean validarInput(String inputText){
+        if (!inputText.isEmpty()){
+            // input valido
+            return true;
         } else{
-            flag = false;
+            // input invalido
+            return false;
         }
     }
+
+
+
 
     /**
      * valida que btn fue seleccionado
@@ -119,31 +86,32 @@ public class AgregarCultivo extends MainActivity {
         // var elem selec
         RadioButton btnSelec;
         // se verifica que un elem fue selec:
-        flags[4] = ((RadioButton) view).isChecked();
         // se identifica que btn fue seleccionado
-        if (view.getId() == R.id.rango0) {
-            btnSelec = findViewById(R.id.rango0);
+        if (view.getId() == R.id.opc1_temp) {
+            btnSelec = findViewById(R.id.opc1_temp);
             inputTemp = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.rango1){
-            btnSelec = findViewById(R.id.rango1);
+        } else if (view.getId() == R.id.opc2_temp){
+            btnSelec = findViewById(R.id.opc2_temp);
             inputTemp = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.rango2){
-            btnSelec = findViewById(R.id.rango2);
+        } else if (view.getId() == R.id.opc3_temp){
+            btnSelec = findViewById(R.id.opc3_temp);
             inputTemp = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.rango3){
-            btnSelec = findViewById(R.id.rango3);
+        } else if (view.getId() == R.id.opc4_temp){
+            btnSelec = findViewById(R.id.opc4_temp);
             inputTemp = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.rango4){
-            btnSelec = findViewById(R.id.rango3);
+        } else if (view.getId() == R.id.opc5_temp){
+            btnSelec = findViewById(R.id.opc5_temp);
             inputTemp = btnSelec.getText().toString();
 
         } else {
             inputTemp = "default";
         }
+
+        flags[4] = validarInput(inputTemp);
 
     }
 
@@ -157,27 +125,28 @@ public class AgregarCultivo extends MainActivity {
         // var elem selec
         RadioButton btnSelec;
         // se verifica que un elem fue selec:
-        flags[5] = ((RadioButton) view).isChecked();
         // se identifica que btn fue seleccionado
-        if(view.getId() == R.id.opc_verano){
-            btnSelec = findViewById(R.id.opc_verano);
+        if(view.getId() == R.id.opc1_est){
+            btnSelec = findViewById(R.id.opc1_est);
             inputEst = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.opc_otono){
-            btnSelec = findViewById(R.id.opc_otono);
+        } else if (view.getId() == R.id.opc2_est){
+            btnSelec = findViewById(R.id.opc2_est);
             inputEst = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.opc_invierno){
-            btnSelec = findViewById(R.id.opc_invierno);
+        } else if (view.getId() == R.id.opc3_est){
+            btnSelec = findViewById(R.id.opc3_est);
             inputEst = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.opc_primavera){
-            btnSelec = findViewById(R.id.opc_primavera);
+        } else if (view.getId() == R.id.opc4_est){
+            btnSelec = findViewById(R.id.opc4_est);
             inputEst = btnSelec.getText().toString();
 
         } else {
             inputEst = "default";
         }
+
+        flags[5] = validarInput(inputEst);
 
     }
 
@@ -190,30 +159,31 @@ public class AgregarCultivo extends MainActivity {
     public void btnRegClicked(View view){
         // var elem selec
         RadioButton btnSelec;
-        // se verifica que un elem fue selec:
-        flags[6] = ((RadioButton) view).isChecked();
         // se identifica que btn fue seleccionado
-        if (view.getId() == R.id.reg_norte){
-            btnSelec = findViewById(R.id.reg_norte);
+        if (view.getId() == R.id.opc1_reg){
+            btnSelec = findViewById(R.id.opc1_reg);
             inputReg = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.reg_centro){
-            btnSelec = findViewById(R.id.reg_centro);
+        } else if (view.getId() == R.id.opc2_reg){
+            btnSelec = findViewById(R.id.opc2_reg);
             inputReg = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.reg_cuyo){
-            btnSelec = findViewById(R.id.reg_cuyo);
+        } else if (view.getId() == R.id.opc3_reg){
+            btnSelec = findViewById(R.id.opc3_reg);
             inputReg = btnSelec.getText().toString();
 
-        } else if (view.getId() == R.id.reg_patagonica){
-            btnSelec = findViewById(R.id.reg_patagonica);
+        } else if (view.getId() == R.id.opc4_reg){
+            btnSelec = findViewById(R.id.opc4_reg);
             inputReg = btnSelec.getText().toString();
 
         } else {
             inputReg = "default";
         }
 
+        flags[6] = validarInput(inputReg);
+
     }
+
 
     /**
      * verifica que todos los inputs
@@ -231,8 +201,9 @@ public class AgregarCultivo extends MainActivity {
                 Toast.LENGTH_SHORT);
 
         // validacion flags
-        for (boolean flag : flags){
-            if(!flag){
+        for (int i = 0; i < flags.length; i++) {
+            if (!flags[i]){
+                // error detectado
                 validacionFinal = false;
                 break;
             }
@@ -245,6 +216,39 @@ public class AgregarCultivo extends MainActivity {
             mensajeError.show();
         }
     }
+
+    /**
+     * ejecuta una serie de funciones para validar
+     * los edit texts finalmente realizar una petincion
+     * a la BD para añadir el doc nvo
+     * @param view
+     * btn que dispara el evento
+     */
+    public void agregarCultivoNvo(View view){
+        //identificando elementos de la plantilla XML
+        EditText campoNombre = findViewById(R.id.nombre_cultivo);
+        EditText campoInfo = findViewById(R.id.info_cultivo);
+        EditText campoTipo = findViewById(R.id.tipo_cultivo);
+        EditText campoImg = findViewById(R.id.link_imagen);
+
+        inputNombre = extraerTexto(campoNombre);
+        flags[0] = validarInput(inputNombre);
+
+        inputInfo = extraerTexto(campoInfo);
+        flags[1] = validarInput(inputInfo);
+
+        inputTipo = extraerTexto(campoTipo);
+        flags[2] = validarInput(inputTipo);
+
+        inputImg = extraerTexto(campoImg);
+        flags[3] = validarInput(inputImg);
+
+        Log.i("tag","edit texts agregados");
+        validarCultivoNuevo();
+
+
+    }
+
 
 
 
