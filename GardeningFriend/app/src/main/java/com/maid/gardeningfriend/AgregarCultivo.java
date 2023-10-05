@@ -1,5 +1,6 @@
 package com.maid.gardeningfriend;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,7 +11,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.checkerframework.checker.units.qual.C;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -26,13 +33,14 @@ public class AgregarCultivo extends MainActivity {
     String inputNombre;
     String inputTipo;
     String inputInfo;
+    String inputCrecimiento;
     String inputImg;
     String inputTemp;
     String inputEst;
     String inputReg;
 
     // representa una flag asociada a cada campo
-    boolean[] flags = new boolean[7];
+    boolean[] flags = new boolean[8];
     boolean validacionFinal = true;
 
     @Override
@@ -43,6 +51,8 @@ public class AgregarCultivo extends MainActivity {
     }
 
 
+    //TODO: AGREGAR OTRA FUNCION PARA VALIDAR EL NOMBRE / TIPO
+    // YA QUE ESTOS CAMPOS NO DEBEN PERMITIR VALORES NUMERICOS O CARAC. ESPECIALES
 
     /**
      * extrae el texto del editText que se pase como argumento
@@ -212,6 +222,7 @@ public class AgregarCultivo extends MainActivity {
         // validacion final
         if(validacionFinal){
             mensajeExito.show();
+            subirCultivoBD();
         } else{
             mensajeError.show();
         }
@@ -230,6 +241,7 @@ public class AgregarCultivo extends MainActivity {
         EditText campoInfo = findViewById(R.id.info_cultivo);
         EditText campoTipo = findViewById(R.id.tipo_cultivo);
         EditText campoImg = findViewById(R.id.link_imagen);
+        EditText campoCrecimiento = findViewById(R.id.crecimiento_cultivo);
 
         inputNombre = extraerTexto(campoNombre);
         flags[0] = validarInput(inputNombre);
@@ -243,9 +255,53 @@ public class AgregarCultivo extends MainActivity {
         inputImg = extraerTexto(campoImg);
         flags[3] = validarInput(inputImg);
 
+        // input agregado al final
+        inputCrecimiento = extraerTexto(campoCrecimiento);
+        flags[7] = validarInput(inputCrecimiento);
+
         Log.i("tag","edit texts agregados");
         validarCultivoNuevo();
 
+
+    }
+
+    /**
+     * funcion para agregar cultivo a Firesore
+     * como documento parte de la collecion "cultivos"
+     */
+    public void subirCultivoBD(){
+        // 1 -  se crea un nuevo objeto en base a los inputs brindados
+        CultivosGenerador cultivoNvo = new CultivosGenerador(
+                inputNombre,
+                inputNombre,
+                inputTipo,
+                inputCrecimiento,
+                inputInfo,
+                inputTemp,
+                inputEst,
+                inputReg,
+                inputImg
+        );
+
+        // 2 - se realiza una add request a la BD para agregar el doc
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("cultivos")
+                // add request
+                .add(cultivoNvo)
+                // listener (para corrobar si la request se dio exitosamente)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.i("tag", "documento agregado ID:" + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("tag", "error al cargar documento", e);
+                    }
+                });
 
     }
 
