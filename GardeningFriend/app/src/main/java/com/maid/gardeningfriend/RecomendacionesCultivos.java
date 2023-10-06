@@ -59,6 +59,11 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
 
         // 2 - se realiza una get request para consumir los datos de los cultivos
         db.collection("cultivos")
+                // queries para filtrar el cultivo de acuerdo
+                // a la seleccion del user
+                .whereEqualTo("temperatura", tempSelec)
+                .whereEqualTo("estacion", estSelec)
+                .whereEqualTo("region", regSelec)
                 .get()
                 //listener que verifica si la peticion fue exitosa
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -81,24 +86,20 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                 String tipo = (String) data.get("tipo");
                                 String imagen = (String) data.get("icono");
 
-                                // se compara con la seleccion del usuario
-                                if(tempSelec.equals(temperatura) &&
-                                estSelec.equals(estacion)&&
-                                regSelec.equals(region)){
-                                    // se crea objeto para agregar cultivo al array
-                                    CultivosGenerador nuevoCultivo = new CultivosGenerador(
-                                            nombre,
-                                            nombre,
-                                            tipo,
-                                            crecimiento,
-                                            informacion,
-                                            temperatura,
-                                            estacion,
-                                            region,
-                                            imagen);
+                                // se crea objeto para agregar cultivo al array
+                                CultivosGenerador nuevoCultivo = new CultivosGenerador(
+                                        nombre,
+                                        nombre,
+                                        tipo,
+                                        crecimiento,
+                                        informacion,
+                                        temperatura,
+                                        estacion,
+                                        region,
+                                        imagen);
 
-                                    agregarCultivo(nuevoCultivo);
-                                }
+                                agregarCultivo(nuevoCultivo);
+
                             }
                             // una vez que se iteran todos los documentos se activa el recyclerview adapter
                             activarAdapter();
