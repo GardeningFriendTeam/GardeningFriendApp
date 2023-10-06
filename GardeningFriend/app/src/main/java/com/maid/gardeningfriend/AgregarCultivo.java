@@ -21,6 +21,8 @@ import org.checkerframework.checker.units.qual.C;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -203,7 +205,7 @@ public class AgregarCultivo extends MainActivity {
     public void validarCultivoNuevo(){
         // mensajes toasts
         Toast mensajeExito = Toast.makeText(AgregarCultivo.this,
-                "inputs validos!",
+                "cultivo añadido!",
                 Toast.LENGTH_SHORT);
 
         Toast mensajeError = Toast.makeText(AgregarCultivo.this,
@@ -270,18 +272,17 @@ public class AgregarCultivo extends MainActivity {
      * como documento parte de la collecion "cultivos"
      */
     public void subirCultivoBD(){
-        // 1 -  se crea un nuevo objeto en base a los inputs brindados
-        CultivosGenerador cultivoNvo = new CultivosGenerador(
-                inputNombre,
-                inputNombre,
-                inputTipo,
-                inputCrecimiento,
-                inputInfo,
-                inputTemp,
-                inputEst,
-                inputReg,
-                inputImg
-        );
+        // 1 - se crea el objeto que se pasa como doc a la BD
+        Map<String, Object> cultivoNvo = new HashMap<>();
+        cultivoNvo.put("id", inputNombre);
+        cultivoNvo.put("nombre", inputNombre);
+        cultivoNvo.put("info", inputInfo);
+        cultivoNvo.put("tipo", inputTipo);
+        cultivoNvo.put("crecimiento", inputCrecimiento);
+        cultivoNvo.put("icono", inputImg);
+        cultivoNvo.put("temperatura", inputTemp);
+        cultivoNvo.put("estacion", inputEst);
+        cultivoNvo.put("region",inputReg);
 
         // 2 - se realiza una add request a la BD para agregar el doc
         FirebaseFirestore db = FirebaseFirestore.getInstance();

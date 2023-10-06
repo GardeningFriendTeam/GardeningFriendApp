@@ -7,11 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -23,8 +27,7 @@ import java.util.Map;
  * Aca se muestran todos los cultivos que estan en la BD
  * para poder modificarlos / eliminarlos / agregar mas
  */
-public class PanelAdminCultivos extends MainActivity {
-
+public class PanelAdminCultivos extends MainActivity implements PanelAdminInterface{
     //array que contiene todos los cultivos
     ArrayList<CultivosGenerador> cultivosBD = new ArrayList<>();
 
@@ -116,7 +119,7 @@ public class PanelAdminCultivos extends MainActivity {
         //se identifica el recycler view
         RecyclerView recyclerAdmin = findViewById(R.id.recycler_panel_cultivos);
         // se crea el adapter para recyclerview
-        PanelAdminRecyclerView adapter = new PanelAdminRecyclerView(this,cultivosBD);
+        PanelAdminRecyclerView adapter = new PanelAdminRecyclerView(this,cultivosBD,this);
         recyclerAdmin.setAdapter(adapter);
         recyclerAdmin.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -131,4 +134,65 @@ public class PanelAdminCultivos extends MainActivity {
         startActivity(intent);
     }
 
+    /**
+     * identifica que tarjeta fue clickeada y llama a otra funcion
+     * para eliminar el cultivo
+     * @param position
+     * index que representa la posicion
+     */
+    @Override
+    public void eliminarBtn(int position) {
+        String IDcultivoSelec = cultivosBD.get(position).getID();
+        eliminarCultivo(IDcultivoSelec);
+
+    }
+
+    /**
+     * identifica que tarjeta fue seleccionada y llama a otra funcion para
+     * editar el cultivo
+     * @param position
+     * index que representa la posicion
+     */
+    @Override
+    public void editarBtn(int position) {
+        String IDcultivoSelec = cultivosBD.get(position).getID();
+    }
+
+    /**
+     * Realiza una peticion a la BD para eliminar el documento
+     * @param IDcultivo
+     * ID del cultivo que se selecciono
+     */
+    public void eliminarCultivo(String IDcultivo){
+        // mensajes de alerta
+        Toast msjExito = Toast.makeText(PanelAdminCultivos.this,
+                "el cultivo ha sido eliminado de la BD",
+                Toast.LENGTH_SHORT);
+
+        Toast msjError = Toast.makeText(PanelAdminCultivos.this,
+                "ha ocurrido un error al intentar eliminar el cultivo",
+                Toast.LENGTH_SHORT);
+
+        // se crea una instancia de la BD
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        //se referencia el documento a eliminar
+        DocumentReference docRef = db.collection("cultivos").document(IDcultivo);
+
+        //se elimina el cultivo
+        docRef.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        msjExito.show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        msjError.show();
+                        Log.w("error", "error al eliminar documento", e);
+                    }
+                });
+    }
 }

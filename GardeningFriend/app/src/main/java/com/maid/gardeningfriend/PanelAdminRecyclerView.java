@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,13 +17,15 @@ import java.util.ArrayList;
 
 public class PanelAdminRecyclerView extends RecyclerView.Adapter<PanelAdminRecyclerView.MyViewHolder> {
     //atributos
+    private final PanelAdminInterface panelAdminInterface;
     Context context;
     ArrayList<CultivosGenerador> cultivos;
 
     //constructor
-    public PanelAdminRecyclerView(Context context, ArrayList<CultivosGenerador> cultivos) {
+    public PanelAdminRecyclerView(Context context, ArrayList<CultivosGenerador> cultivos, PanelAdminInterface panelAdminInterface) {
         this.context = context;
         this.cultivos = cultivos;
+        this.panelAdminInterface = panelAdminInterface;
     }
 
     @NonNull
@@ -32,7 +35,7 @@ public class PanelAdminRecyclerView extends RecyclerView.Adapter<PanelAdminRecyc
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.cards_cultivos_panel_admin,parent,false);
 
-        return new PanelAdminRecyclerView.MyViewHolder(view);
+        return new PanelAdminRecyclerView.MyViewHolder(view,panelAdminInterface);
     }
 
     @Override
@@ -59,12 +62,45 @@ public class PanelAdminRecyclerView extends RecyclerView.Adapter<PanelAdminRecyc
         // atributos
         ImageView icono;
         TextView titulo;
+        Button btnEliminar, btnEditar;
 
         //constructor
-        public MyViewHolder(@NonNull View itemView){
+        public MyViewHolder(@NonNull View itemView, PanelAdminInterface panelAdminInterface){
             super(itemView);
             icono = itemView.findViewById(R.id.ic_card_cultivos);
             titulo = itemView.findViewById(R.id.nombre_cultivo);
+            btnEditar = itemView.findViewById(R.id.btn_editar);
+            btnEliminar = itemView.findViewById(R.id.btn_eliminar);
+
+            //se agrega un click listener a ambos botones
+            btnEditar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (panelAdminInterface != null){
+                        // si no es nulo se extrae la posicion de la tarjeta
+                        int pos = getAdapterPosition();
+
+                        if (pos != RecyclerView.NO_POSITION){
+                            panelAdminInterface.editarBtn(pos);
+                        }
+                    }
+                }
+            });
+
+            btnEliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (panelAdminInterface != null){
+                        // si no es nulo se extrae la posicion de la tarjeta
+                        int pos = getAdapterPosition();
+
+                        if (pos != RecyclerView.NO_POSITION){
+                            panelAdminInterface.eliminarBtn(pos);
+                        }
+                    }
+                }
+            });
+
         }
     }
 
