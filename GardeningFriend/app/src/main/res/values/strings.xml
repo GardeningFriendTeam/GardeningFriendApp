@@ -22,6 +22,25 @@
     <string name="perfil">Perfil</string>
     <string name="panel_admin">Panel admin</string>
 
+    <!-- seccion "panel admin" !-->
+    <string name="cultivos"> cultivos </string>
+    <string name="usuarios"> usuarios </string>
+    <string name="desc_panel_admin">Clickea el area que deseas administrar: </string>
+    <string name="eliminar">eliminar</string>
+    <string name="editar">editar</string>
+    <string name="btn_cultivo">AÑADIR </string>
+
+    <string name="nombre_cultivo">Nombre del cultivo</string>
+    <string name="info_cultivo">Informacion</string>
+    <string name="imagen_cultivo">Imagen del cultivo</string>
+    <string name="crecimiento"> Tiempo hasta dar frutos </string>
+    <string name="temperatura_cultivo">Temperatura del cultivo</string>
+    <string name="estacion_cultivo">Estacion del cultivo</string>
+    <string name="region_cultivo">Region del cultivo</string>
+    <string name="tipo_cultivo">Tipo de cultivo</string>
+    <string name="hint_imagen">copia el link de la imagen (200x200px max)</string>
+
+
     <!-- seccion "recomendaciones" !-->
     <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>
     <string name="logo">logotipo</string>
