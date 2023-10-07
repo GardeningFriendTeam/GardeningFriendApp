@@ -160,7 +160,9 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                 cultivosFiltrados.get(position).getEstacionSiembra(),
                 cultivosFiltrados.get(position).getRegion(),
                 cultivosFiltrados.get(position).getCaracteristicas(),
-                cultivosFiltrados.get(position).getImagen()
+                cultivosFiltrados.get(position).getImagen(),
+                cultivosFiltrados.get(position).getTipo(),
+                cultivosFiltrados.get(position).getDuracionCrecimiento()
         );
 
         //prueba

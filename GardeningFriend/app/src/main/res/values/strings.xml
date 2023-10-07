@@ -35,6 +35,9 @@
     <string name="region_cultivo">Region del cultivo</string>
     <string name="tipo_cultivo">Tipo de cultivo</string>
     <string name="hint_imagen">copia el link de la imagen (200x200px max)</string>
+    <string name="tiempo_crecimiento">Tiempo hasta germinar</string>
+
+    <string name="btn_actualizar">Actualizar</string>
 
 
     <!-- seccion "recomendaciones" !-->

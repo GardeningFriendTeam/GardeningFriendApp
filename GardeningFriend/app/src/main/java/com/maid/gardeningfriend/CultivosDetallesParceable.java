@@ -17,15 +17,19 @@ public class CultivosDetallesParceable implements Parcelable {
     String regCultivo;
     String infoCultivo;
     String imgCultivo;
+    String tipoCultivo;
+    String crecimientoCultivo;
 
     //constructor
-    public CultivosDetallesParceable(String nombreCultivo, String tempCultivo, String estCultivo, String regCultivo, String infoCultivo, String imgCultivo) {
+    public CultivosDetallesParceable(String nombreCultivo, String tempCultivo, String estCultivo, String regCultivo, String infoCultivo, String imgCultivo, String tipoCultivo, String crecimientoCultivo) {
         this.nombreCultivo = nombreCultivo;
         this.tempCultivo = tempCultivo;
         this.estCultivo = estCultivo;
         this.regCultivo = regCultivo;
         this.infoCultivo = infoCultivo;
         this.imgCultivo = imgCultivo;
+        this.tipoCultivo = tipoCultivo;
+        this.crecimientoCultivo = crecimientoCultivo;
     }
 
     //getters
@@ -53,6 +57,14 @@ public class CultivosDetallesParceable implements Parcelable {
         return imgCultivo;
     }
 
+    public String getTipoCultivo() {
+        return tipoCultivo;
+    }
+
+    public String getCrecimientoCultivo() {
+        return crecimientoCultivo;
+    }
+
     //metodos especiales
 
     @Override
@@ -68,6 +80,8 @@ public class CultivosDetallesParceable implements Parcelable {
         dest.writeString(regCultivo);
         dest.writeString(infoCultivo);
         dest.writeString(imgCultivo);
+        dest.writeString(crecimientoCultivo);
+        dest.writeString(tipoCultivo);
     }
 
     public static final Creator<CultivosDetallesParceable> CREATOR = new Creator<CultivosDetallesParceable>() {
@@ -80,7 +94,9 @@ public class CultivosDetallesParceable implements Parcelable {
             String regCultivo = parcel.readString();
             String infoCultivo = parcel.readString();
             String imgCultivo = parcel.readString();
-            return new CultivosDetallesParceable(nombreCultivo,tempCultivo,estCultivo,regCultivo,infoCultivo,imgCultivo);
+            String tipoCultivo = parcel.readString();
+            String crecimientoCultivo = parcel.readString();
+            return new CultivosDetallesParceable(nombreCultivo,tempCultivo,estCultivo,regCultivo,infoCultivo,imgCultivo,tipoCultivo,crecimientoCultivo);
         }
 
         @Override
@@ -96,5 +112,7 @@ public class CultivosDetallesParceable implements Parcelable {
         regCultivo = in.readString();
         infoCultivo = in.readString();
         imgCultivo = in.readString();
+        tipoCultivo = in.readString();
+        crecimientoCultivo = in.readString();
     }
 }

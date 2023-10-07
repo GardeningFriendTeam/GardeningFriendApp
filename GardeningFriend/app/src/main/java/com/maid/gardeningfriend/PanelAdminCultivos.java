@@ -1,7 +1,6 @@
 package com.maid.gardeningfriend;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +15,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -130,7 +130,7 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
      * vista que dispara la funcion
      */
     public void btnAgregarNuevo(View view){
-        Intent intent = new Intent(PanelAdminCultivos.this, AgregarCultivo.class);
+        Intent intent = new Intent(PanelAdminCultivos.this, PanelAdminAgregarCultivo.class);
         startActivity(intent);
     }
 
@@ -145,17 +145,6 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
         String IDcultivoSelec = cultivosBD.get(position).getID();
         eliminarCultivo(IDcultivoSelec);
 
-    }
-
-    /**
-     * identifica que tarjeta fue seleccionada y llama a otra funcion para
-     * editar el cultivo
-     * @param position
-     * index que representa la posicion
-     */
-    @Override
-    public void editarBtn(int position) {
-        String IDcultivoSelec = cultivosBD.get(position).getID();
     }
 
     /**
@@ -195,4 +184,48 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
                     }
                 });
     }
+
+    /**
+     * identifica que tarjeta fue seleccionada y llama a otra funcion para
+     * editar el cultivo
+     * @param position
+     * index que representa la posicion
+     */
+    @Override
+    public void editarBtn(int position) {
+        String IDcultivoSelec = cultivosBD.get(position).getID();
+        editarCultivo(position);
+    }
+
+    /**
+     * genera un intent para abrir otra pantalla
+     * con las opciones de edicion
+     * @param position
+     * cultivo selecionado
+     */
+    public void editarCultivo(int position){
+        // 1 - se crea un objeto parseable del obj selecionado
+        CultivosDetallesParceable cultivoSelec =  new CultivosDetallesParceable(
+                cultivosBD.get(position).getNombre(),
+                cultivosBD.get(position).getTemperatura(),
+                cultivosBD.get(position).getEstacionSiembra(),
+                cultivosBD.get(position).getRegion(),
+                cultivosBD.get(position).getCaracteristicas(),
+                cultivosBD.get(position).getImagen(),
+                cultivosBD.get(position).getTipo(),
+                cultivosBD.get(position).getDuracionCrecimiento()
+        );
+
+        // 2 - se crea el intent y se pasa el objeto parseable
+        Intent intent = new Intent(PanelAdminCultivos.this, PanelAdminEditarCultivo.class);
+        intent.putExtra("CULTIVO_SELEC_ADMIN", cultivoSelec);
+
+        // 3 - finalmente se inicia la actividad
+        startActivity(intent);
+    }
+
+
+
 }
+
+

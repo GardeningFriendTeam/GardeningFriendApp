@@ -1,35 +1,27 @@
 package com.maid.gardeningfriend;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.checkerframework.checker.units.qual.C;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * Esta clase contiene todas las funcionalidades para
  * agregar cultivos desde el panel de admin
  */
-public class AgregarCultivo extends MainActivity {
+public class PanelAdminAgregarCultivo extends MainActivity {
 
     // Atributos (valores extraidos de los edit texts)
     String inputNombre;
@@ -204,11 +196,11 @@ public class AgregarCultivo extends MainActivity {
      */
     public void validarCultivoNuevo(){
         // mensajes toasts
-        Toast mensajeExito = Toast.makeText(AgregarCultivo.this,
+        Toast mensajeExito = Toast.makeText(PanelAdminAgregarCultivo.this,
                 "cultivo añadido!",
                 Toast.LENGTH_SHORT);
 
-        Toast mensajeError = Toast.makeText(AgregarCultivo.this,
+        Toast mensajeError = Toast.makeText(PanelAdminAgregarCultivo.this,
                 "inputs invalidos! verifca tus datos",
                 Toast.LENGTH_SHORT);
 
