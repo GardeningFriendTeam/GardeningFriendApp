@@ -10,8 +10,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Document;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,17 +48,14 @@ public class PanelAdminEditarCultivo extends MainActivity {
     private EditText editTextCrecimiento;
     // temperatura
     private String inputEditTemp;
-    private RadioGroup radioGroupTemp;
     private RadioButton RBtemp;
     // estacion
     private String inputEditEst;
-    private RadioGroup radioGroupEst;
     private RadioButton RBest;
     // region
     private String inputEditReg;
-    private RadioGroup radioGroupReg;
     private RadioButton RBreg;
-    
+
     // flag final
     private boolean validacionFinalEdits = true;
 
@@ -178,8 +185,224 @@ public class PanelAdminEditarCultivo extends MainActivity {
         }
     }
 
+    /**
+     * simplemente valida que el campo este completo
+     * @param editText
+     * campo de texto
+     * @return
+     * texto
+     */
+    public String extraerTexto(EditText editText){
+        String input = editText.getText().toString();
+        if(!input.isEmpty()){
+            return input;
+        } else {
+            return "error";
+        }
+    }
+
+    /**
+     * cuando se clickea cualquier btn radius
+     * se identifica cual fue
+     * @param view
+     * btn que dispara el evento
+     */
+    public void extraerTempSelec(View view){
+        if(view.getId() == R.id.opc1_temp_PAC){
+            RBtemp = findViewById(R.id.opc1_temp_PAC);
+            inputEditTemp = RBtemp.getText().toString();
+
+        } else if(view.getId() == R.id.opc2_temp_PAC){
+            RBtemp = findViewById(R.id.opc2_temp_PAC);
+            inputEditTemp = RBtemp.getText().toString();
+
+        } else if(view.getId() == R.id.opc3_temp_PAC) {
+            RBtemp = findViewById(R.id.opc3_temp_PAC);
+            inputEditTemp = RBtemp.getText().toString();
+
+        } else if (view.getId() == R.id.opc4_temp_PAC) {
+            RBtemp = findViewById(R.id.opc4_temp_PAC);
+            inputEditTemp = RBtemp.getText().toString();
+
+        } else if(view.getId() == R.id.opc5_temp_PAC){
+            RBtemp = findViewById(R.id.opc5_temp_PAC);
+            inputEditTemp = RBtemp.getText().toString();
+
+        } else{
+            inputEditTemp = "error";
+        }
+    }
+
+    /**
+     * cuando se clickea cualquier btn radius
+     * se identifica cual fue
+     * @param view
+     * btn que dispara el evento
+     */
+    public void extraerEstSelec(View view){
+        if(view.getId() == R.id.opc1_est_PAC){
+            RBest = findViewById(R.id.opc1_est_PAC);
+            inputEditEst = RBest.getText().toString();
+
+        } else if(view.getId() == R.id.opc2_est_PAC){
+            RBest = findViewById(R.id.opc1_est_PAC);
+            inputEditEst = RBest.getText().toString();
+
+        } else if(view.getId() == R.id.opc3_est_PAC) {
+            RBest = findViewById(R.id.opc3_est_PAC);
+            inputEditEst = RBest.getText().toString();
+
+        } else if (view.getId() == R.id.opc4_est_PAC) {
+            RBest = findViewById(R.id.opc4_est_PAC);
+            inputEditEst = RBest.getText().toString();
+
+        }  else{
+            inputEditEst = "error";
+        }
+    }
+
+    /**
+     * cuando se clickea cualquier btn radius
+     * se identifica cual fue
+     * @param view
+     * btn que dispara el evento
+     */
+    public void extraerRegSelec(View view){
+        if(view.getId() == R.id.opc1_reg_PAC){
+            RBreg = findViewById(R.id.opc1_reg_PAC);
+            inputEditReg = RBreg.getText().toString();
+
+        } else if(view.getId() == R.id.opc2_reg_PAC){
+            RBreg = findViewById(R.id.opc1_reg_PAC);
+            inputEditEst = RBreg.getText().toString();
+
+        } else if(view.getId() == R.id.opc3_reg_PAC) {
+            RBreg = findViewById(R.id.opc3_reg_PAC);
+            inputEditEst = RBreg.getText().toString();
+
+        } else if (view.getId() == R.id.opc4_reg_PAC) {
+            RBreg = findViewById(R.id.opc4_reg_PAC);
+            inputEditEst = RBreg.getText().toString();
+
+        }  else{
+            inputEditReg = "error";
+        }
+    }
 
 
+    /**
+     * valida que los campos se hayan completado
+     * correctamente
+     * @param view
+     * boton que dispara el evento
+     */
+    public void validarFormulario(View view){
 
+        // se extraen los valores de cada editText
+        inputEditNombre = validarTexto(editTextNombre);
+        inputEditInfo = extraerTexto(editTextInfo);
+        inputEditTipo = validarTexto(editTextTipo);
+        inputEditCrecimiento = extraerTexto(editTextCrecimiento);
+        inputEditImagen = extraerTexto(editTextImg);
+
+        // los radius buttons se identifican en otros metodos aparte
+
+        //mensajes de alerta
+        Toast msjExito = Toast.makeText(PanelAdminEditarCultivo.this,
+                "operacion valida!",
+                Toast.LENGTH_SHORT );
+
+        Toast msjError = Toast.makeText(PanelAdminEditarCultivo.this,
+                "inputs invalidos, recuerda que 'nombre' y 'tipo' solo aceptan carac. alfabeticos",
+                Toast.LENGTH_SHORT);
+
+
+        // contiene una flag que se refiere a cada elem
+        boolean[] flags = new boolean[8];
+        // valor string extraido de cada campo
+        String[] atributos = new String[8];
+        atributos[0] = inputEditNombre;
+        atributos[1] = inputEditInfo;
+        atributos[2] = inputEditTipo;
+        atributos[3] = inputEditImagen;
+        atributos[4] = inputEditCrecimiento;
+        atributos[5] = inputEditTemp;
+        atributos[6] = inputEditEst;
+        atributos[7] = inputEditReg;
+
+        // a traves de un loop se validan los inputs
+        // se asigna una flag a cada atributo
+        for (int i = 0; i < atributos.length; i++) {
+            if(atributos[i].equals("error") || atributos[i].isEmpty()){
+                //input no valido
+                flags[i] = false;
+
+            } else{
+                //input valido
+                flags[i] = true;
+            }
+        }
+
+        // se controla el estado de cada flag individual
+        // si hay un error se muestra la alerta
+        for (boolean flag : flags) {
+            if(!flag){
+                validacionFinalEdits = false;
+                msjError.show();
+            }
+        }
+
+        //se muestra un msj si todos los imputs son validos
+        if(validacionFinalEdits){
+            msjExito.show();
+            actualizarCultivo(inputEditNombre);
+        }
+
+    }
+
+    /**
+     * una vez completada la validacion se actualiza el cultivo
+     */
+    private void actualizarCultivo(String IDcultivo){
+        // mensajes de alerta
+        Toast msjExito = Toast.makeText(PanelAdminEditarCultivo.this,
+                "cultivo actualizado",
+                Toast.LENGTH_SHORT);
+
+        Toast msjError = Toast.makeText(PanelAdminEditarCultivo.this,
+                "no se ha podido actualizar el cultivo",
+                Toast.LENGTH_SHORT);
+
+        // 1 - se crea una instancia de la BD / coleccion a utilizar
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("cultivos").document(IDcultivo);
+
+        // 2 - se crea un objeto con los datos del cultivo
+        Map<String, Object> data = new HashMap<>();
+        data.put("id", IDcultivo);
+        data.put("nombre", inputEditNombre);
+        data.put("informacion", inputEditInfo);
+        data.put("duracion", inputEditCrecimiento);
+        data.put("tipo", inputEditTipo);
+        data.put("icono", inputEditImagen);
+        data.put("temperatura", inputEditTemp);
+        data.put("estacion", inputEditEst);
+        data.put("region", inputEditReg);
+
+        // 3 - se realiza una peticion "update" al documento indicado pasando el objeto como param
+        docRef.update(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                msjExito.show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                msjError.show();
+                Log.w("tag", "ha ocurrido un error al conectar con la BD: " + e);
+            }
+        });
+
+    }
 
 }
