@@ -32,6 +32,7 @@ public class PanelAdminEditarCultivo extends MainActivity {
     // Atributos
 
     // nombre
+    private String IDcultivo;
     private String inputEditNombre;
     private EditText editTextNombre;
     // info
@@ -77,6 +78,8 @@ public class PanelAdminEditarCultivo extends MainActivity {
         TextView tituloCultivo = findViewById(R.id.titulo_edit_cultivo);
         tituloCultivo.setText(cultivoSeleccionado.getNombreCultivo());
 
+        // ID
+        IDcultivo = cultivoSeleccionado.getNombreCultivo();
         // nombre
         editTextNombre = findViewById(R.id.inputNombre_edit_cultivo);
         editTextNombre.setHint(cultivoSeleccionado.getNombreCultivo());
@@ -355,7 +358,7 @@ public class PanelAdminEditarCultivo extends MainActivity {
         //se muestra un msj si todos los imputs son validos
         if(validacionFinalEdits){
             msjExito.show();
-            actualizarCultivo(inputEditNombre);
+            actualizarCultivo(IDcultivo);
         }
 
     }
