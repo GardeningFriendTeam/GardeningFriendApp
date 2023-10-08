@@ -24,18 +24,18 @@ import java.util.Map;
 public class PanelAdminAgregarCultivo extends MainActivity {
 
     // Atributos (valores extraidos de los edit texts)
-    String inputNombre;
-    String inputTipo;
-    String inputInfo;
-    String inputCrecimiento;
-    String inputImg;
-    String inputTemp;
-    String inputEst;
-    String inputReg;
+    private String inputNombre;
+    private String inputTipo;
+    private String inputInfo;
+    private String inputCrecimiento;
+    private String inputImg;
+    private String inputTemp;
+    private String inputEst;
+    private String inputReg;
 
     // representa una flag asociada a cada campo
-    boolean[] flags = new boolean[8];
-    boolean validacionFinal = true;
+    private boolean[] flags = new boolean[8];
+    private boolean validacionFinal = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class PanelAdminAgregarCultivo extends MainActivity {
             inputTemp = "default";
         }
 
-        flags[4] = validarInput(inputTemp);
+        flags[5] = validarInput(inputTemp);
 
     }
 
@@ -150,7 +150,7 @@ public class PanelAdminAgregarCultivo extends MainActivity {
             inputEst = "default";
         }
 
-        flags[5] = validarInput(inputEst);
+        flags[6] = validarInput(inputEst);
 
     }
 
@@ -184,7 +184,7 @@ public class PanelAdminAgregarCultivo extends MainActivity {
             inputReg = "default";
         }
 
-        flags[6] = validarInput(inputReg);
+        flags[7] = validarInput(inputReg);
 
     }
 
@@ -249,9 +249,8 @@ public class PanelAdminAgregarCultivo extends MainActivity {
         inputImg = extraerTexto(campoImg);
         flags[3] = validarInput(inputImg);
 
-        // input agregado al final
         inputCrecimiento = extraerTexto(campoCrecimiento);
-        flags[7] = validarInput(inputCrecimiento);
+        flags[4] = validarInput(inputCrecimiento);
 
         Log.i("tag","edit texts agregados");
         validarCultivoNuevo();
@@ -263,7 +262,7 @@ public class PanelAdminAgregarCultivo extends MainActivity {
      * funcion para agregar cultivo a Firesore
      * como documento parte de la collecion "cultivos"
      */
-    public void subirCultivoBD(){
+    private void subirCultivoBD(){
         // 1 - se crea el objeto que se pasa como doc a la BD
         Map<String, Object> cultivoNvo = new HashMap<>();
         cultivoNvo.put("id", inputNombre);

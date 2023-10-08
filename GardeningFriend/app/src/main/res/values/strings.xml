@@ -184,5 +184,28 @@
         deserunt mollit anim id est laborum."
     </string>
 
+    <!-- arrays para validaciones !-->
+    <string-array name="array_temp">
+        <item name="rango_temp_0">-0°C</item>
+        <item name="rango_temp_1">0°C - 10°C</item>
+        <item name="rango_temp_2">10°C - 20°C</item>
+        <item name="rango_temp_3">20°C - 30°C</item>
+        <item name="rango_temp_4">+30°C</item>
+    </string-array>
+
+    <string-array name="array_est">
+        <item name="est_verano">Verano</item>
+        <item name="est_otono">Otoño</item>
+        <item name="est_invierno">Invierno</item>
+        <item name="est_primavera">Primavera</item>
+    </string-array>
+
+    <string-array name="array_reg">
+        <item name="reg_norte">Norte</item>
+        <item name="reg_centro">Centro - Pampeana</item>
+        <item name="reg_cuyo">Cuyo</item>
+        <item name="reg_patagonica">Patagonica</item>
+    </string-array>
+
 
 </resources>
