@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Gardening Friend</string>
+    <!-- seccion "registro" -->
     <string name="registro_username">Username</string>
     <string name="registro_email">Email</string>
     <string name="registro_password">Password</string>
     <string name="registro_btn">Registrarse</string>
     <string name="registro_text">Ya tienes una cuenta? Inicia Sesión.</string>
     <string name="imagen_registro">user logo</string>
+    <string name="registro_username_editText">Ingrese su username</string>
+    <string name="registro_email_editText">Ingrese su email</string>
+    <string name="registro_password_editText">Ingrese su contraseña</string>
 
     <!-- nombre secciones !-->
     <string name="menu">Menu</string>
@@ -206,6 +210,7 @@
         <item name="reg_cuyo">Cuyo</item>
         <item name="reg_patagonica">Patagonica</item>
     </string-array>
+
 
 
 </resources>
