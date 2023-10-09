@@ -17,34 +17,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class RegistroActivity extends MainActivity {
     Button btn_registro;
-
+    // Declaración de elementos de la interfaz de usuario
     private EditText editTextName, editTextEmail, editTextPassword;
     private TextView textViewGoToLogin;
     private ProgressBar progressBarRegistro;
     private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
     private static final String TAG = "RegistroActivity";
+    private ArrayList<String> favoritos = new ArrayList<>();
+    private boolean isAdmin = false;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,11 +49,14 @@ public class RegistroActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
+        //Cambiando el titulo de la ActionBar
         getSupportActionBar().setTitle("Registro");
 
+        // Inicialización de instancias de Firebase Firestore y FirebaseAuth
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+        // Vinculación de elementos de la interfaz con variables
         editTextName = findViewById(R.id.editTextUsername);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
@@ -64,6 +64,7 @@ public class RegistroActivity extends MainActivity {
         progressBarRegistro = findViewById(R.id.progressBarRegistro);
         textViewGoToLogin = findViewById(R.id.textViewGoToLogin);
 
+        // Evento onClick para redirigir a la Activity Login
         textViewGoToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,16 +74,26 @@ public class RegistroActivity extends MainActivity {
             }
         });
 
+        // Expresión regular para validar la contraseña
+        String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
+
+        // Configuración del evento onClick para el botón de registro
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Obtención de valores ingresados por el usuario
                 String name = editTextName.getText().toString();
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
+                // Validaciones de campos
                 if (TextUtils.isEmpty(name)){
                     Toast.makeText(RegistroActivity.this, "Completa el campo username", Toast.LENGTH_SHORT).show();
                     editTextName.setError("Username es requerido");
+                    editTextName.requestFocus();
+                }else if (name.length() < 3){
+                    Toast.makeText(RegistroActivity.this, "El username debe tener al menos 3 digitos", Toast.LENGTH_SHORT).show();
+                    editTextName.setError("Username muy corto");
                     editTextName.requestFocus();
                 }else if (TextUtils.isEmpty(email)){
                     Toast.makeText(RegistroActivity.this, "Completa el campo email", Toast.LENGTH_SHORT).show();
@@ -96,24 +107,26 @@ public class RegistroActivity extends MainActivity {
                     Toast.makeText(RegistroActivity.this, "Completa el campo password", Toast.LENGTH_SHORT).show();
                     editTextPassword.setError("Contraseña es requerida");
                     editTextPassword.requestFocus();
-                }else if (password.length() < 8){
-                    Toast.makeText(RegistroActivity.this, "La contraseña debe tener al menos 8 digitos", Toast.LENGTH_SHORT).show();
-                    editTextPassword.setError("Contraseña muy debil");
+                }else if (!password.matches(passwordRegex)){
+                    Toast.makeText(RegistroActivity.this, "Contraseña inválida", Toast.LENGTH_SHORT).show();
+                    editTextPassword.setError("La contraseña debe tener al menos 8 dígitos y contener letras, números y caracteres especiales");
                     editTextPassword.requestFocus();
                 }else {
+                    // Si los campos son válidos, se muestra una barra de progreso y se procede al registro
                     progressBarRegistro.setVisibility(View.VISIBLE);
                     registerUser(name, email, password);
                 }
-//                progressBarRegistro.setVisibility(View.GONE);
             }
         });
     }
 
+    // Método para registrar un usuario en Firebase Authentication y Firestore
     private void registerUser(String name, String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    // Si el registro es exitoso, se obtiene el usuario actual y se guarda información en Firestore
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     String id = mAuth.getCurrentUser().getUid();
                     Map<String, Object> map = new HashMap<>();
@@ -121,16 +134,19 @@ public class RegistroActivity extends MainActivity {
                     map.put("name", name);
                     map.put("email", email);
                     map.put("password", password);
+                    map.put("favoritos", favoritos);
+                    map.put("isAdmin", isAdmin);
 
-                    // Envia una verificación por Email
+                    // Se envía una verificación por correo electrónico
                     firebaseUser.sendEmailVerification();
 
-                    mFirestore.collection("user").document(id).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    // Se almacenan los datos del usuario en Firestore
+                    mFirestore.collection("usuarios").document(id).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            // Abre el Perfil del usuario luego de un registro exitoso
+                            // Se abre el perfil del usuario después de un registro exitoso
                             Intent intent = new Intent(RegistroActivity.this, Perfil.class);
-                            // Para prevenir que el usuario vuelva a RegistroActivity presionando el boton back despues de registrarse
+                            // Para prevenir que el usuario vuelva a RegistroActivity presionando el botón "back" después de registrarse
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish(); // Cierra la Activity
@@ -139,6 +155,7 @@ public class RegistroActivity extends MainActivity {
                         }
                     });
                 }else {
+                    // Manejo de excepciones relacionadas con Firebase Authentication
                     try {
                         throw task.getException();
                     }catch (FirebaseAuthWeakPasswordException e){
