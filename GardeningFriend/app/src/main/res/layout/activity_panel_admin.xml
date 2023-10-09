@@ -52,7 +52,8 @@
         android:layout_height="170dp"
         android:background="@drawable/card_cutlivo"
         android:layout_margin="25dp"
-        android:layout_below="@id/bd_cultivos">
+        android:layout_below="@id/bd_cultivos"
+        android:onClick="abrirPanelUsuarios">
 
         <ImageView
             android:id="@+id/ic_bd_usuarios"

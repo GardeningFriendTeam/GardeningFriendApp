@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -119,7 +118,7 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
         //se identifica el recycler view
         RecyclerView recyclerAdmin = findViewById(R.id.recycler_panel_cultivos);
         // se crea el adapter para recyclerview
-        PanelAdminRecyclerView adapter = new PanelAdminRecyclerView(this,cultivosBD,this);
+        PanelAdminCultivosRecyclerView adapter = new PanelAdminCultivosRecyclerView(this,cultivosBD,this);
         recyclerAdmin.setAdapter(adapter);
         recyclerAdmin.setLayoutManager(new LinearLayoutManager(this));
     }

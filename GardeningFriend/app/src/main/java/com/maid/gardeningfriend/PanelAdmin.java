@@ -30,6 +30,17 @@ public class PanelAdmin extends MainActivity {
         startActivity(intent);
     }
 
+    /**
+     * inicia la actividad donde se muestran
+     * todos los usuarios:
+     * @param view
+     * btn que dispara el evento
+     */
+    public void abrirPanelUsuarios(View view){
+        Intent intent = new Intent(PanelAdmin.this, PanelAdminUsuarios.class);
+        startActivity(intent);
+    }
+
     //TODO: agregar funcion que identifique si el user logueado es admin
     // recien alli, el user podra ir a la siguiente pantalla
     // de lo contrario se muestra una alerta

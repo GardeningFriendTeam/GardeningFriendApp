@@ -15,14 +15,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class PanelAdminRecyclerView extends RecyclerView.Adapter<PanelAdminRecyclerView.MyViewHolder> {
+public class PanelAdminCultivosRecyclerView extends RecyclerView.Adapter<PanelAdminCultivosRecyclerView.MyViewHolder> {
     //atributos
     private final PanelAdminInterface panelAdminInterface;
     Context context;
     ArrayList<CultivosGenerador> cultivos;
 
     //constructor
-    public PanelAdminRecyclerView(Context context, ArrayList<CultivosGenerador> cultivos, PanelAdminInterface panelAdminInterface) {
+    public PanelAdminCultivosRecyclerView(Context context, ArrayList<CultivosGenerador> cultivos, PanelAdminInterface panelAdminInterface) {
         this.context = context;
         this.cultivos = cultivos;
         this.panelAdminInterface = panelAdminInterface;
@@ -30,16 +30,16 @@ public class PanelAdminRecyclerView extends RecyclerView.Adapter<PanelAdminRecyc
 
     @NonNull
     @Override
-    public PanelAdminRecyclerView.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PanelAdminCultivosRecyclerView.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // infla el layout con las tarjetas creadas
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.cards_cultivos_panel_admin,parent,false);
 
-        return new PanelAdminRecyclerView.MyViewHolder(view,panelAdminInterface);
+        return new PanelAdminCultivosRecyclerView.MyViewHolder(view,panelAdminInterface);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PanelAdminRecyclerView.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PanelAdminCultivosRecyclerView.MyViewHolder holder, int position) {
         // asigna un index a cada elem
         // y extrae las propiedades de cada objeto del cultivo
         holder.titulo.setText(cultivos.get(position).getNombre());

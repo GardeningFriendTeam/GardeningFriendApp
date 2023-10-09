@@ -380,7 +380,7 @@ public class PanelAdminEditarCultivo extends MainActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("cultivos").document(IDcultivo);
 
-        // 2 - se crea un objeto con los datos del cultivo
+        // 2 - se crea un objeto con los datos actualizados del cultivo
         Map<String, Object> data = new HashMap<>();
         data.put("id", IDcultivo);
         data.put("nombre", inputEditNombre);

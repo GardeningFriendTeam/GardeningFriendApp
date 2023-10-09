@@ -42,6 +42,8 @@
     <string name="tiempo_crecimiento">Tiempo hasta germinar</string>
 
     <string name="btn_actualizar">Actualizar</string>
+    <string name="rol">rol</string>
+    <string name="cambiar_rol">Cambiar Rol</string>
 
 
     <!-- seccion "recomendaciones" !-->
@@ -210,7 +212,6 @@
         <item name="reg_cuyo">Cuyo</item>
         <item name="reg_patagonica">Patagonica</item>
     </string-array>
-
 
 
 </resources>
