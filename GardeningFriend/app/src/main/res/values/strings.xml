@@ -45,6 +45,11 @@
     <string name="rol">rol</string>
     <string name="cambiar_rol">Cambiar Rol</string>
 
+    <string name="datos_user">Datos usuario</string>
+    <string name="user">Usuario</string>
+    <string name="admin">Admin</string>
+    <string name="guardar_cambios">Guardar Cambios</string>
+
 
     <!-- seccion "recomendaciones" !-->
     <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>
