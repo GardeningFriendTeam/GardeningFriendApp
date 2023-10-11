@@ -4,7 +4,8 @@
     android:layout_height="150dp"
     android:layout_margin="20dp"
     android:background="@drawable/card_cutlivo"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp">
 
     <RelativeLayout
         android:id="@+id/container_icon"

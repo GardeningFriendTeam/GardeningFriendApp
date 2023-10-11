@@ -11,14 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- ICONO CULTIVO !-->
-        <ImageView
-            android:id="@+id/icono_cultivo_PA"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_aceituna"
-            android:layout_marginVertical="15dp"/>
+        <RelativeLayout
+            android:id="@+id/container_ic_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@mipmap/header">
+
+            <!-- ICONO CULTIVO !-->
+            <ImageView
+                android:id="@+id/icono_cultivo_PA"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_aceituna"
+                android:layout_marginVertical="15dp"/>
+
+        </RelativeLayout>
 
         <!-- TITULO !-->
         <TextView
@@ -28,7 +36,7 @@
             android:text="@string/cultivo"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:layout_below="@+id/icono_cultivo_PA"
+            android:layout_below="@+id/container_ic_edit_cultivo"
             android:layout_marginBottom="15dp"
             android:textStyle="bold"/>
 
@@ -39,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="@string/nombre_cultivo"
             android:layout_below="@id/titulo_edit_cultivo"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -68,7 +76,7 @@
             android:layout_height="wrap_content"
             android:text="@string/info_cultivo"
             android:layout_below="@id/divider_nombre"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -97,7 +105,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tipo_cultivo"
             android:layout_below="@id/divider_info"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -127,7 +135,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tiempo_crecimiento"
             android:layout_below="@id/inputTipo_edit_cultivo"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -158,7 +166,7 @@
             android:layout_height="wrap_content"
             android:text="@string/imagen_cultivo"
             android:layout_below="@id/divider_tiempo"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -187,7 +195,7 @@
             android:layout_height="wrap_content"
             android:text="@string/temperatura_cultivo"
             android:layout_below="@id/divider_imagen"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -261,7 +269,7 @@
             android:layout_height="wrap_content"
             android:text="@string/estacion_cultivo"
             android:layout_below="@id/divider_temp"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -327,7 +335,7 @@
             android:layout_height="wrap_content"
             android:text="@string/region_cultivo"
             android:layout_below="@id/divider_est"
-            android:textStyle="italic"
+            android:textStyle="italic | bold"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginVertical="10dp"/>
@@ -379,13 +387,14 @@
         <!-- BTN ACTUALIZAR !-->
         <Button
             android:id="@+id/btn_actualizar"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/opciones_reg_edit"
             android:text="@string/btn_actualizar"
+            android:textSize="17sp"
             android:background="@drawable/btn_verde"
             android:textColor="@color/white"
-            android:padding="20dp"
+            android:paddingVertical="10dp"
             android:layout_margin="25dp"
             android:layout_centerHorizontal="true"
             android:onClick="validarFormulario"/>

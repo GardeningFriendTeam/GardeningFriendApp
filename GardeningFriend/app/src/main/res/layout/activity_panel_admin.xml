@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PanelAdmin">
+    tools:context=".PanelAdmin"
+    android:background="@mipmap/madera2">
 
     <TextView
         android:id="@+id/descripcion"
@@ -12,9 +13,12 @@
         android:layout_height="wrap_content"
         android:text="@string/desc_panel_admin"
         android:layout_margin="30dp"
-        android:layout_marginVertical="30dp"
+        android:layout_marginVertical="25dp"
         android:textAlignment="center"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:background="@color/white"
+        android:padding="5dp"
+        android:elevation="5dp"/>
 
     <RelativeLayout
         android:id="@+id/bd_cultivos"
@@ -23,7 +27,8 @@
         android:background="@drawable/card_cutlivo"
         android:layout_margin="25dp"
         android:layout_below="@id/descripcion"
-        android:onClick="abrirCultivos">
+        android:onClick="abrirCultivos"
+        android:elevation="10dp">
 
         <ImageView
             android:id="@+id/ic_bd_cultivos"
@@ -53,13 +58,14 @@
         android:background="@drawable/card_cutlivo"
         android:layout_margin="25dp"
         android:layout_below="@id/bd_cultivos"
-        android:onClick="abrirPanelUsuarios">
+        android:onClick="abrirPanelUsuarios"
+        android:elevation="10dp">
 
         <ImageView
             android:id="@+id/ic_bd_usuarios"
             android:layout_width="110dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_user01"
+            android:src="@drawable/ic_user02"
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"/>
 
@@ -75,7 +81,6 @@
             android:layout_marginStart="20dp"/>
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>
