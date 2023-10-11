@@ -43,5 +43,15 @@
         android:title="@string/panel_admin"
         android:icon="@drawable/ic_admin"/>
 
+    <item
+        android:id="@+id/mis_notas"
+        android:title="Mis Notas"
+        android:icon="@drawable/ic_admin"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_admin"/>
+
 
 </menu>
