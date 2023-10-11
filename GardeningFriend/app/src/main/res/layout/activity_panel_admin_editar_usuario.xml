@@ -26,7 +26,7 @@
     <RelativeLayout
         android:id="@+id/container_info_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/container_ic_profile">
 
         <TextView
@@ -90,7 +90,8 @@
                 android:minHeight="50dp"
                 android:text="@string/user"
                 android:textSize="20dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:onClick="rolSelec"/>
 
             <RadioButton
                 android:id="@+id/RB_admin"
@@ -99,7 +100,8 @@
                 android:minHeight="50dp"
                 android:text="@string/admin"
                 android:textSize="20dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:onClick="rolSelec"/>
 
         </RadioGroup>
 
@@ -115,14 +117,19 @@
             android:id="@+id/btn_guardar_cambios"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_verde"
             android:layout_below="@id/divider_roles"
             android:layout_centerHorizontal="true"
             android:layout_margin="20dp"
-            android:text="@string/guardar_cambios"
+            android:layout_marginVertical="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/btn_verde"
+            android:onClick="actualizarUsuario"
             android:paddingHorizontal="20dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"/>
+            android:text="@string/guardar_cambios"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
 
     </RelativeLayout>

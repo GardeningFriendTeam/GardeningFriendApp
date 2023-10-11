@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -171,7 +172,7 @@ public class PanelAdminUsuarios extends MainActivity implements PanelAdminInterf
     @Override
     public void cambiarRolUserBtn(int position) {
         // 1 - se genera intent
-        Intent intent = new Intent();
+        Intent intent = new Intent(PanelAdminUsuarios.this, PanelAdminEditarUsuario.class);
         // se valida rol
         String rol;
         if(usuariosBD.get(position).isAdmin){
