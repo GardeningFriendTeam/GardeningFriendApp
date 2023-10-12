@@ -6,4 +6,5 @@ package com.maid.gardeningfriend;
  */
 public interface RecomendacionesInterface {
     void onItemClick(int position);
+    void onFavClick(int position);
 }

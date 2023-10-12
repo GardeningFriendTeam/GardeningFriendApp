@@ -10,12 +10,23 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AdditionalUserInfo;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -175,7 +186,126 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         startActivity(intent);
     }
 
+    /**
+     * identifica el usuario y añade el cultivo
+     * a su lista de favoritos
+     * @param position
+     * index numerico de la tarjeta
+     */
+    @Override
+    public void onFavClick(int position) {
+        String cultivoSelec = cultivosFiltrados.get(position).getID();
+        getListaFavs(cultivoSelec);
+    }
 
+    /**
+     * extrae la lista de cultivos del usuario
+     * @param IDcultivoSelec
+     * cultivo que se selecciono como fav
+     */
+    private void getListaFavs(String IDcultivoSelec){
+        // mensajes de alerta
+        Toast msjExito = Toast.makeText(RecomendacionesCultivos.this,
+                "conexion exitosa con la BD",
+                Toast.LENGTH_SHORT);
 
+        Toast msjError = Toast.makeText(RecomendacionesCultivos.this,
+                "no se ha podido conectar con la BD",
+                Toast.LENGTH_SHORT);
 
+        Toast msjRepetido = Toast.makeText(RecomendacionesCultivos.this,
+                "este cultivo ya se encuentra en favoritos!",
+                Toast.LENGTH_SHORT);
+
+        // se utiliza auth para extraer el ID del user logueado
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        //se obtiene el user actual
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = user.getUid();
+
+        // se hace una GET REQUEST para extraer la lista de cultivos del doc del user
+        db.collection("usuarios")
+                .document(userID)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            msjExito.show();
+                            //flag
+                            boolean repetido = false;
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            // se guardan los datos del usuario en un hashmap
+                            Map<String, Object> userDoc = documentSnapshot.getData();
+                            // se guarda la lista de favoritos
+                            ArrayList<String> favoritos = (ArrayList<String>) userDoc.get("favoritos");
+                            // se comprueba que el cultivo no exista en la lista
+                            for (String fav: favoritos) {
+                                if (fav == IDcultivoSelec){
+                                    repetido = true;
+                                    msjRepetido.show();
+                                }
+                            }
+                            if (!repetido){
+                                favoritos.add(IDcultivoSelec);
+                                agregarCultivoFav(favoritos, userID);
+                            }
+
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        msjError.show();
+                        Log.w("tag", "error al conectar con la BD", e);
+                    }
+                });
+
+    }
+
+    /**
+     * realiza una UPDATE REQUEST para actualizar la lista de favs
+     * @param listaFav
+     * lista de fav actualizada
+     * @param userID
+     * ID del usuario
+     */
+    private void agregarCultivoFav(ArrayList<String> listaFav, String userID){
+        // mensajes de alerta
+        Toast msjExito = Toast.makeText(RecomendacionesCultivos.this,
+                "favoritos actualizados",
+                Toast.LENGTH_SHORT);
+
+        Toast msjError = Toast.makeText(RecomendacionesCultivos.this,
+                "se ha podido actualizar favoritos",
+                Toast.LENGTH_SHORT);
+
+        // se crea instancia de la BD
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> favoritosUser = new HashMap<>();
+        favoritosUser.put("favoritos", listaFav);
+
+        // se actualiza el documento del usuario con el nuevo favorito:
+        db.collection("usuarios")
+                .document(userID)
+                .update(favoritosUser)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            msjExito.show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        msjError.show();
+                        Log.w("tag", "error al conectar con BD: ", e);
+                    }
+                });
+
+    }
 }
