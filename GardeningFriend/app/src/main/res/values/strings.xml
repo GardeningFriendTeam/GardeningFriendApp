@@ -87,6 +87,11 @@
         Bienvenido a GardeningFriend! aqui encontraras todo lo que necesitas para comenzar a cultivar!
     </string>
 
+    <!-- seccion "favoritos" !-->
+    <string name="buscador_favs">Ingresa el nombre del cultivo</string>
+    <string name="informacion">Info</string>
+    <string name="eliminar_fav">Eliminar de fav</string>
+    <string name="favoritos">Favoritos</string>
 
     <!-- contiene info de prueba para generar cultivos !-->
     <string-array name="cultivos_nombres">

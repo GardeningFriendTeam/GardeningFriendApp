@@ -16,6 +16,9 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
+            android:name=".favoritos.Favoritos"
+            android:exported="false" />
+        <activity
             android:name=".PanelAdminEditarUsuario"
             android:exported="false" />
         <activity

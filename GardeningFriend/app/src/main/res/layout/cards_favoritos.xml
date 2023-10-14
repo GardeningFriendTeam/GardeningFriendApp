@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fav_container_main"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="20dp"
+    android:background="@drawable/card_cutlivo"
+    android:elevation="10dp"
+    tools:ignore="TextSizeCheck">
+
+    <ImageView
+        android:id="@+id/ic_favs"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="15dp"
+        android:contentDescription="@string/logo"/>
+
+
+    <TextView
+        android:id="@+id/nombre_cultivo_favs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_toEndOf="@+id/ic_favs"
+        android:text="@string/cultivo"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/temp_cultivo_favs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombre_cultivo_favs"
+        android:layout_toEndOf="@id/ic_favs"
+        android:text="@string/rango_temp_0"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/reg_cultivo_favs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temp_cultivo_favs"
+        android:layout_marginVertical="5dp"
+        android:layout_toEndOf="@id/ic_favs"
+        android:text="@string/reg_centro"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/est_cultivo_favs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reg_cultivo_favs"
+        android:layout_marginVertical="5dp"
+        android:layout_toEndOf="@id/ic_favs"
+        android:text="@string/est_invierno"
+        android:textColor="@color/white" />
+
+    <ImageButton
+        android:id="@+id/btn_info_favs"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/verde_muy_oscuro"
+        android:contentDescription="@string/informacion"
+        android:src="@drawable/ic_info" />
+
+    <ImageButton
+        android:id="@+id/btn_eliminar_favs"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btn_info_favs"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/verde_muy_oscuro"
+        android:contentDescription="@string/eliminar_fav"
+        android:src="@drawable/ic_delete" />
+
+</RelativeLayout>

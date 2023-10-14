@@ -19,6 +19,11 @@
         android:icon="@drawable/ic_recomendaciones"/>
 
     <item
+        android:id="@+id/favoritos"
+        android:title="@string/favoritos"
+        android:icon="@drawable/ic_favs"/>
+
+    <item
         android:id="@+id/registro"
         android:title="@string/registro"
         android:icon="@drawable/ic_registro"/>
