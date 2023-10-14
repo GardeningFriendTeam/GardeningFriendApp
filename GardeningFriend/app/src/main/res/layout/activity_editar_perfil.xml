@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    style="@style/SCREEN"
+    tools:context=".EditarPerfilActivity">
+
+    <TextView
+        android:id="@+id/titleEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Perfil"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        style="@style/TEXT"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        style="@style/IMGREG"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/titleEditProfile"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextEditProfileUsername"
+        android:layout_below="@id/imageViewProfile"
+        android:autofillHints="username"
+        android:background="@drawable/border_registro"
+        android:hint="Edite su Username"
+        android:inputType="textPersonName"
+        android:layout_marginTop="50dp"
+        android:maxWidth="350dp"
+        android:minHeight="48dp"
+        android:padding="6dp"
+        style="@style/EDIT_TEXT"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextEditProfileEmail"
+        android:layout_below="@id/editTextEditProfileUsername"
+        android:autofillHints="username"
+        android:background="@drawable/border_registro"
+        android:hint="Edite su Email"
+        android:inputType="textPersonName"
+        android:maxWidth="350dp"
+        android:minHeight="48dp"
+        android:padding="6dp"
+        style="@style/EDIT_TEXT"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/btnSaveEditProfile"
+        style="@style/BUTTON"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_registro"
+        android:elevation="9dp"
+        android:text="Editar"
+        android:textColor="#263238"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

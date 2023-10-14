@@ -9,7 +9,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +22,7 @@ public class NoteActivity extends MainActivity {
     FloatingActionButton addNoteBtn;
     RecyclerView recyclerViewNotes;
     NoteAdapter noteAdapter;
+    FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -27,12 +30,20 @@ public class NoteActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        mAuth = FirebaseAuth.getInstance();
+
         // Obtener referencias a elementos de la interfaz de usuario
         addNoteBtn = findViewById(R.id.add_note_btn);
         recyclerViewNotes = findViewById(R.id.recycler_notas);
 
         // Configurar un clic en el botón para iniciar la actividad de detalles de nota
-        addNoteBtn.setOnClickListener((v)-> startActivity(new Intent(NoteActivity.this, NoteDetailsActivity.class)));
+        addNoteBtn.setOnClickListener((v)->{
+            if (mAuth.getCurrentUser().isEmailVerified()){
+                startActivity(new Intent(NoteActivity.this, NoteDetailsActivity.class));
+            }else {
+                Toast.makeText(NoteActivity.this, "Por favor valida tu email para acceder a esta funcion", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Configurar y mostrar la lista de notas en un RecyclerView
         setupRecyclerView();

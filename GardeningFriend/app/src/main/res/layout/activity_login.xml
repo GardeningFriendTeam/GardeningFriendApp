@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/kelly_green"
+    android:padding="16dp"
     android:layout_gravity="center_vertical"
     style="@style/SCREEN"
     tools:context=".Login">
@@ -13,8 +14,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_margin="15dp"
+        android:padding="16dp"
+        android:layout_gravity="center"
         style="@style/SCREEN">
 
         <ImageView
@@ -104,6 +105,16 @@
             android:text="Crea una cuenta"
             android:textSize="16sp"
             android:layout_below="@id/buttonLogin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Olvidaste tu contrasena"
+            android:textSize="16sp"
+            android:layout_below="@id/textViewGoToRegistro"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp" />

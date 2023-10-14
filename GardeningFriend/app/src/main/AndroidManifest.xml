@@ -16,6 +16,9 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
+            android:name=".EditarPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".NoteDetailsActivity"
             android:exported="false" />
         <activity

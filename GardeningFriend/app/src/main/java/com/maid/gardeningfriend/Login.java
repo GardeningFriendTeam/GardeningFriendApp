@@ -1,9 +1,11 @@
 package com.maid.gardeningfriend;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +29,7 @@ public class Login extends MainActivity {
 
     Button btnLogin;
     private EditText editTextEmail, editTextPassword;
-    private TextView textViewGoToRegistro;
+    private TextView textViewGoToRegistro, textViewForgotPassword;
     private ProgressBar progressBarLogin;
     private FirebaseAuth mAuth;
     private static final String TAG = "Login";
@@ -47,6 +51,7 @@ public class Login extends MainActivity {
         btnLogin = findViewById(R.id.buttonLogin);
         progressBarLogin = findViewById(R.id.progressBarLogin);
         textViewGoToRegistro = findViewById(R.id.textViewGoToRegistro);
+        textViewForgotPassword = findViewById(R.id.textViewForgotPassword);
 
         // Evento onClick para redirigir a la Activity Login
         textViewGoToRegistro.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +97,43 @@ public class Login extends MainActivity {
                 }
             }
         });
+
+        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText resetEmail = new EditText(v.getContext());
+                AlertDialog.Builder alertDialogResetPassword = new AlertDialog.Builder(v.getContext());
+                alertDialogResetPassword.setTitle("Cambiar Contrasena");
+                alertDialogResetPassword.setMessage("Ingrese su Email, se le enviara un link para cambiar su contrasena");
+                alertDialogResetPassword.setView(resetEmail);
+
+                alertDialogResetPassword.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Extrae el Email y envia el link
+                        String email = resetEmail.getText().toString();
+                        mAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(Login.this, "El link fue enviado a tu Email", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Login.this, "Error al enviar el Email"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+                alertDialogResetPassword.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Cierra el Dialog
+                    }
+                });
+                alertDialogResetPassword.create().show();
+            }
+        });
     }
 
     private void loginUser(String email, String password) {
@@ -99,20 +141,16 @@ public class Login extends MainActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-
-                    if (mAuth.getCurrentUser().isEmailVerified()){
-                        Toast.makeText(Login.this, "Login Exitoso", Toast.LENGTH_SHORT).show();
-                        // Se abre el perfil del usuario después de un registro exitoso
-                        Intent intent = new Intent(Login.this, Perfil.class);
-                        // Para prevenir que el usuario vuelva a RegistroActivity presionando el botón "back" después de registrarse
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish(); // Cierra la Activity
-                        progressBarLogin.setVisibility(View.GONE);
-                    }else {
-                        Toast.makeText(Login.this, "Email no verificado, por favor valida tu email", Toast.LENGTH_SHORT).show();
-                        progressBarLogin.setVisibility(View.GONE);
+                    if (!mAuth.getCurrentUser().isEmailVerified()){
+                        Toast.makeText(Login.this, "Por Favor, Verifica tu email.", Toast.LENGTH_SHORT).show();
                     }
+                    // Se abre el perfil del usuario después de un registro exitoso
+                    Intent intent = new Intent(Login.this, Perfil.class);
+                    // Para prevenir que el usuario vuelva a RegistroActivity presionando el botón "back" después de registrarse
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish(); // Cierra la Activity
+                    progressBarLogin.setVisibility(View.GONE);
                 }else {
                     Toast.makeText(Login.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     progressBarLogin.setVisibility(View.GONE);
