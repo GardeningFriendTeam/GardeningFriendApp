@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:layout_marginVertical="8dp"
+    android:backgroundTint="@color/verde_medio"
+    android:background="@drawable/border_registro">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_note_title"
+        android:text="Titulo Nota"
+        style="@style/TEXT"
+        android:textSize="18sp"
+        android:layout_marginVertical="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_note_content"
+        android:text="Cotenido de la nota que puede ser muy muy largo"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="17sp"
+        android:layout_marginVertical="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_note_time"
+        android:text="El tiempo"
+        android:textSize="12sp"
+        android:gravity="right"
+        android:layout_marginVertical="4dp"/>
+
+
+
+</LinearLayout>

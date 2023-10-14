@@ -38,6 +38,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.1.2")
     implementation("com.google.firebase:firebase-firestore:24.8.1")
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

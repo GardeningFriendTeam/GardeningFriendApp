@@ -9,7 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.maid.gardeningfriend.favoritos.Favoritos;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Contiene la logica / funcion para implementar el menu
@@ -67,8 +67,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, ContactoSeccion.class));
             return true;
 
-        } else if (item.getItemId() == R.id.favoritos){
-            startActivity(new Intent(this, Favoritos.class));
+        } else if(item.getItemId() == R.id.mis_notas){
+            startActivity(new Intent(this, NoteActivity.class));
+            return true;
+
+        } else if(item.getItemId() == R.id.logout){
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, Login.class));
+            finish();
             return true;
 
         } else{
