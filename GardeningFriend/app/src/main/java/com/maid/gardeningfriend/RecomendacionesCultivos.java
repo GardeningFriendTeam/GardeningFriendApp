@@ -198,6 +198,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         getListaFavs(cultivoSelec);
     }
 
+
     /**
      * extrae la lista de cultivos del usuario
      * @param IDcultivoSelec
@@ -217,51 +218,59 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                 "este cultivo ya se encuentra en favoritos!",
                 Toast.LENGTH_SHORT);
 
-        // se utiliza auth para extraer el ID del user logueado
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        // se crea instancia de BD y autenticacion
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        //se obtiene el user actual
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userID = user.getUid();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        // se hace una GET REQUEST para extraer la lista de cultivos del doc del user
-        db.collection("usuarios")
-                .document(userID)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
-                            msjExito.show();
-                            //flag
-                            boolean repetido = false;
-                            DocumentSnapshot documentSnapshot = task.getResult();
-                            // se guardan los datos del usuario en un hashmap
-                            Map<String, Object> userDoc = documentSnapshot.getData();
-                            // se guarda la lista de favoritos
-                            ArrayList<String> favoritos = (ArrayList<String>) userDoc.get("favoritos");
-                            // se comprueba que el cultivo no exista en la lista
-                            for (String fav: favoritos) {
-                                if (fav == IDcultivoSelec){
-                                    repetido = true;
-                                    msjRepetido.show();
+        // validacion logueo:
+        if (auth.getCurrentUser() != null){
+            // se extrae ID del usuario
+            String userID = auth.getCurrentUser().getUid();
+            // se realiza peticion GET
+            db.collection("usuarios")
+                    .document(userID)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()){
+                                msjExito.show();
+                                //flag
+                                boolean repetido = false;
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                // se guardan los datos del usuario en un hashmap
+                                Map<String, Object> userDoc = documentSnapshot.getData();
+                                // se guarda la lista de favoritos
+                                ArrayList<String> favoritos = (ArrayList<String>) userDoc.get("favoritos");
+                                // se comprueba que el cultivo no exista en la lista
+                                for (String fav: favoritos) {
+                                    if (fav == IDcultivoSelec){
+                                        repetido = true;
+                                        msjRepetido.show();
+                                    }
                                 }
-                            }
-                            if (!repetido){
-                                favoritos.add(IDcultivoSelec);
-                                agregarCultivoFav(favoritos, userID);
-                            }
+                                if (!repetido){
+                                    favoritos.add(IDcultivoSelec);
+                                    agregarCultivoFav(favoritos, userID);
+                                }
 
+                            }
                         }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        msjError.show();
-                        Log.w("tag", "error al conectar con la BD", e);
-                    }
-                });
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            msjError.show();
+                            Log.w("tag", "error al conectar con la BD", e);
+                        }
+                    });
+
+        } else {
+            // el usuario es redirigido al login
+            Intent intent = new Intent(RecomendacionesCultivos.this, Login.class);
+            startActivity(intent);
+        }
+
 
     }
 

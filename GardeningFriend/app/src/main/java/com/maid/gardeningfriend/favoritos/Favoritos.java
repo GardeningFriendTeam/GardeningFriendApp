@@ -42,6 +42,7 @@ public class Favoritos extends MainActivity {
     ArrayList<String> cultivosFavoritos = new ArrayList<>();
     ArrayList<CultivosGenerador> cultivosFavsInfo = new ArrayList<>();
 
+    FavoritosRecyclerView favoritosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,13 +223,22 @@ public class Favoritos extends MainActivity {
      * una vez que se completo la iteracion del array
      */
     public void setAdapterFav(){
+        Log.i("tag", cultivosFavoritos.toString());
         // se identifica el recycler view
         RecyclerView recyclerViewFav = findViewById(R.id.recyclerview_favs);
 
         // se activa su adaptador
-        FavoritosRecyclerView adapter = new FavoritosRecyclerView(this, cultivosFavsInfo);
-        recyclerViewFav.setAdapter(adapter);
+        favoritosAdapter = new FavoritosRecyclerView(this, cultivosFavsInfo);
+        recyclerViewFav.setAdapter(favoritosAdapter);
         recyclerViewFav.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    // Notifica al adaptador de cualquier cambio cuando la actividad se reanuda
+    @Override
+    protected void onResume(){
+        super.onResume();
+        favoritosAdapter.notifyDataSetChanged();
+    }
+
 
 }
