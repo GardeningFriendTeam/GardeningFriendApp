@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -22,11 +23,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.rpc.context.AttributeContext;
 import com.maid.gardeningfriend.CultivosGenerador;
+import com.maid.gardeningfriend.Login;
 import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,15 +42,32 @@ public class Favoritos extends MainActivity {
     ArrayList<String> cultivosFavoritos = new ArrayList<>();
     ArrayList<CultivosGenerador> cultivosFavsInfo = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritos);
 
-        // se obtiene el usuario actual
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        // se lo pasa como argumento a la funcion que hace el get request:
-        getFavsUser(user);
+        authenticateUser();
+
+    }
+
+    /**
+     * verifica si el user esta logueado,
+     * de lo contrario es redirigido al login
+     */
+    private void authenticateUser(){
+        // se activa la autenticacion
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user;
+        // se verifica si el usuario esta logueado
+        if (auth.getCurrentUser() != null){
+            user = auth.getCurrentUser();
+            getFavsUser(user);
+        } else {
+            Intent intent = new Intent(Favoritos.this, Login.class);
+            startActivity(intent);
+        }
 
     }
 
@@ -59,7 +79,9 @@ public class Favoritos extends MainActivity {
         // 1 - se crea instancia de FireStore para trabajar con la BD
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         // se identifica el usuario en la BD
-        DocumentReference docRef = db.collection("usuarios").document(firebaseUser.getUid());
+        CollectionReference collectionReference = db.collection("usuarios");
+        DocumentReference documentReference = collectionReference.document(firebaseUser.getUid());
+
 
         //mensajes de alerta
         Toast msjExito = Toast.makeText(Favoritos.this,
@@ -70,29 +92,36 @@ public class Favoritos extends MainActivity {
                 "no se ha podido conectar con la BD",
                 Toast.LENGTH_SHORT);
 
+        Toast msjDocNoExsits = Toast.makeText(Favoritos.this,
+                "el documento no existe",
+                Toast.LENGTH_SHORT);
+
         // 2 - se realizar una get request
-        //TODO: BUSCAR UNA FORMA DE REALIZAR PETICION SOBRE ATRIBUTO ARRAY DIRECTAMENTE
-        docRef.get()
+        documentReference
+                .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
-                            DocumentSnapshot document = task.getResult();
-                            // se guarda la informacion extraida en un hashmap
-                            Map<String, Object> user = document.getData();
-                            ArrayList<String> userFavs = (ArrayList<String>) document.get("favoritos");
+                            // se extrae el atributo favoritos del documento del usuario
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            if(documentSnapshot.exists()){
+                                Map<String, Object> userDoc = documentSnapshot.getData();
+                                ArrayList<String> userFavs = (ArrayList<String>) userDoc.get("favoritos");
+                                getCultivos(firebaseUser.getUid(), userFavs);
 
-                            getCultivos(firebaseUser.getUid(), userFavs);
+                            } else{
+                                msjDocNoExsits.show();
+                            }
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         msjError.show();
-                        Log.w("tag", "error al conectar con la BD", e);
+                        Log.w("tag", "error al conectar con la BD: ", e);
                     }
                 });
-
     }
 
     /**
