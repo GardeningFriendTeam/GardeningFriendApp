@@ -28,6 +28,18 @@
             android:name=".PanelAdminAgregarCultivo"
             android:exported="false" />
         <activity
+            android:name=".EditarPerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NoteDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NoteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarCultivo"
+            android:exported="false" />
+        <activity
             android:name=".PanelAdminCultivos"
             android:exported="false" />
         <activity

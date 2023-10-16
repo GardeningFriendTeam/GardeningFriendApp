@@ -1,18 +1,190 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    style="@style/SCREEN"
+    app:flow_verticalAlign="center"
+    android:background="@color/kelly_green"
     tools:context=".Perfil">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text="@string/perfil"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        style="@style/SCREEN"
+        android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textViewVerifyEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email no Verficado!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnVerifyEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textViewVerifyEmail"
+            android:visibility="gone"
+            style="@style/BUTTON"
+            android:layout_marginTop="16dp"
+            android:text="Verificar Ahora"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/titleProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tu Perfil"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            style="@style/TEXT"
+            android:layout_below="@id/btnVerifyEmail"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <ImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            style="@style/IMGREG"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/titleProfile"
+            android:layout_marginTop="16dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uploadImageProfile"
+            android:layout_alignParentTop="true"
+            android:backgroundTint="@color/verde_medio"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="180dp"
+            android:layout_toEndOf="@+id/imageViewProfile"
+            android:src="@drawable/ic_add" />
+
+        <LinearLayout
+            android:id="@+id/linearUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageViewProfile"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_user02"
+                android:contentDescription="Username Icon"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/textViewTitleUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username: "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                style="@style/TEXT"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewUsernameProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JohnDoe"
+            android:textSize="18sp"
+            style="@style/TEXT"
+            android:layout_marginLeft="32dp"
+            android:layout_below="@+id/linearUsername"
+            android:layout_marginVertical="5dp"/>
+
+        <LinearLayout
+            android:id="@+id/linearEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textViewUsernameProfile"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_user02"
+                android:contentDescription="Email Icon"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/textViewTitleEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                style="@style/TEXT"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewEmailProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="johndoe@example.com"
+            android:textSize="18sp"
+            style="@style/TEXT"
+            android:layout_below="@+id/linearEmail"
+            android:layout_marginLeft="32dp"
+            android:layout_marginVertical="5dp"/>
+
+        <Button
+            android:id="@+id/btnLogoutProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textViewEmailProfile"
+            android:layout_marginTop="52dp"
+            android:text="Cerrar Sesión"
+            style="@style/BUTTON"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnLogoutProfile"
+            style="@style/BUTTON"
+            android:layout_marginTop="16dp"
+            android:text="Editar Perfil"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnChangePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnEditProfile"
+            style="@style/BUTTON"
+            android:layout_marginTop="16dp"
+            android:text="Cambiar Contraseña"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</ScrollView>
