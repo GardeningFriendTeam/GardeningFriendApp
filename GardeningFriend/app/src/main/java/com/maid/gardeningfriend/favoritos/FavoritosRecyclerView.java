@@ -22,14 +22,16 @@ import java.util.ArrayList;
 
 public class FavoritosRecyclerView extends RecyclerView.Adapter<FavoritosRecyclerView.MyViewHolder> {
     //Atributos
+    private final FavoritosInterface favoritosInterface;
     Context context;
 
     ArrayList<CultivosGenerador> cultivosListaFavs;
 
     //constructor
-    public FavoritosRecyclerView(Context context, ArrayList<CultivosGenerador> cultivosListaFavs) {
+    public FavoritosRecyclerView(Context context, ArrayList<CultivosGenerador> cultivosListaFavs, FavoritosInterface favoritosInterface) {
         this.context = context;
         this.cultivosListaFavs = cultivosListaFavs;
+        this.favoritosInterface = favoritosInterface;
     }
 
     //metodo que crea infla las tarjetas en el recyclerview
@@ -39,7 +41,7 @@ public class FavoritosRecyclerView extends RecyclerView.Adapter<FavoritosRecycle
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.cards_favoritos,parent,false);
 
-        return new FavoritosRecyclerView.MyViewHolder(view);
+        return new FavoritosRecyclerView.MyViewHolder(view,favoritosInterface);
 
     }
 
@@ -69,7 +71,7 @@ public class FavoritosRecyclerView extends RecyclerView.Adapter<FavoritosRecycle
         ImageButton btnInfo, btnEliminar;
         ImageView icono;
 
-        public MyViewHolder(@NonNull View view){
+        public MyViewHolder(@NonNull View view, FavoritosInterface favoritosInterface){
             super(view);
             nombre = view.findViewById(R.id.nombre_cultivo_favs);
             temperatura = view.findViewById(R.id.temp_cultivo_favs);
@@ -78,6 +80,38 @@ public class FavoritosRecyclerView extends RecyclerView.Adapter<FavoritosRecycle
             btnInfo = view.findViewById(R.id.btn_info_favs);
             btnEliminar = view.findViewById(R.id.btn_eliminar_favs);
             icono = view.findViewById(R.id.ic_favs);
+
+            //se agregan las funcionalidades para identificar la tarjeta cuando se clickea
+            // la opcion ver 'info' o 'elimiar'
+            btnInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (favoritosInterface != null){
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            favoritosInterface.OninfoFav(pos);
+                        }
+
+                    }
+
+                }
+            });
+
+            btnEliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (favoritosInterface != null){
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            favoritosInterface.OnEliminarFav(pos);
+                        }
+
+                    }
+
+                }
+            });
         }
     }
 

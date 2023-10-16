@@ -37,7 +37,7 @@ import java.util.Map;
  * guardadas en favs, consumiendo los datos
  * de FireStore (atributo favoritos del usuario)
  */
-public class Favoritos extends MainActivity {
+public class Favoritos extends MainActivity implements FavoritosInterface{
     // Atributos
     ArrayList<String> cultivosFavoritos = new ArrayList<>();
     ArrayList<CultivosGenerador> cultivosFavsInfo = new ArrayList<>();
@@ -228,17 +228,90 @@ public class Favoritos extends MainActivity {
         RecyclerView recyclerViewFav = findViewById(R.id.recyclerview_favs);
 
         // se activa su adaptador
-        favoritosAdapter = new FavoritosRecyclerView(this, cultivosFavsInfo);
+        favoritosAdapter = new FavoritosRecyclerView(this, cultivosFavsInfo, this);
         recyclerViewFav.setAdapter(favoritosAdapter);
         recyclerViewFav.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    // Notifica al adaptador de cualquier cambio cuando la actividad se reanuda
+
+    /**
+     * funcion que lleva al usuario
+     * a la siguiente pantalla donde se muestra toda
+     * la info
+     * @param position
+     * index tarjeta
+     */
     @Override
-    protected void onResume(){
-        super.onResume();
-        favoritosAdapter.notifyDataSetChanged();
+    public void OninfoFav(int position) {
+
     }
 
 
+    /**
+     * funcion que elimina el cultivo de favoritos
+     * @param position
+     * index tarjeta
+     */
+    @Override
+    public void OnEliminarFav(int position) {
+        // 1 - se identifica el usuario actual
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        // propiedades varias
+        FirebaseUser user;
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        ArrayList<String> userFavs;
+        String cultivoEliminar = cultivosFavsInfo.get(position).getID();
+
+        //2 - se elimina el elemento del array local (luego es updated al doc del user)
+        for (String elem : cultivosFavoritos) {
+            if (elem.equals(cultivoEliminar)){
+                int indexEliminar = cultivosFavoritos.indexOf(cultivoEliminar);
+                cultivosFavoritos.remove(indexEliminar);
+            }
+        }
+
+
+        //mensajes alerta
+        Toast msjLogueo = Toast.makeText(Favoritos.this, "" +
+                "debes estar logueado para eliminar el cultivo!",
+                Toast.LENGTH_SHORT);
+
+        Toast msjExito = Toast.makeText(Favoritos.this,
+                "el cultivo se ha eliminado de favoritos",
+                Toast.LENGTH_SHORT);
+
+        Toast msjError = Toast.makeText(Favoritos.this,
+                "no se ha podido conectar con la BD",
+                Toast.LENGTH_SHORT);
+
+        // autenticacion (para obtener las propiedades del usuario actual)
+        if (auth.getCurrentUser() != null){
+            //user actual logueado:
+            user = auth.getCurrentUser();
+
+            // 3 - UPDATE REQUEST (se pasa el nuevo array con el cultivo eliminado)
+            db.collection("usuarios")
+                    .document(user.getUid())
+                    .update("favoritos", cultivosFavoritos)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                msjExito.show();
+                                favoritosAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            msjError.show();
+                            Log.w("error", "error al conectar con la BD", e);
+                        }
+                    });
+
+
+        } else {
+            msjLogueo.show();
+        }
+    }
 }
