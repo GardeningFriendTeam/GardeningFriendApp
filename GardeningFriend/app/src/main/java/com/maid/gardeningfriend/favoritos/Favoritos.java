@@ -29,6 +29,7 @@ import com.maid.gardeningfriend.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -262,14 +263,16 @@ public class Favoritos extends MainActivity implements FavoritosInterface{
         ArrayList<String> userFavs;
         String cultivoEliminar = cultivosFavsInfo.get(position).getID();
 
-        //2 - se elimina el elemento del array local (luego es updated al doc del user)
-        for (String elem : cultivosFavoritos) {
-            if (elem.equals(cultivoEliminar)){
-                int indexEliminar = cultivosFavoritos.indexOf(cultivoEliminar);
-                cultivosFavoritos.remove(indexEliminar);
+        //2 - se elimina el elemento del array local para evitar hacer otra get request
+        // (luego es updated al doc del user)
+        // se usa un iterator para evitar errores de concurrencia
+        Iterator<String> iter = cultivosFavoritos.iterator();
+        while (iter.hasNext()){
+            String element = iter.next();
+            if(element.equals(cultivoEliminar)){
+                iter.remove();
             }
         }
-
 
         //mensajes alerta
         Toast msjLogueo = Toast.makeText(Favoritos.this, "" +
@@ -277,7 +280,8 @@ public class Favoritos extends MainActivity implements FavoritosInterface{
                 Toast.LENGTH_SHORT);
 
         Toast msjExito = Toast.makeText(Favoritos.this,
-                "el cultivo se ha eliminado de favoritos",
+                "el cultivo se ha eliminado de favoritos, refresca" +
+                        "la seccion para visualizar los cambios",
                 Toast.LENGTH_SHORT);
 
         Toast msjError = Toast.makeText(Favoritos.this,
@@ -298,7 +302,8 @@ public class Favoritos extends MainActivity implements FavoritosInterface{
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 msjExito.show();
-                                favoritosAdapter.notifyDataSetChanged();
+                                //favoritosAdapter.notifyDataSetChanged();
+                                Log.i("array: ", cultivosFavoritos.toString());
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
