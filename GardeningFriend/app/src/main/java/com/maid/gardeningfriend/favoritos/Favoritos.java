@@ -22,10 +22,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.rpc.context.AttributeContext;
+import com.maid.gardeningfriend.CultivosDetallesParceable;
 import com.maid.gardeningfriend.CultivosGenerador;
 import com.maid.gardeningfriend.Login;
 import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
+import com.maid.gardeningfriend.RecomendacionesDetalles;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -244,6 +246,26 @@ public class Favoritos extends MainActivity implements FavoritosInterface{
      */
     @Override
     public void OninfoFav(int position) {
+        // se crea el intent
+        Intent intent = new Intent(Favoritos.this, RecomendacionesDetalles.class);
+
+        //se crea objeto parceable para enviar la informacion via intent
+        CultivosDetallesParceable parceable = new CultivosDetallesParceable(
+                cultivosFavsInfo.get(position).getNombre(),
+                cultivosFavsInfo.get(position).getTemperatura(),
+                cultivosFavsInfo.get(position).getEstacionSiembra(),
+                cultivosFavsInfo.get(position).getRegion(),
+                cultivosFavsInfo.get(position).getCaracteristicas(),
+                cultivosFavsInfo.get(position).getImagen(),
+                cultivosFavsInfo.get(position).getTipo(),
+                cultivosFavsInfo.get(position).getDuracionCrecimiento()
+        );
+
+        //se vincula el parceable con el intent
+        intent.putExtra("CULTIVO_DETALLES", parceable);
+
+        // se inicia la actividad
+        startActivity(intent);
 
     }
 
