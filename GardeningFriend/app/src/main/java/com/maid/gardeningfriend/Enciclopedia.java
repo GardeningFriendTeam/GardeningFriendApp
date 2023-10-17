@@ -11,4 +11,6 @@ public class Enciclopedia extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enciclopedia);
     }
+    
+
 }
