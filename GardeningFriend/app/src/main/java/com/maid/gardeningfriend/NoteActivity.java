@@ -1,7 +1,9 @@
 package com.maid.gardeningfriend;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.Query;
 
@@ -55,6 +58,42 @@ public class NoteActivity extends MainActivity {
         });
         // Configurar y mostrar la lista de notas en un RecyclerView
         setupRecyclerView();
+
+
+        ItemTouchHelper.SimpleCallback itemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getBindingAdapterPosition();
+
+                if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
+                    String noteId = noteAdapter.getSnapshots().getSnapshot(position).getId();
+
+                    // Guarda una copia de la nota que se eliminará
+                    Note deletedNote = noteAdapter.getSnapshots().get(position);
+
+                    // Elimina la nota de la base de datos
+                    Utility.getCollectionReferenceForNotes().document(noteId).delete();
+
+                    // Muestra un mensaje Snackbar con opción de deshacer
+                    Snackbar snackbar = Snackbar.make(recyclerViewNotes, "Nota eliminada", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Deshacer", v -> {
+                        // Reinserta la nota en la base de datos (puedes utilizar el mismo ID)
+                        Utility.getCollectionReferenceForNotes().document(noteId).set(deletedNote);
+                    });
+                    snackbar.show();
+                }
+            }
+
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerViewNotes);
+
 
     }
 
