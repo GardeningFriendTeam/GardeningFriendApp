@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,9 @@ import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
 import com.maid.gardeningfriend.RecomendacionesDetalles;
 
+import org.checkerframework.checker.units.qual.A;
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,12 +51,18 @@ public class Favoritos extends MainActivity implements FavoritosInterface{
 
     FavoritosRecyclerView favoritosAdapter;
 
+    RecyclerView recyclerViewFavs;
+
+    SearchView searchViewFav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritos);
 
         authenticateUser();
+
+        buscarCultivo();
 
     }
 
@@ -228,12 +238,12 @@ public class Favoritos extends MainActivity implements FavoritosInterface{
     public void setAdapterFav(){
         Log.i("tag", cultivosFavoritos.toString());
         // se identifica el recycler view
-        RecyclerView recyclerViewFav = findViewById(R.id.recyclerview_favs);
+        recyclerViewFavs = findViewById(R.id.recyclerview_favs);
 
         // se activa su adaptador
         favoritosAdapter = new FavoritosRecyclerView(this, cultivosFavsInfo, this);
-        recyclerViewFav.setAdapter(favoritosAdapter);
-        recyclerViewFav.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewFavs.setAdapter(favoritosAdapter);
+        recyclerViewFavs.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
@@ -341,4 +351,79 @@ public class Favoritos extends MainActivity implements FavoritosInterface{
             msjLogueo.show();
         }
     }
+
+
+    /**
+     * configuracion listener para extraer texto
+     */
+    private void buscarCultivo(){
+        // 1 - identificar elem
+        searchViewFav = findViewById(R.id.buscador_favs);
+
+        // 2 - agregar eventlisteners (cuando se ingresa texto)
+        searchViewFav.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Log.i("search", "se ha realizado busqueda");
+                actualizarAdapter(s.toLowerCase());
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Log.i("search", "el texto ha cambiado");
+                actualizarAdapter(s.toLowerCase());
+                return false;
+            }
+        });
+    }
+
+    /**
+     * actualiza el adapter en base
+     * a la palabra ingresada en el buscador
+     * @param palabraBusqueda
+     * palabra ingresada por el user
+     */
+    private void actualizarAdapter(String palabraBusqueda){
+        // mensajes alerta
+        Toast msjVacio = Toast.makeText(Favoritos.this,
+                "no has ingresado ningun caracter!",
+                Toast.LENGTH_SHORT);
+
+        Toast msjExito = Toast.makeText(Favoritos.this,
+                "cultivos que coinciden con la busqueda",
+                Toast.LENGTH_SHORT);
+
+        Toast msjError = Toast.makeText(Favoritos.this,
+                "ha ocurrido un error al conectar con la BD",
+                Toast.LENGTH_SHORT);
+
+
+        // 1 - copia de array para realizar operaciones
+        // (para evitar hacer peticiones GET adicionales)
+        ArrayList<CultivosGenerador> cultivosBusquedaArray = new ArrayList<>();
+        cultivosBusquedaArray.addAll(cultivosFavsInfo);
+
+        // 2 - se realiza un filtro en base al input del usuario
+        for (CultivosGenerador cultivo : cultivosBusquedaArray) {
+            if (!cultivo.getNombre().contains(palabraBusqueda)){
+                cultivosBusquedaArray.remove(cultivo);
+            }
+        }
+
+        // 3 - se pasa este array modificado al adapter
+        if (palabraBusqueda.isEmpty()){
+            // se muestran todos los cultivos usando el adapter original
+            favoritosAdapter = new FavoritosRecyclerView(this, cultivosFavsInfo, this);
+            recyclerViewFavs.setAdapter(favoritosAdapter);
+        } else {
+            // se muestra el array secundario modificado
+            favoritosAdapter = new FavoritosRecyclerView(this, cultivosBusquedaArray, this);
+            recyclerViewFavs.setAdapter(favoritosAdapter);
+        }
+
+    }
+
+
+
 }
