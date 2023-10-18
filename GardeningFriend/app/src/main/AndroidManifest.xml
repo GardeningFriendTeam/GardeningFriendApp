@@ -22,7 +22,7 @@
             android:name=".NoteActivity"
             android:exported="false" />
         <activity
-            android:name=".favoritos.Favoritos"
+            android:name=".favoritos.FavoritosSeccion"
             android:exported="false" />
         <activity
             android:name=".PanelAdminEditarUsuario"

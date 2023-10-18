@@ -2,6 +2,7 @@ package com.maid.gardeningfriend.favoritos;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class FavoritosRecyclerView extends RecyclerView.Adapter<FavoritosRecycle
         this.context = context;
         this.cultivosListaFavs = cultivosListaFavs;
         this.favoritosInterface = favoritosInterface;
+        Log.i("adtConst", cultivosListaFavs.toString());
     }
 
     //metodo que crea infla las tarjetas en el recyclerview

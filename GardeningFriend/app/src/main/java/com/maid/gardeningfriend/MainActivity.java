@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.maid.gardeningfriend.favoritos.Favoritos;
+import com.maid.gardeningfriend.favoritos.FavoritosSeccion;
 
 /**
  * Contiene la logica / funcion para implementar el menu
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
 
         } else if (item.getItemId() == R.id.favoritos) {
-            startActivity(new Intent(this, Favoritos.class));
+            startActivity(new Intent(this, FavoritosSeccion.class));
             return true;
 
         } else if(item.getItemId() == R.id.registro){
