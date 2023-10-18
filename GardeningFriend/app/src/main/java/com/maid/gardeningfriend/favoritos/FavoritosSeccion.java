@@ -128,54 +128,49 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
         // 1 - se crean las instancias necesarias de la BD
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference cultivosCollection = db.collection("cultivos");
-        // filtra todos los documentos cuyo ID coincida con cualquier elem del arraylist
-        Query query = cultivosCollection.whereIn("id", favoritos);
 
         // 2 - SE REALIZA LA GET REQUEST:
-        query.get()
+        cultivosCollection.whereIn("nombre", favoritos)
+                .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            QuerySnapshot querySnapshot = task.getResult();
-                            if(querySnapshot != null && !querySnapshot.isEmpty()){
-                                Log.i("getCultivos1", favoritos.toString());
-                                for (DocumentSnapshot documentSnapshot: querySnapshot.getDocuments()){
-                                    // se extrae la informacion de cada documento
-                                    Map<String, Object> cultivoDoc = documentSnapshot.getData();
+                        if (task.isSuccessful()){
+                            for ( QueryDocumentSnapshot document : task.getResult() ) {
+                                // se extrae la informacion de cada documento
+                                Map<String, Object> cultivoDoc = document.getData();
 
-                                    String cultivoID = (String) cultivoDoc.get("id");
-                                    String cultivoNombre = (String) cultivoDoc.get("nombre");
-                                    String cultivoInfo = (String) cultivoDoc.get("informacion");
-                                    String cultivoCrecimiento = (String) cultivoDoc.get("duracion");
-                                    String cultivoIcono = (String) cultivoDoc.get("icono");
-                                    String cultivoTipo = (String) cultivoDoc.get("tipo");
-                                    String cultivoTemp = (String) cultivoDoc.get("temperatura");
-                                    String cultivoEst = (String) cultivoDoc.get("estacion");
-                                    String cultivoReg = (String) cultivoDoc.get("region");
+                                String cultivoID = (String) cultivoDoc.get("id");
+                                String cultivoNombre = (String) cultivoDoc.get("nombre");
+                                String cultivoInfo = (String) cultivoDoc.get("informacion");
+                                String cultivoCrecimiento = (String) cultivoDoc.get("duracion");
+                                String cultivoIcono = (String) cultivoDoc.get("icono");
+                                String cultivoTipo = (String) cultivoDoc.get("tipo");
+                                String cultivoTemp = (String) cultivoDoc.get("temperatura");
+                                String cultivoEst = (String) cultivoDoc.get("estacion");
+                                String cultivoReg = (String) cultivoDoc.get("region");
 
-                                    CultivosGenerador cultivo = new CultivosGenerador(
-                                            cultivoID,
-                                            cultivoNombre,
-                                            cultivoTipo,
-                                            cultivoCrecimiento,
-                                            cultivoInfo,
-                                            cultivoTemp,
-                                            cultivoEst,
-                                            cultivoReg,
-                                            cultivoIcono
-                                    );
-                                    Log.i("getCultivos2", cultivo.getNombre());
-                                    addCultivo(cultivo);
-                                }
-                                setAdapterFavs();
+                                CultivosGenerador cultivo = new CultivosGenerador(
+                                        cultivoID,
+                                        cultivoNombre,
+                                        cultivoTipo,
+                                        cultivoCrecimiento,
+                                        cultivoInfo,
+                                        cultivoTemp,
+                                        cultivoEst,
+                                        cultivoReg,
+                                        cultivoIcono
+                                );
+                                Log.i("getCultivos1", cultivo.getNombre());
+                                addCultivo(cultivo);
                             }
+                            setAdapterFavs();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("getCultivoFavs", "error BD", e);
+                        Log.i("getCultivosError", "error BD", e);
                     }
                 });
 
