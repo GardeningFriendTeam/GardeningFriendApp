@@ -48,5 +48,17 @@
         <item name="android:textColorHint">@color/fuente_principal</item>
     </style>
 
+    <!--  add note btn light mode  -->
+    <style name="ADDNOTEBTN">
+        <item name="backgroundTint">@color/verde_medio</item>
+        <item name="android:src">@drawable/ic_add</item>
+    </style>
+
+    <!--  card note light mode  -->
+    <style name="CARDNOTE">
+        <item name="android:backgroundTint">@color/verde_medio</item>
+        <item name="android:background">@drawable/rounded_card</item>
+    </style>
+
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>

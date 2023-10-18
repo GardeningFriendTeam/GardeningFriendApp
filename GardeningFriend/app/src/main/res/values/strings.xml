@@ -236,5 +236,11 @@
     <string name="edit_email_profile">Edita tu email</string>
     <string name="edit_username_profile">Edita tu username</string>
     <string name="edit_profile_title">Editar Perfil</string>
+    <string name="disable_note">Inicia sesión para utilizar esta función</string>
+    <string name="add_note_btn">Agrega una nota</string>
+    <string name="note_title">Mis Notas</string>
+    <string name="example_txt_content_note">Cotenido de la nota que puede ser muy muy largo</string>
+    <string name="time_example_note">El tiempo</string>
+    <string name="example_title_note">Titulo Nota</string>
 
 </resources>

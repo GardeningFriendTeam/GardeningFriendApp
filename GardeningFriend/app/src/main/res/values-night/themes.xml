@@ -49,6 +49,17 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!--  add note btn dark mode  -->
+    <style name="ADDNOTEBTN">
+        <item name="android:backgroundTint">@color/verde_oscuro</item>
+        <item name="android:src">@drawable/ic_add_dark</item>
+    </style>
+
+    <!--  card note dark mode  -->
+    <style name="CARDNOTE">
+        <item name="android:backgroundTint">@color/verde_oscuro</item>
+        <item name="android:background">@drawable/rounded_card</item>
+    </style>
 
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />

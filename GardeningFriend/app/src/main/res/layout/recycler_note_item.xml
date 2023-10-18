@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp"
     android:layout_marginVertical="8dp"
-    android:backgroundTint="@color/verde_medio"
-    android:background="@drawable/border_registro">
+    style="@style/CARDNOTE">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/text_view_note_title"
-        android:text="Titulo Nota"
         style="@style/TEXT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:text="@string/example_title_note"
         android:textSize="18sp"
-        android:layout_marginVertical="4dp"/>
+        android:textStyle="bold"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/text_view_note_content"
-        android:text="Cotenido de la nota que puede ser muy muy largo"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:textSize="17sp"
-        android:layout_marginVertical="4dp"/>
-
-    <TextView
+        style="@style/TEXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/example_txt_content_note"
+        android:textSize="17sp"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
         android:id="@+id/text_view_note_time"
-        android:text="El tiempo"
+        style="@style/TEXT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:gravity="end"
+        android:text="@string/time_example_note"
         android:textSize="12sp"
-        android:gravity="right"
-        android:layout_marginVertical="4dp"/>
+        android:textStyle="italic"
+        tools:ignore="TextContrastCheck" />
 
 
 

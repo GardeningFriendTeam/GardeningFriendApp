@@ -19,7 +19,7 @@
             android:id="@+id/page_title"
             android:textSize="32sp"
             style="@style/TEXT"
-            android:text="Notas"
+            android:text="@string/note_title"
             android:textStyle="bold"/>
 
     </RelativeLayout>
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="Inicia sesion para utilizar esta funcion"
+        android:text="@string/disable_note"
         android:textSize="32sp"
         android:textStyle="bold"
         android:visibility="gone"/>
@@ -43,12 +43,13 @@
         android:layout_below="@id/title_bar_layout"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_note_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_note_btn"
-        android:backgroundTint="@color/kelly_green"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_add"/>
+        android:layout_alignParentBottom="true"
+        style="@style/ADDNOTEBTN"
+        app:elevation="9dp"
+        android:contentDescription="@string/add_note_btn" />
 
 </RelativeLayout>
