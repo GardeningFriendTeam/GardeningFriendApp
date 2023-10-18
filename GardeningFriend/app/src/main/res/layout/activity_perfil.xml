@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    style="@style/SCREEN"
     app:flow_verticalAlign="center"
-    android:background="@color/kelly_green"
+    android:background="@mipmap/madera2"
     tools:context=".Perfil">
 
     <RelativeLayout
@@ -18,140 +17,96 @@
         style="@style/SCREEN"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/textViewVerifyEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email no Verficado!"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#FF0000"
-            android:visibility="gone"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="16dp" />
-
-        <Button
-            android:id="@+id/btnVerifyEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/textViewVerifyEmail"
-            android:visibility="gone"
-            style="@style/BUTTON"
-            android:layout_marginTop="16dp"
-            android:text="Verificar Ahora"
-            android:textSize="18sp" />
-
 
         <TextView
             android:id="@+id/titleProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tu Perfil"
+            android:text="@string/title_profile"
             android:textSize="24sp"
             android:textStyle="bold"
             style="@style/TEXT"
-            android:layout_below="@id/btnVerifyEmail"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp" />
 
-        <ImageView
-            android:id="@+id/imageViewProfile"
+        <ImageButton
+            android:id="@+id/imageBtnVerifyEmail"
+            android:layout_width="52sp"
+            android:layout_height="52sp"
+            android:layout_toEndOf="@id/titleProfile"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="12dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_warning"
+            android:visibility="gone"
+            android:contentDescription="@string/warning_email_profile" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewProfile"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            style="@style/IMGREG"
-            android:scaleType="centerCrop"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/titleProfile"
-            android:layout_marginTop="16dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/uploadImageProfile"
-            android:layout_alignParentTop="true"
-            android:backgroundTint="@color/verde_medio"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="180dp"
-            android:layout_toEndOf="@+id/imageViewProfile"
-            android:src="@drawable/ic_add" />
-
-        <LinearLayout
-            android:id="@+id/linearUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/imageViewProfile"
-            android:layout_marginTop="16dp">
+            app:cardCornerRadius="50dp"
+            android:layout_below="@id/titleProfile"
+            android:layout_centerHorizontal="true">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_user02"
-                android:contentDescription="Username Icon"
-                android:layout_marginEnd="8dp" />
+                android:id="@+id/imageViewProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/IMGREG"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/your_image_profile" />
 
-            <TextView
-                android:id="@+id/textViewTitleUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username: "
-                android:textStyle="bold"
-                android:textSize="18sp"
-                style="@style/TEXT"
-                android:layout_gravity="center" />
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/textViewUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:layout_below="@id/cardViewProfile"
+            android:text="@string/username_profile"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            style="@style/USERPROFILE"
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/textViewUsernameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="JohnDoe"
+            android:text="@string/your_name_profile"
             android:textSize="18sp"
             style="@style/TEXT"
-            android:layout_marginLeft="32dp"
-            android:layout_below="@+id/linearUsername"
+            android:layout_marginStart="32dp"
+            android:layout_below="@+id/textViewUsername"
             android:layout_marginVertical="5dp"/>
 
-        <LinearLayout
-            android:id="@+id/linearEmail"
+        <TextView
+            android:id="@+id/textViewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/textViewUsernameProfile"
-            android:layout_marginTop="8dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_user02"
-                android:contentDescription="Email Icon"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:id="@+id/textViewTitleEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email: "
-                android:textStyle="bold"
-                android:textSize="18sp"
-                style="@style/TEXT"
-                android:layout_gravity="center" />
-        </LinearLayout>
+            android:drawablePadding="8dp"
+            android:layout_below="@id/textViewUsernameProfile"
+            android:text="@string/email_profile"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            style="@style/EMAILPROFILE"
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/textViewEmailProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="johndoe@example.com"
+            android:text="@string/your_email_profile"
             android:textSize="18sp"
             style="@style/TEXT"
-            android:layout_below="@+id/linearEmail"
-            android:layout_marginLeft="32dp"
+            android:layout_below="@+id/textViewEmail"
+            android:layout_marginStart="32dp"
             android:layout_marginVertical="5dp"/>
 
         <Button
@@ -161,7 +116,8 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/textViewEmailProfile"
             android:layout_marginTop="52dp"
-            android:text="Cerrar Sesión"
+            android:background="@drawable/rounded_btn"
+            android:text="@string/singout_profile"
             style="@style/BUTTON"
             android:textSize="18sp" />
 
@@ -171,20 +127,36 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/btnLogoutProfile"
+            android:background="@drawable/rounded_btn"
             style="@style/BUTTON"
             android:layout_marginTop="16dp"
-            android:text="Editar Perfil"
+            android:text="@string/edit_profile"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnChangePassword"
+            style="@style/BUTTON"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnEditProfile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_btn"
+            android:text="@string/change_pass_profile"
+            android:textSize="18sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/btnVerifyEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/btnEditProfile"
+            android:layout_below="@+id/btnChangePassword"
+            android:visibility="gone"
+            android:background="@drawable/rounded_btn"
             style="@style/BUTTON"
             android:layout_marginTop="16dp"
-            android:text="Cambiar Contraseña"
+            android:text="@string/send_verify_profile"
             android:textSize="18sp" />
     </RelativeLayout>
 </ScrollView>

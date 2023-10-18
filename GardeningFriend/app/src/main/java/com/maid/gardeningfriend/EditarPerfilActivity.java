@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -40,6 +41,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     FirebaseUser mUser;
     StorageReference storageReference;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         profileUsername = findViewById(R.id.editTextEditProfileUsername);
         profileEmail = findViewById(R.id.editTextEditProfileEmail);
-        profileImage = findViewById(R.id.imageViewProfile);
+        profileImage = findViewById(R.id.imageViewEditProfile);
         saveBtn = findViewById(R.id.btnSaveEditProfile);
 
         StorageReference profileRef = storageReference.child("usuarios/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");

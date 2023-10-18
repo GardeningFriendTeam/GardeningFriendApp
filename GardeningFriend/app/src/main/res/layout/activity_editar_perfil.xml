@@ -12,7 +12,7 @@
         android:id="@+id/titleEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar Perfil"
+        android:text="@string/edit_profile_title"
         android:textSize="24sp"
         android:textStyle="bold"
         style="@style/TEXT"
@@ -20,46 +20,61 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 
-    <ImageView
-        android:id="@+id/imageViewProfile"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewProfile"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        style="@style/IMGREG"
-        android:scaleType="centerCrop"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/titleEditProfile"
-        android:layout_marginTop="16dp" />
+        app:cardCornerRadius="50dp"
+        android:layout_below="@id/titleEditProfile"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/imageViewEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/IMGREG"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/your_image_profile" />
+
+    </androidx.cardview.widget.CardView>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editTextEditProfileUsername"
-        android:layout_below="@id/imageViewProfile"
+        style="@style/EDIT_TEXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardViewProfile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:autofillHints="username"
         android:background="@drawable/border_registro"
-        android:hint="Edite su Username"
+        android:hint="@string/edit_username_profile"
         android:inputType="textPersonName"
-        android:layout_marginTop="50dp"
-        android:maxWidth="350dp"
+        android:maxWidth="400dp"
         android:minHeight="48dp"
-        android:padding="6dp"
-        style="@style/EDIT_TEXT"
-        android:textSize="18sp"/>
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="6dp"
+        android:textSize="18sp"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editTextEditProfileEmail"
+        style="@style/EDIT_TEXT"
+        android:maxWidth="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/editTextEditProfileUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:autofillHints="username"
         android:background="@drawable/border_registro"
-        android:hint="Edite su Email"
-        android:inputType="textPersonName"
-        android:maxWidth="350dp"
+        android:hint="@string/edit_email_profile"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:padding="6dp"
-        style="@style/EDIT_TEXT"
-        android:textSize="18sp"/>
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="6dp"
+        android:textSize="18sp"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnSaveEditProfile"
@@ -68,11 +83,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/btn_registro"
+        android:background="@drawable/rounded_btn"
         android:elevation="9dp"
-        android:text="Editar"
-        android:textColor="#263238"
-        android:textSize="16sp" />
+        android:text="@string/btn_edit_profile"
+        android:textSize="16sp"
+        tools:ignore="TextContrastCheck" />
 
 
 </RelativeLayout>

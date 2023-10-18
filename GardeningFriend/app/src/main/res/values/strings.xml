@@ -218,4 +218,23 @@
         <item name="reg_patagonica">Patagonica</item>
     </string-array>
 
+    <!--  Perfil  -->
+    <string name="title_profile">Tu Perfil</string>
+    <string name="user_icon_profile">Icono de usuario</string>
+    <string name="username_profile">Username:</string>
+    <string name="your_name_profile">John Doe</string>
+    <string name="email_icon_profile">Icono de email</string>
+    <string name="email_profile">Email:</string>
+    <string name="your_email_profile">johndoe@example.com</string>
+    <string name="singout_profile">Cerrar Sesión</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="change_pass_profile">Cambiar Contraseña</string>
+    <string name="send_verify_profile">Enviar Verificación</string>
+    <string name="warning_email_profile">Warning, email sin verificar</string>
+    <string name="your_image_profile">Imagen de perfil</string>
+    <string name="btn_edit_profile">Editar</string>
+    <string name="edit_email_profile">Edita tu email</string>
+    <string name="edit_username_profile">Edita tu username</string>
+    <string name="edit_profile_title">Editar Perfil</string>
+
 </resources>

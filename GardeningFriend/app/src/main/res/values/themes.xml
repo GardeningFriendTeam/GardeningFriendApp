@@ -28,12 +28,24 @@
     </style>
     <!--  button background light mode  -->
     <style name="BUTTON">
-        <item name="android:background">@color/kelly_green</item>
+        <item name="android:background">@color/verde_medio</item>
         <item name="android:textColor">#263238</item>
     </style>
     <!--  image registro light mode  -->
     <style name="IMGREG">
         <item name="android:src">@drawable/ic_user01</item>
+    </style>
+
+    <!--  icon username light mode  -->
+    <style name="USERPROFILE">
+        <item name="drawableLeftCompat">@drawable/ic_person</item>
+        <item name="android:textColorHint">@color/fuente_principal</item>
+    </style>
+
+    <!--  icon email light mode  -->
+    <style name="EMAILPROFILE">
+        <item name="drawableLeftCompat">@drawable/ic_email</item>
+        <item name="android:textColorHint">@color/fuente_principal</item>
     </style>
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
