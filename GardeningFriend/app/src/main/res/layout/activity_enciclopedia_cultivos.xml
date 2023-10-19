@@ -49,7 +49,7 @@
                     app:icon="@android:drawable/ic_menu_search" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvcultivos"
+                android:id="@+id/rvcultivosf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

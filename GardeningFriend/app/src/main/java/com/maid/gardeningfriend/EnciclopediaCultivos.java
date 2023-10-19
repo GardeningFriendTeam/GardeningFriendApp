@@ -1,13 +1,13 @@
 package com.maid.gardeningfriend;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,29 +18,46 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Map;
 
-/*
-* Pantalla principal de la enciclopedia
-* */
-public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
-    ArrayList<CultivosGenerador> cultivos = new ArrayList<>();
+/**
+ * segunda pantalla de "recomendaciones"
+ * se muestran los cultivos filtrados
+ */
+public class EnciclopediaCultivos extends MainActivity implements EnciclopediaInterface{
+
+    //variables que contiene el texto proporcionado
+
+
+    // array que contiene los cultivos que coinciden con los parametros
+    ArrayList<CultivosGenerador> cultivosFiltrados = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enciclopedia);
+        setContentView(R.layout.activity_enciclopedia_cultivos);
 
+        // se reciben los datos selec en la pantalla anterior
+
+
+        //se inicializa funcion para agregar las tarjetas
         addModelsCultivos();
+
     }
 
-    /*
-    * Agrega los cultivos
-    * */
-    private void addModelsCultivos() {
-        // 1- se crea una instanccia de la BD para acceder a la colección
+    /**
+     * agrega los cultivos que coinciden con los param selecionados por el user
+     */
+    private void addModelsCultivos(){
+        // 1 - se crea una instancia de la BD para acceder a la coleccion
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 2- se realiza un get request para consumir los datos de los cultivos
-        db.collection("cultivos").get()
-                // verifica si la petición fue exitosa
+        // 2 - se realiza una get request para consumir los datos de los cultivos
+        db.collection("cultivos")
+                // queries para filtrar el cultivo de acuerdo
+                // a la seleccion del user
+                //.whereEqualTo("nombre", nombre)
+                .get()
+                //listener que verifica si la peticion fue exitosa
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -79,19 +96,27 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
                             // una vez que se iteran todos los documentos se activa el recyclerview adapter
                             activarAdapter();
 
-                            Log.i("tag", "tamaño array: " + cultivos.size());
+                            Log.i("tag", "tamaño array: " + cultivosFiltrados.size());
                         } else {
-                            // fracaso la peticion & se muestra mensajes
-                            Toast.makeText(Enciclopedia.this,"hubo un error al conectarse con la BD", Toast.LENGTH_SHORT).show();
+                            // fracaso la peticion & se muestra mensaje
+                            Toast.makeText(EnciclopediaCultivos.this,"hubo un error al conectarse con la BD", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    private void agregarCultivo(CultivosGenerador cultivo) {
-        cultivos.add(cultivo);
-        Log.i("tag", "cultivo agreagado: " + cultivo.nombre);
+    /**
+     * debido a que la get request es una
+     * funcion asincronica el objeto de cada cultivo
+     * filtrado se añade aparte
+     * @param cultivoSelec
+     * parametro representa el cultivo validado por el filtro
+     */
+    public void agregarCultivo(CultivosGenerador cultivoSelec){
+        cultivosFiltrados.add(cultivoSelec);
+        Log.i("tag", "cultivo agreagado: " + cultivoSelec.nombre);
     }
+
     /**
      * activa el adapter de recycler view
      * para pasar todos los cultivos
@@ -99,32 +124,50 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
      */
     public void activarAdapter(){
         //se identifica el recyclerview de la activity
-        RecyclerView rv = findViewById(R.id.rvcultivosf);
+        RecyclerView recycler = findViewById(R.id.rvcultivosf);
 
         // se activa el "adapter" para que pase las tarjetas al recycler
-        EnciclopediaRecyclerView adapter = new EnciclopediaRecyclerView(this,cultivos,this);
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        EnciclopediaRecyclerView adapter = new EnciclopediaRecyclerView(this,cultivosFiltrados,this);
+        recycler.setAdapter(adapter);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
+
+    /**
+     * pasa los valores de la tarjeta seleccionada
+     * a la siguiente vista donde se muestran los detalles
+     * @param position
+     * representa el index de la tarjeta
+     */
     @Override
     public void onItemClick(int position) {
         // 1 - se crea intent para dirigir al user a la pantalla con info extra:
-        Intent intent = new Intent(Enciclopedia.this, RecomendacionesDetalles.class);
+        Intent intent = new Intent(EnciclopediaCultivos.this, RecomendacionesDetalles.class);
 
         // 2 - se crea objeto parceable para pasar las propiedades del cult selec a la siguiente
         //pantalla
         CultivosDetallesParceable detallesCultivo = new CultivosDetallesParceable(
-                cultivos.get(position).getNombre(),
-                cultivos.get(position).getTemperatura(),
-                cultivos.get(position).getEstacionSiembra(),
-                cultivos.get(position).getRegion(),
-                cultivos.get(position).getCaracteristicas(),
-                cultivos.get(position).getImagen(),
-                cultivos.get(position).getTipo(),
-                cultivos.get(position).getDuracionCrecimiento()
+                cultivosFiltrados.get(position).getNombre(),
+                cultivosFiltrados.get(position).getTemperatura(),
+                cultivosFiltrados.get(position).getEstacionSiembra(),
+                cultivosFiltrados.get(position).getRegion(),
+                cultivosFiltrados.get(position).getCaracteristicas(),
+                cultivosFiltrados.get(position).getImagen(),
+                cultivosFiltrados.get(position).getTipo(),
+                cultivosFiltrados.get(position).getDuracionCrecimiento()
         );
 
+        //prueba
+        Log.i("tag", "nombre cultivo: " + detallesCultivo.getNombreCultivo());
+
+        // 3 - se pasa el objeto parceable al intent
+        intent.putExtra("CULTIVO_DETALLES", detallesCultivo);
+
+        // 4  - se inicialza la nueva actividad (intent)
+        startActivity(intent);
     }
+
+
+
 
 }

@@ -30,6 +30,7 @@ public class EnciclopediaRecyclerView extends RecyclerView.Adapter<EnciclopediaR
     }
 
 
+
     @NonNull
     @Override
     public EnciclopediaRecyclerView.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,7 +52,7 @@ public class EnciclopediaRecyclerView extends RecyclerView.Adapter<EnciclopediaR
                 .load(cultModel.get(position).getImagen())
                 .error(R.mipmap.logo)
                 .into(holder.icono);
-        Log.i("tag", "url: " +cultModel.get(position).getImagen());
+        Log.i("tag", "url: " + cultModel.get(position).getImagen());
     }
 
     @Override
@@ -60,13 +61,13 @@ public class EnciclopediaRecyclerView extends RecyclerView.Adapter<EnciclopediaR
         return cultModel.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView icono;
 
-        TextView nombre,temperatura, estacion, region;
+        TextView nombre, temperatura, estacion, region;
 
 
-        public MyViewHolder(@NonNull View itemView, EnciclopediaInterface encciclopediaInterface){
+        public MyViewHolder(@NonNull View itemView, EnciclopediaInterface enciclopediaInterface) {
             super(itemView);
             // se identifican los atributos de las tarjetas
             icono = itemView.findViewById(R.id.ic_cultivo);
@@ -74,23 +75,24 @@ public class EnciclopediaRecyclerView extends RecyclerView.Adapter<EnciclopediaR
             temperatura = itemView.findViewById(R.id.titulo_temp_card);
             estacion = itemView.findViewById(R.id.titulo_est_card);
             region = itemView.findViewById(R.id.titulo_reg_card);
-        }
 
-        // agregar un onClick() a cada elemento
-        itemView.setOnClickListener(new View.OnClickListener()){
 
-            @Override
-            public void onClick(View view) {
-                if(enciclopediaInterface != null){
-                    // si no es nulo se extrae su posicion
-                    int pos = getAdapterPosition();
+            // agregar un onClick() a cada elemento
+            itemView.setOnClickListener(new View.OnClickListener() {
 
-                    if(pos != RecyclerView.NO_POSITION){
-                        enciclopediaInterface.onItemClick(pos);
+                @Override
+                public void onClick(View view) {
+                    if (enciclopediaInterface != null) {
+                        // si no es nulo se extrae su posicion
+                        int pos = getAdapterPosition();
+
+                        if (pos != RecyclerView.NO_POSITION) {
+                            enciclopediaInterface.onItemClick(pos);
+                        }
                     }
                 }
-            }
 
+            });
         }
     }
 }
