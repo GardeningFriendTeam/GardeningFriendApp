@@ -61,6 +61,40 @@
         <item name="android:background">@drawable/rounded_card</item>
     </style>
 
+    <!--  editText email perfil background dark mode  -->
+    <style name="EDITEMAIL">
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:drawableEnd">@drawable/ic_lock_dark</item>
+        <item name="android:drawableStart">@drawable/ic_email_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText username perfil background dark mode  -->
+    <style name="ICONUSEREDIT">
+        <item name="android:textColorHint">@color/edit_dark</item>
+        <item name="android:drawableStart">@drawable/ic_person_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background dark mode  -->
+    <style name="ICONPASSEDIT">
+        <item name="android:textColorHint">@color/edit_dark</item>
+        <item name="android:drawableStart">@drawable/ic_key_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  email light mode  -->
+    <style name="ICOMEMAIL">
+        <item name="android:textColorHint">@color/edit_dark</item>
+        <item name="android:drawableStart">@drawable/ic_email_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background dark mode  -->
+    <style name="PASSEYE">
+        <item name="android:src">@drawable/ic_eye_dark</item>
+    </style>
+
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>

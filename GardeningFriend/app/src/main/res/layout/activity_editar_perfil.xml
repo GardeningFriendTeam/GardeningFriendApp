@@ -40,8 +40,8 @@
 
     <EditText
         android:id="@+id/editTextEditProfileUsername"
-        style="@style/EDIT_TEXT"
-        android:layout_width="wrap_content"
+        style="@style/ICONUSEREDIT"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/cardViewProfile"
         android:layout_centerHorizontal="true"
@@ -50,31 +50,69 @@
         android:background="@drawable/border_registro"
         android:hint="@string/edit_username_profile"
         android:inputType="textPersonName"
-        android:maxWidth="400dp"
         android:minHeight="48dp"
-        android:paddingHorizontal="40dp"
+        android:paddingHorizontal="16dp"
         android:paddingVertical="6dp"
         android:textSize="18sp"
         tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/editTextEditProfileEmail"
-        style="@style/EDIT_TEXT"
+        style="@style/EDITEMAIL"
         android:maxWidth="400dp"
-        android:layout_width="wrap_content"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextEditProfileUsername"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:autofillHints="username"
+        android:maxLines="1"
         android:background="@drawable/border_registro"
         android:hint="@string/edit_email_profile"
-        android:inputType="textEmailAddress"
+        android:inputType="none"
+        android:focusable="false"
         android:minHeight="48dp"
-        android:paddingHorizontal="40dp"
+        android:paddingHorizontal="16dp"
         android:paddingVertical="6dp"
         android:textSize="18sp"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck,TextFields"
+        android:autofillHints="" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editTextEditProfileEmail">
+
+        <EditText
+            android:id="@+id/editTextEditProfilePassword"
+            android:maxWidth="400dp"
+            style="@style/ICONPASSEDIT"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:autofillHints="password"
+            android:background="@drawable/border_registro"
+            android:hint="@string/edit_password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/showPasswordIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PASSEYE"
+            android:layout_alignEnd="@id/editTextEditProfilePassword"
+            android:layout_centerVertical="true"
+            android:paddingTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/show_password" />
+    </RelativeLayout>
+
 
     <Button
         android:id="@+id/btnSaveEditProfile"

@@ -17,4 +17,7 @@
 
     <color name="gris_claro">#D8D8D8</color>
 
+    <color name="edit_dark">#D5D5D5</color>
+    <color name="edit_light">#757575</color>
+
 </resources>

@@ -24,7 +24,7 @@
     </style>
     <!--  editText background light mode  -->
     <style name="EDIT_TEXT">
-        <item name="android:textColorHint">#757575</item>
+        <item name="android:textColorHint">@color/edit_light</item>
     </style>
     <!--  button background light mode  -->
     <style name="BUTTON">
@@ -59,6 +59,41 @@
         <item name="android:backgroundTint">@color/verde_medio</item>
         <item name="android:background">@drawable/rounded_card</item>
     </style>
+
+    <!--  editText email perfil background light mode  -->
+    <style name="EDITEMAIL">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableEnd">@drawable/ic_lock</item>
+        <item name="android:drawableStart">@drawable/ic_email</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText username perfil background light mode  -->
+    <style name="ICONUSEREDIT">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableStart">@drawable/ic_person</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background light mode  -->
+    <style name="ICONPASSEDIT">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableStart">@drawable/ic_key</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  email light mode  -->
+    <style name="ICOMEMAIL">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableStart">@drawable/ic_email</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background light mode  -->
+    <style name="PASSEYE">
+        <item name="android:src">@drawable/ic_eye</item>
+    </style>
+
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>

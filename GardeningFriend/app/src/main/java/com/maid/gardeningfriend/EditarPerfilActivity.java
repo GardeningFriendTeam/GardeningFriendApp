@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,8 +30,8 @@ import java.util.Objects;
 
 public class EditarPerfilActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText profileUsername, profileEmail;
-    ImageView profileImage;
+    EditText profileUsername, profileEmail, profilePassword;
+    ImageView profileImage, showPassword;
     Button saveBtn;
     FirebaseFirestore mStore;
     FirebaseAuth mAuth;
@@ -62,6 +63,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
         profileUsername = findViewById(R.id.editTextEditProfileUsername);
         profileEmail = findViewById(R.id.editTextEditProfileEmail);
         profileImage = findViewById(R.id.imageViewEditProfile);
+        profilePassword = findViewById(R.id.editTextEditProfilePassword);
+        showPassword = findViewById(R.id.showPasswordIcon);
         saveBtn = findViewById(R.id.btnSaveEditProfile);
 
         StorageReference profileRef = storageReference.child("usuarios/"+ Objects.requireNonNull(mAuth.getCurrentUser()).getUid()+"/profile.jpg");
@@ -71,22 +74,61 @@ public class EditarPerfilActivity extends AppCompatActivity {
             startActivityForResult(openGalleryIntent, 1000);
         });
 
+        // Mostrar / ocultar password
+        showPassword.setOnClickListener((v -> {
+            // Alterna la visibilidad de la contraseña al tocar el ícono
+            if (profilePassword.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                profilePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                //showPassword.setImageResource(R.drawable.ic_show_password);
+            } else {
+                profilePassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                //showPassword.setImageResource(R.drawable.ic_hide_password);
+            }
+
+            // Mueve el cursor al final del texto
+            profilePassword.setSelection(profilePassword.getText().length());
+        }));
+
         saveBtn.setOnClickListener(v -> {
             String editUsername = profileUsername.getText().toString();
             String editEmail = profileEmail.getText().toString();
-            if (editUsername.isEmpty() || editEmail.isEmpty()){
-                Toast.makeText(EditarPerfilActivity.this, "Uno o mas campos estan vacios.", Toast.LENGTH_SHORT).show();
+            String editPassword = profilePassword.getText().toString();
+
+            if (editUsername.isEmpty()){
+                Toast.makeText(EditarPerfilActivity.this, "Un username es requerido", Toast.LENGTH_SHORT).show();
+                profileUsername.setError("Completa el campo username");
+                profileUsername.requestFocus();
                 return;
             } else if (editUsername.length() < 3) {
                 Toast.makeText(this, "Username muy corto", Toast.LENGTH_SHORT).show();
                 profileUsername.setError("Username debe ser de al menos 3 caracteres");
                 profileUsername.requestFocus();
                 return;
-            } else if (!isValidEmail(editEmail)) {
-                Toast.makeText(EditarPerfilActivity.this, "Email invalido", Toast.LENGTH_SHORT).show();
-                profileEmail.setError("El correo electrónico no es válido.");
-                profileEmail.requestFocus();
+            } else if (editUsername.length() > 30) {
+                Toast.makeText(this, "Username muy largo", Toast.LENGTH_SHORT).show();
+                profileUsername.setError("Username debe contener menos de 30 caracteres");
+                profileUsername.requestFocus();
                 return;
+            }
+
+            if (!editPassword.isEmpty()){
+                // Validación de la nueva contraseña
+                if (isValidPassword(editPassword)) {
+                    mUser.updatePassword(editPassword).addOnSuccessListener(unused ->
+                            Toast.makeText(EditarPerfilActivity.this, "Contraseña cambiada exitosamente",
+                                    Toast.LENGTH_SHORT).show()).addOnFailureListener(e ->
+                            Toast.makeText(EditarPerfilActivity.this, "Error al cambiar la contraseña " + e.getLocalizedMessage(),
+                                    Toast.LENGTH_SHORT).show());
+                } else {
+                    Toast.makeText(EditarPerfilActivity.this, "Contraseña invalida", Toast.LENGTH_SHORT).show();
+                    profilePassword.setError("La contraseña debe tener al menos 8 caracteres y contener letras, números y caracteres especiales");
+                    profilePassword.requestFocus();
+                    return;
+                }
+            }
+
+            if (!mUser.isEmailVerified()){
+                Toast.makeText(this, "Recuerda validar tu email", Toast.LENGTH_SHORT).show();
             }
 
             mUser.updateEmail(editEmail).addOnSuccessListener(unused -> {
@@ -100,20 +142,13 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     finish();
                 });
             }).addOnFailureListener(e ->
-                    Toast.makeText(EditarPerfilActivity.this, "Fallo en modificar el email "+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show());
+                    Toast.makeText(EditarPerfilActivity.this, "Fallo en modificar el perfil "+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show());
         });
 
         profileUsername.setText(username);
         profileEmail.setText(email);
 
         Log.d(TAG, "onCreate: " + username +" "+ email);
-    }
-
-    // Método para verificar si un correo electrónico es válido
-    private boolean isValidEmail(String email) {
-        // Aquí puedes agregar tu lógica de validación de correo electrónico
-        // Puedes usar una expresión regular o cualquier otra validación que prefieras
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     @Override
@@ -124,8 +159,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK){
                 assert data != null;
                 Uri imageUri = data.getData();
-                //profileImage.setImageURI(imageUri);
-
                 uploadImageToFirebase(imageUri);
             }
         }
@@ -139,6 +172,18 @@ public class EditarPerfilActivity extends AppCompatActivity {
             fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profileImage));
             Toast.makeText(this, "Se cambio la foto de perfil", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> Toast.makeText(EditarPerfilActivity.this, "Fallo al subir la imagen", Toast.LENGTH_SHORT).show());
+    }
+
+    // Función para validar la nueva contraseña
+    private boolean isValidPassword(String password) {
+        // La contraseña debe tener al menos 8 caracteres
+        if (password.length() < 8) {
+            return false;
+        }
+        // La contraseña debe contener una mezcla de letras, números y caracteres especiales
+        // Puedes personalizar esta expresión regular según tus necesidades
+        String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
+        return password.matches(passwordRegex);
     }
 
 }

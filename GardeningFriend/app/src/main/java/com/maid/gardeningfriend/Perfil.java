@@ -1,7 +1,6 @@
 package com.maid.gardeningfriend;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,8 +11,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,9 +28,8 @@ import java.util.Objects;
 public class Perfil extends MainActivity {
     public static final String TAG = "TAG";
     TextView usernameProfile, emailProfile;
-    ImageButton imageButtonVerifyEmail;
-    Button btnLogout, btnEditProfile, btnChangePassword, btnVerifyEmail;
-    ImageView profileImage;
+    Button btnLogout, btnEditProfile, btnVerifyEmail;
+    ImageView profileImage, imageButtonVerifyEmail;
     FirebaseAuth mAuth;
     FirebaseFirestore mFirestore;
     FirebaseUser mUser;
@@ -50,7 +46,6 @@ public class Perfil extends MainActivity {
         usernameProfile = findViewById(R.id.textViewUsernameProfile);
         emailProfile = findViewById(R.id.textViewEmailProfile);
         btnLogout = findViewById(R.id.btnLogoutProfile);
-        btnChangePassword = findViewById(R.id.btnChangePassword);
         profileImage = findViewById(R.id.imageViewProfile);
         btnEditProfile = findViewById(R.id.btnEditProfile);
         btnVerifyEmail = findViewById(R.id.btnVerifyEmail);
@@ -83,34 +78,6 @@ public class Perfil extends MainActivity {
             emailProfile.setText(documentSnapshot.getString("email"));
         });
 
-        btnChangePassword.setOnClickListener(v -> {
-            final EditText resetPassword = new EditText(v.getContext());
-            final AlertDialog.Builder alertDialogResetPassword = new AlertDialog.Builder(v.getContext());
-            alertDialogResetPassword.setTitle("¿Cambiar Contraseña?");
-            alertDialogResetPassword.setMessage("Ingrese su nueva contraseña");
-            alertDialogResetPassword.setView(resetPassword);
-
-            alertDialogResetPassword.setPositiveButton("Si", (dialog, which) -> {
-                // Extrae el Email y envía el enlace
-                String newPassword = resetPassword.getText().toString();
-
-                // Validación de la nueva contraseña
-                if (isValidPassword(newPassword)) {
-                    mUser.updatePassword(newPassword).addOnSuccessListener(unused ->
-                            Toast.makeText(Perfil.this, "Contraseña cambiada exitosamente",
-                                    Toast.LENGTH_SHORT).show()).addOnFailureListener(e ->
-                            Toast.makeText(Perfil.this, "Error al cambiar la contraseña " + e.getLocalizedMessage(),
-                                    Toast.LENGTH_SHORT).show());
-                } else {
-                    Toast.makeText(Perfil.this, "La contraseña debe tener al menos 8 caracteres y contener letras, números y caracteres especiales", Toast.LENGTH_SHORT).show();
-                }
-
-            });
-            alertDialogResetPassword.setNegativeButton("No", (dialog, which) -> {
-                // Cierra el cuadro de diálogo
-            });
-            alertDialogResetPassword.create().show();
-        });
 
         profileImage.setOnClickListener(v -> {
             // Abrir galeria
@@ -154,17 +121,6 @@ public class Perfil extends MainActivity {
         }).addOnFailureListener(e -> Toast.makeText(Perfil.this, "Fallo al subir la imagen", Toast.LENGTH_SHORT).show());
     }
 
-    // Función para validar la nueva contraseña
-    private boolean isValidPassword(String password) {
-        // La contraseña debe tener al menos 8 caracteres
-        if (password.length() < 8) {
-            return false;
-        }
-        // La contraseña debe contener una mezcla de letras, números y caracteres especiales
-        // Puedes personalizar esta expresión regular según tus necesidades
-        String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
-        return password.matches(passwordRegex);
-    }
 
     public void logout(){
         mAuth.signOut();
