@@ -132,7 +132,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      */
     public void activarAdapter(){
         //se identifica el recyclerview de la activity
-        RecyclerView recycler = findViewById(R.id.recycler_cultivos);
+        RecyclerView recycler = findViewById(R.id.rvcultivos);
 
         // se activa el "adapter" para que pase las tarjetas al recycler
         RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this,cultivosFiltrados,this);
