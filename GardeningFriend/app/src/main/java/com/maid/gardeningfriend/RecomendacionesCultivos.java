@@ -194,17 +194,17 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      */
     @Override
     public void onFavClick(int position) {
-        String cultivoSelec = cultivosFiltrados.get(position).getID();
+        String cultivoSelec = cultivosFiltrados.get(position).getNombre();
         getListaFavs(cultivoSelec);
     }
 
 
     /**
      * extrae la lista de cultivos del usuario
-     * @param IDcultivoSelec
+     * @param nombreCultivo
      * cultivo que se selecciono como fav
      */
-    private void getListaFavs(String IDcultivoSelec){
+    private void getListaFavs(String nombreCultivo){
         // mensajes de alerta
         Toast msjExito = Toast.makeText(RecomendacionesCultivos.this,
                 "conexion exitosa con la BD",
@@ -245,13 +245,13 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                 ArrayList<String> favoritos = (ArrayList<String>) userDoc.get("favoritos");
                                 // se comprueba que el cultivo no exista en la lista
                                 for (String fav: favoritos) {
-                                    if (fav == IDcultivoSelec){
+                                    if (fav.equals(nombreCultivo)){
                                         repetido = true;
                                         msjRepetido.show();
                                     }
                                 }
                                 if (!repetido){
-                                    favoritos.add(IDcultivoSelec);
+                                    favoritos.add(nombreCultivo);
                                     agregarCultivoFav(favoritos, userID);
                                 }
 

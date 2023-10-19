@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -55,6 +56,22 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
         setContentView(R.layout.activity_favoritos);;
 
         authUser();
+
+        // se identifica barra de busquedas y se agregan los eventos:
+        SearchView searchView = findViewById(R.id.buscador_favs);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String texto) {
+                barraBusqueda(texto);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String texto) {
+                Log.i("searchbar", "el texto se ha modificado");
+                return false;
+            }
+        });
     }
 
     /**
@@ -301,5 +318,32 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
         } else {
             msjLogueo.show();
         }
+    }
+
+    /**
+     * toma el input del usuario, lo valida
+     * y actualiza el array que se pasa al adapter
+     * @param input
+     * palabra ingresada
+     */
+    private void barraBusqueda(String input){
+        // 1 - se crea un array copia para realizar validaciones:
+        ArrayList<String> favoritosCopia = new ArrayList<>(cultivosFavoritos);
+
+
+        //mensajes de alerta
+        Toast msjExito = Toast.makeText(FavoritosSeccion.this,
+                "resultados de busqueda: ",
+                Toast.LENGTH_SHORT);
+
+        Toast msjError = Toast.makeText(FavoritosSeccion.this,
+                "no se encontraron resultados",
+                Toast.LENGTH_SHORT);
+
+        Toast errorBD = Toast.makeText(FavoritosSeccion.this,
+                "error al conectar con la BD",
+                Toast.LENGTH_SHORT);
+
+        //TODO: PROGRAMAR GET REQUEST
     }
 }
