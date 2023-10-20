@@ -45,7 +45,7 @@
                     android:id="@+id/bBuscar"
                     android:layout_width="57dp"
                     android:layout_height="match_parent"
-                    android:onClick="buscar"
+                    android:onClick="buscarCultivos"
                     app:icon="@android:drawable/ic_menu_search" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView

@@ -25,7 +25,7 @@ import java.util.Map;
  * se muestran los cultivos filtrados
  */
 public class EnciclopediaCultivos extends MainActivity implements EnciclopediaInterface{
-    EditText etBuscador;
+
     //variables que contienen los parametros selec
     String nombre;
 
@@ -40,9 +40,8 @@ public class EnciclopediaCultivos extends MainActivity implements EnciclopediaIn
         setContentView(R.layout.activity_enciclopedia_cultivos);
 
 
-        etBuscador = findViewById(R.id.etBuscador);
+        nombre = getIntent().getStringExtra("nombreBusqueda");
 
-        nombre = String.valueOf(etBuscador.getText());
 
 
         //se inicializa funcion para agregar las tarjetas
@@ -61,7 +60,7 @@ public class EnciclopediaCultivos extends MainActivity implements EnciclopediaIn
         db.collection("cultivos")
                 // queries para filtrar el cultivo de acuerdo
                 // a la búsqueda del user
-                .whereEqualTo("nombre", nombre)
+                .whereArrayContains("nombre", nombre)
                 .get()
                 //listener que verifica si la peticion fue exitosa
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
