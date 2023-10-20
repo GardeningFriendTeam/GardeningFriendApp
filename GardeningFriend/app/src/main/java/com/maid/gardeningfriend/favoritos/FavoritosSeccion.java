@@ -29,6 +29,8 @@ import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
 import com.maid.gardeningfriend.RecomendacionesDetalles;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -62,6 +64,7 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String texto) {
+                Log.i("searchbar", "buscar texto");
                 barraBusqueda(texto);
                 return false;
             }
@@ -69,6 +72,15 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
             @Override
             public boolean onQueryTextChange(String texto) {
                 Log.i("searchbar", "el texto se ha modificado");
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                cultivosFavsInfo.clear();
+                authUser();
                 return false;
             }
         });
@@ -327,10 +339,6 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
      * palabra ingresada
      */
     private void barraBusqueda(String input){
-        // 1 - se crea un array copia para realizar validaciones:
-        ArrayList<String> favoritosCopia = new ArrayList<>(cultivosFavoritos);
-
-
         //mensajes de alerta
         Toast msjExito = Toast.makeText(FavoritosSeccion.this,
                 "resultados de busqueda: ",
@@ -344,6 +352,79 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
                 "error al conectar con la BD",
                 Toast.LENGTH_SHORT);
 
-        //TODO: PROGRAMAR GET REQUEST
+        // 1 - se crea instancia de BD
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // 2 - se valida que la palabra este en favoritos
+        Log.i("arrayfav", cultivosFavsInfo.toString());
+
+        boolean flagInput = false;
+        for (CultivosGenerador cultivo : cultivosFavsInfo){
+            if(cultivo.getNombre().equals(input.toLowerCase())){
+                flagInput = true;
+            }
+        }
+
+        // 3 - se realiza la get request si la flag esta activada
+        if(flagInput){
+            // se limpia el array del adapter primero
+            cultivosFavsInfo.clear();
+
+            // se realiza otra get request para actualizar el array del adapter
+            db.collection("cultivos")
+                    .whereEqualTo("nombre", input)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for (QueryDocumentSnapshot documentSnapshot : task.getResult() ) {
+                                    // se extrae cada objeto iterado en un hashmap
+                                    Map<String, Object> cultivoDoc = documentSnapshot.getData();
+
+                                    String ID = (String) cultivoDoc.get("id");
+                                    String nombre = (String) cultivoDoc.get("nombre");
+                                    String tipo = (String) cultivoDoc.get("tipo");
+                                    String info = (String) cultivoDoc.get("informacion");
+                                    String icono = (String) cultivoDoc.get("icono");
+                                    String temperatura = (String) cultivoDoc.get("temperatura");
+                                    String estacion = (String) cultivoDoc.get("estacion");
+                                    String region = (String) cultivoDoc.get("region");
+                                    String crecimiento = (String) cultivoDoc.get("crecimiento");
+
+                                    // se crea un nuevo objeto "cultivo" en base a la info extraida
+                                    CultivosGenerador cultivo = new CultivosGenerador(
+                                            ID,
+                                            nombre,
+                                            tipo,
+                                            crecimiento,
+                                            info,
+                                            temperatura,
+                                            estacion,
+                                            region,
+                                            icono
+                                    );
+                                    Log.i("sarchbarget", "se agrega cultivo que coincide con la busqueda");
+                                    addCultivo(cultivo);
+                                }
+                                msjExito.show();
+                                // se notifica de los cambios al adapter
+                                favoritosAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            msjError.show();
+                            Log.w("errorBD", "error al conectar con la BD", e);
+                        }
+                    });
+        }
+
+
+
+
+
+
     }
 }

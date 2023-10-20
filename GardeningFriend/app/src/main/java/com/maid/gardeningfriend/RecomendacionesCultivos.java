@@ -65,6 +65,11 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      * agrega los cultivos que coinciden con los param selecionados por el user
      */
     private void addModelsCultivos(){
+        //mensaje error de conexion
+        Toast msjErrorBD = Toast.makeText(RecomendacionesCultivos.this,
+                "ha ocurrido un error al conectar con la BD",
+                Toast.LENGTH_SHORT);
+
         // 1 - se crea una instancia de la BD para acceder a la coleccion
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -120,6 +125,12 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                             // fracaso la peticion & se muestra mensaje
                             Toast.makeText(RecomendacionesCultivos.this,"hubo un error al conectarse con la BD", Toast.LENGTH_SHORT).show();
                         }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        msjErrorBD.show();
+                        Log.w("errorBD", "error conexion BD: ", e);
                     }
                 });
     }
