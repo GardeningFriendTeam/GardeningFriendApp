@@ -23,9 +23,9 @@ public class EnciclopediaRecyclerView extends RecyclerView.Adapter<EnciclopediaR
     ArrayList<CultivosGenerador> cultModel;
 
     // constructor
-    public EnciclopediaRecyclerView(Enciclopedia enciclopedia, ArrayList<CultivosGenerador> cultModelo, EnciclopediaInterface enciclopediaInterface) {
+    public EnciclopediaRecyclerView(Context context, ArrayList<CultivosGenerador> cultModel, EnciclopediaInterface enciclopediaInterface) {
         this.context = context;
-        this.cultModel = cultModelo;
+        this.cultModel = cultModel;
         this.enciclopediaInterface = enciclopediaInterface;
     }
 

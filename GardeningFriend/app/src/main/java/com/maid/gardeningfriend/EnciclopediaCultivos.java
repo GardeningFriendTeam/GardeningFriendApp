@@ -1,8 +1,10 @@
 package com.maid.gardeningfriend;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,24 +21,28 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * segunda pantalla de "recomendaciones"
+ * segunda pantalla de "enciclopedia"
  * se muestran los cultivos filtrados
  */
 public class EnciclopediaCultivos extends MainActivity implements EnciclopediaInterface{
-
-    //variables que contiene el texto proporcionado
-
+    EditText etBuscador;
+    //variables que contienen los parametros selec
+    String nombre;
 
     // array que contiene los cultivos que coinciden con los parametros
     ArrayList<CultivosGenerador> cultivosFiltrados = new ArrayList<>();
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enciclopedia_cultivos);
 
-        // se reciben los datos selec en la pantalla anterior
+
+        etBuscador = findViewById(R.id.etBuscador);
+
+        nombre = String.valueOf(etBuscador.getText());
 
 
         //se inicializa funcion para agregar las tarjetas
@@ -54,8 +60,8 @@ public class EnciclopediaCultivos extends MainActivity implements EnciclopediaIn
         // 2 - se realiza una get request para consumir los datos de los cultivos
         db.collection("cultivos")
                 // queries para filtrar el cultivo de acuerdo
-                // a la seleccion del user
-                //.whereEqualTo("nombre", nombre)
+                // a la búsqueda del user
+                .whereEqualTo("nombre", nombre)
                 .get()
                 //listener que verifica si la peticion fue exitosa
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -124,10 +130,10 @@ public class EnciclopediaCultivos extends MainActivity implements EnciclopediaIn
      */
     public void activarAdapter(){
         //se identifica el recyclerview de la activity
-        RecyclerView recycler = findViewById(R.id.rvcultivosf);
+        RecyclerView recycler = findViewById(R.id.rvcultivos);
 
         // se activa el "adapter" para que pase las tarjetas al recycler
-        EnciclopediaRecyclerView adapter = new EnciclopediaRecyclerView(this,cultivosFiltrados,this);
+        EnciclopediaRecyclerView adapter = new EnciclopediaRecyclerView(this, cultivosFiltrados,this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -142,7 +148,7 @@ public class EnciclopediaCultivos extends MainActivity implements EnciclopediaIn
     @Override
     public void onItemClick(int position) {
         // 1 - se crea intent para dirigir al user a la pantalla con info extra:
-        Intent intent = new Intent(EnciclopediaCultivos.this, RecomendacionesDetalles.class);
+        Intent intent = new Intent(EnciclopediaCultivos.this, EnciclopediaDetalles.class);
 
         // 2 - se crea objeto parceable para pasar las propiedades del cult selec a la siguiente
         //pantalla

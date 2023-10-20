@@ -95,7 +95,7 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
     /**
      * activa el adapter de recycler view
      * para pasar todos los cultivos
-     * guardados en el array "cultivosFiltrados"
+     * guardados en el array "cultivos"
      */
     public void activarAdapter(){
         //se identifica el recyclerview de la activity
