@@ -40,17 +40,18 @@ public class NotificationWorker extends Worker {
         Data inputData = getInputData();
         String title = inputData.getString("title");
         String content = inputData.getString("content");
+        String docId = inputData.getString("docId");
 
         Log.d("NotificationWorker", "Title: " + title);
         Log.d("NotificationWorker", "Content: " + content);
 
         // Lógica para mostrar la notificación aquí, usando los datos recibidos
-        showNotification(title, content);
+        showNotification(title, content, docId);
 
         return Result.success();
     }
 
-    private void showNotification(String title, String content) {
+    private void showNotification(String title, String content, String docId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "MyChannelName", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -69,8 +70,16 @@ public class NotificationWorker extends Worker {
         // Crea una intención para abrir NoteDetailsActivity al tocar la notificación
         Intent intent = new Intent(context, NoteDetailsActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        // Agrega información adicional a la intención
+        intent.putExtra("isEditing", true); // Indica que se debe abrir en modo de edición
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+        intent.putExtra("docId", docId);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         builder.setContentIntent(pendingIntent);
+
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         int notificationId = (int) System.currentTimeMillis(); // Usando el tiempo actual como ID único
