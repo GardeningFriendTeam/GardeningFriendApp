@@ -40,6 +40,10 @@
     <string name="tipo_cultivo">Tipo de cultivo</string>
     <string name="hint_imagen">copia el link de la imagen (200x200px max)</string>
     <string name="tiempo_crecimiento">Tiempo hasta germinar</string>
+    <string name="pop_up">Deseas eliminar este cultivo de la BD?</string>
+    <string name="pop_up_especificacion">Esta accion no puede deshacerse</string>
+    <string name="pop_up_eliminar">Eliminar cultivo</string>
+    <string name="pop_up_cancelar"> Cancelar </string>
 
     <string name="btn_actualizar">Actualizar</string>
     <string name="rol">rol</string>
