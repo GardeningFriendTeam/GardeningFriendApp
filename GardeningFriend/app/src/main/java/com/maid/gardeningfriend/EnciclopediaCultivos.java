@@ -60,7 +60,7 @@ public class EnciclopediaCultivos extends MainActivity implements EnciclopediaIn
         db.collection("cultivos")
                 // queries para filtrar el cultivo de acuerdo
                 // a la búsqueda del user
-                .whereArrayContains("nombre", nombre)
+                .whereEqualTo("nombre", nombre)
                 .get()
                 //listener que verifica si la peticion fue exitosa
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
