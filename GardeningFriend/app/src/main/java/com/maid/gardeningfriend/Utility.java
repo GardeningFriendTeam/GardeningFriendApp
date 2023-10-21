@@ -1,6 +1,12 @@
 package com.maid.gardeningfriend;
 
+import static android.content.Context.ALARM_SERVICE;
+
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.Toast;
 
 import com.google.firebase.Timestamp;
@@ -31,5 +37,21 @@ public class Utility {
     // Esto es útil para mostrar fechas almacenadas en Firestore en un formato más legible para el usuario.
     static String timestampToString(Timestamp timestamp){
         return new SimpleDateFormat("dd/MM/yyyy").format(timestamp.toDate());
+    }
+
+    public static void setAlarm(int i, Long timestamp, Context ctx) {
+        AlarmManager alarmManager = (AlarmManager) ctx.getSystemService(ALARM_SERVICE);
+        Intent alarmIntent = new Intent(ctx, AlarmReceiver.class);
+        PendingIntent pendingIntent;
+        pendingIntent = PendingIntent.getBroadcast(ctx, i, alarmIntent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
+        alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
+        if (timestamp > System.currentTimeMillis()) {
+            // Schedule the alarm
+            alarmManager.set(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
+        } else {
+            // The specified time is in the past; handle this case accordingly
+            Toast.makeText(ctx, "Esta configurando la alarma para el mismo horario", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

@@ -1,82 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     style="@style/SCREEN"
-    android:padding="16dp"
     android:layout_height="match_parent"
     tools:context=".NoteDetailsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_bar_layout">
+        android:padding="16dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_bar_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/page_title"
+                android:textSize="32sp"
+                style="@style/TEXT"
+                android:text="@string/title_details_note"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+
+            <ImageButton
+                android:id="@+id/save_note_btn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/save_note"
+                android:src="@drawable/ic_done"
+                app:tint="@color/kelly_green"
+                tools:ignore="ImageContrastCheck" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutDetailsNote"
+            android:layout_below="@id/title_bar_layout"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginVertical="26dp"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/verde_medio"
+            android:background="@drawable/border_registro">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/note_title_text"
+                android:hint="@string/note_title_note"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginVertical="8dp"
+                android:padding="12dp"
+                style="@style/TEXT"
+                android:inputType="text"
+                android:importantForAutofill="no" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/note_content_text"
+                android:hint="@string/note_content"
+                android:minLines="15"
+                android:gravity="top"
+                android:textSize="20sp"
+                android:layout_marginVertical="8dp"
+                android:padding="12dp"
+                style="@style/TEXT"
+                android:inputType="textMultiLine"
+                android:importantForAutofill="no" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutTime"
+            android:layout_below="@id/linearLayoutDetailsNote"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:text="@string/time_selected_is"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:id="@+id/notifications_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:text="12:00"
+                style="@style/EDIT_TEXT"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="30sp"/>
+
+            <Button
+                android:id="@+id/change_notification"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/change_time"
+                style="@style/BUTTON"
+                android:background="@drawable/btn_registro"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="16sp"/>
+
+
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/page_title"
-            android:textSize="32sp"
-            style="@style/TEXT"
-            android:text="Nueva Nota"
-            android:textStyle="bold"/>
+            android:id="@+id/delete_note_text_view"
+            android:text="@string/delete_note"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/linearLayoutTime"
+            android:textColor="#FF0000"/>
 
-        <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:id="@+id/save_note_btn"
-            android:src="@drawable/ic_done"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:tint="@color/kelly_green"
-            android:background="#00FFFFFF"/>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_bar_layout"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginVertical="26dp"
-        android:backgroundTint="@color/verde_medio"
-        android:background="@drawable/border_registro">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/note_title_text"
-            android:hint="Titulo"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginVertical="8dp"
-            android:padding="12dp"
-            style="@style/TEXT"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/note_content_text"
-            android:hint="Contenido"
-            android:minLines="15"
-            android:gravity="top"
-            android:textSize="20sp"
-            android:layout_marginVertical="8dp"
-            android:padding="12dp"
-            style="@style/TEXT"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/delete_note_text_view"
-        android:text="Eliminar Nota"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:visibility="gone"
-        android:textColor="#FF0000"/>
-
-</RelativeLayout>
+</ScrollView>

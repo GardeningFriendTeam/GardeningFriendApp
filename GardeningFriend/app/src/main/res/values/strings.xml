@@ -245,5 +245,17 @@
     <string name="show_password">Mostrar / ocultar contraseña</string>
     <string name="edit_password">Edita tu contraseña</string>
     <string name="title_registro">Regístrate para disfrutar de todas las funciones</string>
+    <string name="save_note">Guardar nota</string>
+    <string name="delete_note">Eliminar Nota</string>
+    <string name="note_content">Contenido de la nota</string>
+    <string name="note_title_note">Titulo</string>
+    <string name="title_details_note">Nueva Nota</string>
+    <string name="edit_note_mode">Editar nota</string>
+
+    <string name="changed_to">Notificación cambiada a las %s</string>
+    <string name="time_selected_is">Crea una alarma</string>
+    <string name="change_time">Establecer</string>
+    <string name="select_time">Selecciona la hora</string>
+    <string name="new_notification">Nueva notificación</string>
 
 </resources>
