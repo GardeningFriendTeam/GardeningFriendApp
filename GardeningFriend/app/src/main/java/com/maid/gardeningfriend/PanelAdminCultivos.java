@@ -1,13 +1,20 @@
 package com.maid.gardeningfriend;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -141,17 +148,65 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
      */
     @Override
     public void eliminarBtn(int position) {
-        String IDcultivoSelec = cultivosBD.get(position).getID();
-        eliminarCultivo(IDcultivoSelec);
+        String nombreCultivo = cultivosBD.get(position).getNombre();
+        popUpEliminar(nombreCultivo);
+    }
+
+    /**
+     * activa un popup para confirmar la operacion
+     * @param nombreCultivo
+     */
+    public void popUpEliminar(String nombreCultivo){
+        // se crea un pop up para confirmar la operacion
+        PopupWindow popupWindow = new PopupWindow(this);
+        // se identifica el contenedor padre
+        RelativeLayout parentElem = findViewById(R.id.container_admin_cultivos);
+        //efectos para animacion:
+        TranslateAnimation anim = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, -1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f
+        );
+        anim.setDuration(200);
+        // se infla el elemento
+        View popUpView = getLayoutInflater().inflate(R.layout.popup_panel_admin, null);
+        popupWindow.setContentView(popUpView);
+        popupWindow.getContentView().startAnimation(anim);
+        // se especifica su tamaño (ocupa toda la pantalla)
+        popupWindow.setHeight(1000);
+        popupWindow.setWidth(1000);
+        // se especifica la ubicacion del elem:
+        popupWindow.showAtLocation(parentElem, Gravity.CENTER, 0, 0);
+
+        //se identifican los botones del pop up:
+        AppCompatButton btnEliminar = popUpView.findViewById(R.id.btn_eliminar_popup);
+        AppCompatButton btnCancelar =  popUpView.findViewById(R.id.btn_cancelar_popup);
+
+        //se programan los eventos:
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eliminarCultivo(nombreCultivo);
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // se cierra el popup
+                popupWindow.dismiss();
+            }
+        });
 
     }
 
     /**
      * Realiza una peticion a la BD para eliminar el documento
-     * @param IDcultivo
+     * @param nombreCultivo
      * ID del cultivo que se selecciono
      */
-    public void eliminarCultivo(String IDcultivo){
+    public void eliminarCultivo(String nombreCultivo){
         // mensajes de alerta
         Toast msjExito = Toast.makeText(PanelAdminCultivos.this,
                 "el cultivo ha sido eliminado de la BD",
@@ -163,23 +218,22 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
 
         // se crea una instancia de la BD
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("cultivos").document(nombreCultivo);
 
-        //se referencia el documento a eliminar
-        DocumentReference docRef = db.collection("cultivos").document(IDcultivo);
-
-        //se elimina el cultivo
+        // se realiza una DELETE request sobre el documento seleccionado
         docRef.delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onSuccess(Void unused) {
-                        msjExito.show();
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            msjExito.show();
+                        }
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         msjError.show();
-                        Log.w("error", "error al eliminar documento", e);
+                        Log.w("cultivodel", "error conexion BD", e);
                     }
                 });
     }

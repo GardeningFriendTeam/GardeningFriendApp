@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 /**
  * crea vista con detalles a partir de la
  * tarjeta seleccionada
@@ -23,12 +25,12 @@ public class RecomendacionesDetalles extends MainActivity {
         setContentView(R.layout.activity_recomendaciones_detalles);
 
         //elementos interfaz
+        ImageView imgCultivo = findViewById(R.id.ic_cultivo_detalles);
         TextView tituloCultivo = findViewById(R.id.titulo_cultivo_detalles);
         TextView infoCultivo = findViewById(R.id.info_cultivo_detalles);
         TextView tempCultuvo = findViewById(R.id.detalles_temperatura);
         TextView estCultivo = findViewById(R.id.detalles_estacion);
         TextView regCultivo = findViewById(R.id.detalles_region);
-        ImageView imgCultivo = findViewById(R.id.ic_cultivo_detalles);
 
         // 1 - se reciben los valores de la pantalla anterior via intent
         // y se guardan en un objeto;
@@ -40,6 +42,7 @@ public class RecomendacionesDetalles extends MainActivity {
         tempCultuvo.setText(detallesCultivoSelec.getTempCultivo());
         estCultivo.setText(detallesCultivoSelec.getEstCultivo());
         regCultivo.setText(detallesCultivoSelec.getRegCultivo());
+
         // se procesa imagen con 'picasso'
         Picasso.get()
                 .load(detallesCultivoSelec.getImgCultivo())
