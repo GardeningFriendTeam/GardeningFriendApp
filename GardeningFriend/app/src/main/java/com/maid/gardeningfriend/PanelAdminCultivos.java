@@ -157,6 +157,10 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
      * @param nombreCultivo
      */
     public void popUpEliminar(String nombreCultivo){
+        // se crea un pop up para confirmar la operacion
+        PopupWindow popupWindow = new PopupWindow(this);
+        // se identifica el contenedor padre
+        RelativeLayout parentElem = findViewById(R.id.container_admin_cultivos);
         //efectos para animacion:
         TranslateAnimation anim = new TranslateAnimation(
                 Animation.RELATIVE_TO_PARENT, 0.0f,
@@ -164,11 +168,7 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
                 Animation.RELATIVE_TO_PARENT, -1.0f,
                 Animation.RELATIVE_TO_PARENT, 0.0f
         );
-        anim.setDuration(500);
-        // se crea un pop up para confirmar la operacion
-        PopupWindow popupWindow = new PopupWindow(this);
-        // se identifica el contenedor padre
-        RelativeLayout parentElem = findViewById(R.id.container_admin_cultivos);
+        anim.setDuration(200);
         // se infla el elemento
         View popUpView = getLayoutInflater().inflate(R.layout.popup_panel_admin, null);
         popupWindow.setContentView(popUpView);
