@@ -1,16 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    app:flow_verticalAlign="center"
+    android:background="@mipmap/madera2"
     tools:context=".Inicio">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/bienvenido"
-        android:layout_margin="20dp"
-        android:textSize="25sp"/>
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        style="@style/SCREEN">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textViewTitleInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_view_inicio_title"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            style="@style/TEXT"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewSubTitleInicio"
+            android:layout_below="@+id/textViewTitleInicio"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_view_inicio_sub_title"
+            android:textSize="22sp"
+            style="@style/TEXT"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPrincipalFunctions"
+            android:layout_below="@+id/textViewSubTitleInicio"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_view_inicio_funciones_principales"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            style="@style/TEXT"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutA"
+            android:layout_below="@id/textViewPrincipalFunctions"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_inicio_title_enciclopedia"
+                style="@style/TEXT"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_encyclopedia"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewFunctionA"
+                android:text="@string/text_view_inicio_content_enciclopedia"
+                android:textSize="18sp"
+                android:gravity="center"
+                style="@style/TEXT" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutB"
+            android:layout_below="@id/linearLayoutA"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_inicio_title_recomendaciones"
+                style="@style/TEXT"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_plant"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewFunctionB"
+                android:text="@string/text_view_inicio_content_recomendaciones"
+                android:textSize="18sp"
+                android:gravity="center"
+                style="@style/TEXT"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutC"
+            android:layout_below="@id/linearLayoutB"
+            android:orientation="vertical"
+            android:layout_marginBottom="32dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_inicio_title_notas"
+                style="@style/TEXT"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_notepad"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewFunctionC"
+                android:text="@string/text_view_inicio_content_notas"
+                android:textSize="18sp"
+                android:gravity="center"
+                style="@style/TEXT"/>
+        </LinearLayout>
+
+
+        <!-- Video de YouTube -->
+        <WebView
+            android:id="@+id/youtube_video"
+            android:layout_width="match_parent"
+            android:layout_height="250sp"
+            android:layout_below="@id/linearLayoutC"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Botones de registro e inicio de sesión -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/youtube_video"
+            android:layout_centerHorizontal="true"
+            android:text="@string/btn_inicio_register"
+            android:id="@+id/btnRegisterInicio"
+            style="@style/BUTTON"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/rounded_btn"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnRegisterInicio"
+            android:layout_centerHorizontal="true"
+            android:text="@string/btn_inicio_login"
+            android:id="@+id/btnLoginInicio"
+            style="@style/BUTTON"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/rounded_btn"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewLoginToAllFunctions"
+            android:layout_below="@id/btnLoginInicio"
+            android:text="@string/text_view_inicio_last_part"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginVertical="16dp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+</ScrollView>

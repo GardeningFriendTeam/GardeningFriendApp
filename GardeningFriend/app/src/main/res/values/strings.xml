@@ -86,10 +86,6 @@
     <string name="cultivo">cultivo</string>
     <string name="buscar_otro">Buscar otro</string>
 
-    <!-- seccion "inicio" !-->
-    <string name="bienvenido">
-        Bienvenido a GardeningFriend! aqui encontraras todo lo que necesitas para comenzar a cultivar!
-    </string>
 
     <!-- seccion "favoritos" !-->
     <string name="buscador_favs">Ingresa el nombre del cultivo</string>
@@ -245,6 +241,8 @@
     <string name="edit_email_profile">Edita tu email</string>
     <string name="edit_username_profile">Edita tu username</string>
     <string name="edit_profile_title">Editar Perfil</string>
+
+    <!-- seccion "Notas" !-->
     <string name="disable_note">Inicia sesión para utilizar esta función</string>
     <string name="add_note_btn">Agrega una nota</string>
     <string name="note_title">Mis Notas</string>
@@ -260,11 +258,24 @@
     <string name="note_title_note">Titulo</string>
     <string name="title_details_note">Nueva Nota</string>
     <string name="edit_note_mode">Editar nota</string>
-
     <string name="changed_to">Notificación cambiada a las %s</string>
     <string name="time_selected_is">Crea una alarma</string>
     <string name="change_time">Establecer</string>
     <string name="select_time">Selecciona la hora</string>
     <string name="new_notification">Nueva notificación</string>
+
+    <!-- seccion "inicio" !-->
+    <string name="text_view_inicio_title">¡Bienvenido a Gardening Friend!</string>
+    <string name="text_view_inicio_sub_title">Tu aplicación para la jardinería</string>
+    <string name="text_view_inicio_funciones_principales">Funciones principales:</string>
+    <string name="text_view_inicio_title_enciclopedia">Enciclopedia:</string>
+    <string name="text_view_inicio_content_enciclopedia">Accede a información detallada sobre diversos cultivos y guarda tus favoritos.</string>
+    <string name="text_view_inicio_title_recomendaciones">Recomendaciones:</string>
+    <string name="text_view_inicio_content_recomendaciones">Encuentra cultivos recomendados según tus preferencias y necesidades.</string>
+    <string name="text_view_inicio_title_notas">Notas:</string>
+    <string name="text_view_inicio_content_notas">Crea y guarda notas sobre tus cultivos, y establece recordatorios.</string>
+    <string name="btn_inicio_register">Registrarse</string>
+    <string name="btn_inicio_login">Iniciar Sesión</string>
+    <string name="text_view_inicio_last_part">Inicia sesión o Registrate para acceder a todas las funcionalidades.</string>
 
 </resources>
