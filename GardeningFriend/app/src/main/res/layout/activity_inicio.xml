@@ -1,16 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Inicio">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/sub_contenedor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/bienvenido"
-        android:layout_margin="20dp"
-        android:textSize="25sp"/>
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/texto_presentacion"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/portada"
+            android:layout_marginVertical="20dp"
+            android:text="@string/bienvenido"
+            android:textAlignment="center"
+            android:textSize="20sp"
+
+        <ImageView
+            android:id="@+id/imagen_portada"
+            android:layout_below="@+id/texto_presentacion"
+            android:layout_centerHorizontal="true"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@mipmap/Portada"/>
+
+        <RelativeLayout
+            android:id="@+id/portada"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@mipmap/header">
+
+            <ImageView
+                android:id="@+id/logo_inicio"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/logo"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
