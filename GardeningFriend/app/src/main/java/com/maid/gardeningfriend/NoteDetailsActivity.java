@@ -116,11 +116,23 @@ public class NoteDetailsActivity extends AppCompatActivity {
 
     private void setAlarmAndWork(Data inputData, int selectedHour, int selectedMinute) {
         Calendar calendar = Calendar.getInstance();
-
-        // Configura la hora y la fecha de la alarma
         calendar.set(Calendar.HOUR_OF_DAY, selectedHour);
         calendar.set(Calendar.MINUTE, selectedMinute);
         calendar.set(Calendar.SECOND, 0);
+
+        if (calendar.before(Calendar.getInstance())) {
+            // La alarma está programada para una hora anterior, así que suma un día
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        long timeUntilAlarm = calendar.getTimeInMillis() - System.currentTimeMillis();
+        if (timeUntilAlarm > 0) {
+            // Programa la alarma solo si el tiempo restante es positivo
+            Utility.setAlarm(alarmID, calendar.getTimeInMillis(), NoteDetailsActivity.this);
+        } else {
+            // Muestra un mensaje de error o aviso al usuario
+            Toast.makeText(NoteDetailsActivity.this, "La hora seleccionada está en el pasado", Toast.LENGTH_LONG).show();
+        }
 
         long alarmTime = calendar.getTimeInMillis();
 
