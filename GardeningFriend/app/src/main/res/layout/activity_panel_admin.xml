@@ -18,7 +18,8 @@
         android:textSize="20sp"
         android:background="@color/white"
         android:padding="5dp"
-        android:elevation="5dp"/>
+        android:elevation="5dp"
+        android:textColor="@color/black"/>
 
     <RelativeLayout
         android:id="@+id/bd_cultivos"

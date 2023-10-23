@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/contenedor_form"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        style="@style/SCREEN">
 
         <TextView
             android:id="@+id/titulo_nombre_cultivo"
@@ -18,7 +19,8 @@
             android:text="@string/nombre_cultivo"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
         <EditText
             android:id="@+id/nombre_cultivo"
@@ -27,7 +29,8 @@
             android:layout_below="@+id/titulo_nombre_cultivo"
             android:hint="@string/nombre_cultivo"
             android:layout_marginHorizontal="20dp"
-            android:inputType="text" />
+            android:inputType="text"
+            style="@style/TEXT"/>
 
         <TextView
             android:id="@+id/titulo_info_cultivo"
@@ -37,7 +40,8 @@
             android:text="@string/info_cultivo"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
         <EditText
             android:id="@+id/info_cultivo"
@@ -46,7 +50,8 @@
             android:layout_below="@+id/titulo_info_cultivo"
             android:hint="@string/info_cultivo"
             android:layout_marginHorizontal="20dp"
-            android:inputType="text"/>
+            android:inputType="text"
+            style="@style/TEXT"/>
 
         <TextView
             android:id="@+id/titulo_tipo_cultivo"
@@ -56,7 +61,8 @@
             android:text="@string/tipo_cultivo"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
         <EditText
             android:id="@+id/tipo_cultivo"
@@ -65,7 +71,8 @@
             android:layout_below="@+id/titulo_tipo_cultivo"
             android:hint="@string/tipo_cultivo"
             android:layout_marginHorizontal="20dp"
-            android:inputType="text"/>
+            android:inputType="text"
+            style="@style/TEXT"/>
 
         <TextView
             android:id="@+id/titulo_img_cultivo"
@@ -75,7 +82,8 @@
             android:text="@string/imagen_cultivo"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
         <EditText
             android:id="@+id/link_imagen"
@@ -84,7 +92,8 @@
             android:layout_below="@+id/titulo_img_cultivo"
             android:hint="@string/hint_imagen"
             android:layout_marginHorizontal="20dp"
-            android:inputType="text"/>
+            android:inputType="text"
+            style="@style/TEXT"/>
 
         <TextView
             android:id="@+id/titulo_crecimiento"
@@ -94,7 +103,8 @@
             android:text="@string/crecimiento"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
         <EditText
             android:id="@+id/crecimiento_cultivo"
@@ -103,7 +113,8 @@
             android:layout_below="@+id/titulo_crecimiento"
             android:hint="@string/crecimiento"
             android:layout_marginHorizontal="20dp"
-            android:inputType="text"/>
+            android:inputType="text"
+            style="@style/TEXT"/>
 
 
 
@@ -115,7 +126,8 @@
             android:text="@string/temperatura_cultivo"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
         <RadioGroup
             android:id="@+id/radius_temp"
@@ -129,35 +141,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/rango_temp_0"
-                android:onClick="btnTempClicked"/>
+                android:onClick="btnTempClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc2_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/rango_temp_1"
-                android:onClick="btnTempClicked"/>
+                android:onClick="btnTempClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc3_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/rango_temp_2"
-                android:onClick="btnTempClicked"/>
+                android:onClick="btnTempClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc4_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/rango_temp_3"
-                android:onClick="btnTempClicked"/>
+                android:onClick="btnTempClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc5_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/rango_temp_4"
-                android:onClick="btnTempClicked"/>
+                android:onClick="btnTempClicked"
+                style="@style/TEXT"/>
 
         </RadioGroup>
 
@@ -169,7 +186,8 @@
             android:text="@string/estacion_cultivo"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
         <RadioGroup
             android:id="@+id/radius_est"
@@ -183,28 +201,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/est_verano"
-                android:onClick="btnEstacClicked"/>
+                android:onClick="btnEstacClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc2_est"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/est_otono"
-                android:onClick="btnEstacClicked"/>
+                android:onClick="btnEstacClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc3_est"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/est_invierno"
-                android:onClick="btnEstacClicked"/>
+                android:onClick="btnEstacClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc4_est"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/est_primavera"
-                android:onClick="btnEstacClicked"/>
+                android:onClick="btnEstacClicked"
+                style="@style/TEXT"/>
 
         </RadioGroup>
 
@@ -217,7 +239,8 @@
             android:text="@string/region_cultivo"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginVertical="20dp"/>
+            android:layout_marginVertical="20dp"
+            style="@style/TEXT"/>
 
 
         <RadioGroup
@@ -232,28 +255,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/reg_norte"
-                android:onClick="btnRegClicked"/>
+                android:onClick="btnRegClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc2_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/reg_centro"
-                android:onClick="btnRegClicked"/>
+                android:onClick="btnRegClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc3_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/reg_cuyo"
-                android:onClick="btnRegClicked"/>
+                android:onClick="btnRegClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc4_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/reg_patagonica"
-                android:onClick="btnRegClicked"/>
+                android:onClick="btnRegClicked"
+                style="@style/TEXT"/>
 
         </RadioGroup>
 
