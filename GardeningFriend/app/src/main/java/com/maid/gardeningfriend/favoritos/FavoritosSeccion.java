@@ -132,7 +132,11 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
                             Map<String, Object> userMap = userDoc.getData();
                             ArrayList<String> userFavs = (ArrayList<String>) userMap.get("favoritos");
                             Log.i("getUsuario", userFavs.toString());
-                            getCultivosFav(userFavs);
+                            if (!userFavs.isEmpty()){
+                                // se agrega validacion para evitar
+                                // error "nullPointerException"
+                                getCultivosFav(userFavs);
+                            }
 
                         }
                     }
