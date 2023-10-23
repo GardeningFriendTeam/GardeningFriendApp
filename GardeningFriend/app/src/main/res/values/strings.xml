@@ -277,5 +277,9 @@
     <string name="btn_inicio_register">Registrarse</string>
     <string name="btn_inicio_login">Iniciar Sesión</string>
     <string name="text_view_inicio_last_part">Inicia sesión o Registrate para acceder a todas las funcionalidades.</string>
+    <string name="text_view_login_title">¡Bienvenido de nuevo! Inicia sesión para continuar</string>
+    <string name="text_view_go_to_registro">¿Aún no tienes cuenta? Registrate</string>
+    <string name="text_view_change_password">¿Olvidaste tu contraseña?</string>
+    <string name="btn_login">Login</string>
 
 </resources>
