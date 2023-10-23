@@ -95,6 +95,29 @@
         <item name="android:src">@drawable/ic_eye_dark</item>
     </style>
 
+    <!--  icon email dark mode  -->
+    <style name="INICIOEMAIL">
+        <item name="drawableLeftCompat">@drawable/ic_email_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  icon phone dark mode  -->
+    <style name="INICIOPHONE">
+        <item name="drawableLeftCompat">@drawable/ic_phone_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  icon location dark mode  -->
+    <style name="INICIOLOCATION">
+        <item name="drawableLeftCompat">@drawable/ic_location_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  image github dark mode  -->
+    <style name="IMGGITHUB">
+        <item name="android:src">@drawable/ic_github_dark</item>
+    </style>
+
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>

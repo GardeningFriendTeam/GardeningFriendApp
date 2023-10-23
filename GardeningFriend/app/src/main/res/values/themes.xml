@@ -94,6 +94,28 @@
         <item name="android:src">@drawable/ic_eye</item>
     </style>
 
+    <!--  icon email light mode  -->
+    <style name="INICIOEMAIL">
+        <item name="drawableLeftCompat">@drawable/ic_email</item>
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+
+    <!--  icon phone light mode  -->
+    <style name="INICIOPHONE">
+        <item name="drawableLeftCompat">@drawable/ic_phone</item>
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+
+    <!--  icon location light mode  -->
+    <style name="INICIOLOCATION">
+        <item name="drawableLeftCompat">@drawable/ic_location</item>
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+
+    <!--  image github light mode  -->
+    <style name="IMGGITHUB">
+        <item name="android:src">@drawable/ic_github</item>
+    </style>
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>
