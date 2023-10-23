@@ -153,7 +153,7 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
             CultivosEnciParceable datosEnciclopedia = new CultivosEnciParceable(nombreIngresado);
 
             // 3 - se pasa el objeto parceable
-            intent.putExtra("nombreBusqueda", nombreIngresado);
+            intent.putExtra("nombre", nombreIngresado);
             startActivity(intent);
 
         }else {
