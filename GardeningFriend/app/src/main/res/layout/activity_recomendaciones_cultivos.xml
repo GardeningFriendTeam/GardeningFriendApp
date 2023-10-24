@@ -8,7 +8,7 @@
     android:background="@mipmap/madera2">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_cultivos"
+        android:id="@+id/rvcultivos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
