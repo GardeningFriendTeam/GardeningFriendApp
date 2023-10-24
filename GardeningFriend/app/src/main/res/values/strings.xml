@@ -32,7 +32,7 @@
 
     <string name="nombre_cultivo">Nombre del cultivo</string>
     <string name="info_cultivo">Informacion</string>
-    <string name="imagen_cultivo">Imagen del cultivo</string>
+    <string name="imagen_cultivo">Imagen del cultivo (link imgur)</string>
     <string name="crecimiento"> Tiempo hasta dar frutos </string>
     <string name="temperatura_cultivo">Temperatura del cultivo</string>
     <string name="estacion_cultivo">Estacion del cultivo</string>

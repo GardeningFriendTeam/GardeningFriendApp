@@ -89,22 +89,21 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                             Log.i("tag","peticion exitosa");
                             // se recorre la coleccion y se extraen los datos necesarios
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                // se guarda la info consumida en un objeto map
-                                Map<String, Object> data = document.getData();
 
                                 // se extraen las propiedades del elem iterado
-                                String nombre = (String) data.get("nombre");
-                                String temperatura = (String) data.get("temperatura");
-                                String estacion = (String) data.get("estacion");
-                                String region = (String) data.get("region");
-                                String informacion = (String) data.get("informacion");
-                                String crecimiento = (String) data.get("crecimiento");
-                                String tipo = (String) data.get("tipo");
-                                String imagen = (String) data.get("icono");
+                                String ID = document.getId();
+                                String nombre = (String) document.get("nombre");
+                                String temperatura = (String) document.get("temperatura");
+                                String estacion = (String) document.get("estacion");
+                                String region = (String) document.get("region");
+                                String informacion = (String) document.get("informacion");
+                                String crecimiento = (String) document.get("crecimiento");
+                                String tipo = (String) document.get("tipo");
+                                String imagen = (String) document.get("icono");
 
                                 // se crea objeto para agregar cultivo al array
                                 CultivosGenerador nuevoCultivo = new CultivosGenerador(
-                                        nombre,
+                                        ID,
                                         nombre,
                                         tipo,
                                         crecimiento,

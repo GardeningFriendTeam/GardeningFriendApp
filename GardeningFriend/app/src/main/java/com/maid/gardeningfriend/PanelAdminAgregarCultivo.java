@@ -265,9 +265,8 @@ public class PanelAdminAgregarCultivo extends MainActivity {
     private void subirCultivoBD(){
         // 1 - se crea el objeto que se pasa como doc a la BD
         Map<String, Object> cultivoNvo = new HashMap<>();
-        cultivoNvo.put("id", inputNombre);
         cultivoNvo.put("nombre", inputNombre);
-        cultivoNvo.put("info", inputInfo);
+        cultivoNvo.put("informacion", inputInfo);
         cultivoNvo.put("tipo", inputTipo);
         cultivoNvo.put("crecimiento", inputCrecimiento);
         cultivoNvo.put("icono", inputImg);

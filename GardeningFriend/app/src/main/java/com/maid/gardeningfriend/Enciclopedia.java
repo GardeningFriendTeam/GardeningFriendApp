@@ -89,9 +89,7 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
                             // se itera sobre cada doc de la coleccion
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 // se convierta cada documento en un haspmap para poder manipularlo
-                                Map<String, Object> cultivoDocument = document.getData();
-
-                                String ID = (String) document.get("id");
+                                String ID = document.getId();
                                 String nombre = (String) document.get("nombre");
                                 String tipo = (String) document.get("tipo");
                                 String info = (String) document.get("informacion");
@@ -218,18 +216,16 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if(task.isSuccessful()){
                                 for (QueryDocumentSnapshot documentSnapshot : task.getResult() ) {
-                                    // se extrae cada objeto iterado en un hashmap
-                                    Map<String, Object> cultivoDoc = documentSnapshot.getData();
 
-                                    String ID = (String) cultivoDoc.get("id");
-                                    String nombre = (String) cultivoDoc.get("nombre");
-                                    String tipo = (String) cultivoDoc.get("tipo");
-                                    String info = (String) cultivoDoc.get("informacion");
-                                    String icono = (String) cultivoDoc.get("icono");
-                                    String temperatura = (String) cultivoDoc.get("temperatura");
-                                    String estacion = (String) cultivoDoc.get("estacion");
-                                    String region = (String) cultivoDoc.get("region");
-                                    String crecimiento = (String) cultivoDoc.get("crecimiento");
+                                    String ID = documentSnapshot.getId();
+                                    String nombre = (String) documentSnapshot.get("nombre");
+                                    String tipo = (String) documentSnapshot.get("tipo");
+                                    String info = (String) documentSnapshot.get("informacion");
+                                    String icono = (String) documentSnapshot.get("icono");
+                                    String temperatura = (String) documentSnapshot.get("temperatura");
+                                    String estacion = (String) documentSnapshot.get("estacion");
+                                    String region = (String) documentSnapshot.get("region");
+                                    String crecimiento = (String) documentSnapshot.get("crecimiento");
 
                                     // se crea un nuevo objeto "cultivo" en base a la info extraida
                                     CultivosGenerador cultivo = new CultivosGenerador(
