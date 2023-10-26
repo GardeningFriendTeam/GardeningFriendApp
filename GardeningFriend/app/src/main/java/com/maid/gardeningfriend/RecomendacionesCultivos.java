@@ -154,11 +154,20 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
     public void activarAdapter(){
         //se identifica el recyclerview de la activity
         RecyclerView recycler = findViewById(R.id.rvcultivos);
-
         // se activa el "adapter" para que pase las tarjetas al recycler
         RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this,cultivosFiltrados,this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
+        // mensaje de alerta si no hay coincidencias (si el array esta vacio)
+        if(cultivosFiltrados.isEmpty()){
+            Toast.makeText(RecomendacionesCultivos.this,
+                    "no se ha encontrado ningun resultado que coincida con los parametros seleccionados",
+                    Toast.LENGTH_SHORT).show();
+            // mensaje de sugerencia:
+            Toast.makeText(RecomendacionesCultivos.this,
+                    "intenta seleccioando parametros diferentes",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
 
