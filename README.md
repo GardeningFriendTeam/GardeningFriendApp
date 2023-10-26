@@ -1,15 +1,18 @@
-# Gardening Friend App
+# Enlaces a la documentación y los videos
 Proyecto integrador II - Aplicación Móvil sobre cultivos
 
-- Link video muestra navegación: https://www.loom.com/share/63aee668fad04bf1b2edbf2062ae7fef?sid=927b5baf-ef01-4d7b-8d30-3b3c88620c2e
+- <a href="https://www.loom.com/share/63aee668fad04bf1b2edbf2062ae7fef?sid=927b5baf-ef01-4d7b-8d30-3b3c88620c2e" target="_blank">Link al video</a> que muestra la navegación.
   
-- Link documentación IEEE: https://docs.google.com/document/d/1BVSyEpB4cIowq7-qLGHVGBkFfquapBKP/edit?usp=sharing&ouid=112446580819130115289&rtpof=true&sd=true
-- (en la sección "anexo" cerca del final del doc esta el esquema que detalla la navegabilidad y el diseño de la IU )
+- <a href="https://docs.google.com/document/d/1lRg-yKvwBIguV8TajI58RLuEXQpCmc4c/edit?usp=drive_link&ouid=116033859405214608468&rtpof=true&sd=true" target="_blank">Link a la documentación IEEE-830</a> actualizada con las normas APA.
+  - (en la sección "anexo" cerca del final del doc esta el esquema que detalla la navegabilidad y el diseño de la IU )
 
+- <a href="https://drive.google.com/drive/folders/1jvOtI5ZTYeYy9Uwog_EuemVVGawyfB4N?usp=sharing" target="_blank">Link al Drive</a> con toda la documentación del proyecto
 
-¡Bienvenido al repositorio de Gardening Friend, la aplicación nativa de Android para entusiastas de la jardinería y la agricultura! Esta aplicación se basa en nuestra aplicación web [Gardening Friend](https://github.com/SoledadQuiroz/FullStack-ProyectoIntegrador) y ofrece información, consejos y tutoriales sobre cultivos y huertos. Además, agregaremos emocionantes funcionalidades nuevas para brindarte una experiencia completa y conveniente en tu dispositivo móvil.
+# Gardening Friend App
 
-# Características a implementar
+¡Bienvenido al repositorio de Gardening Friend, la aplicación nativa de Android para entusiastas de la jardinería y la agricultura! Esta aplicación se basa en nuestra aplicación web <a href="https://github.com/SoledadQuiroz/FullStack-ProyectoIntegrador" target="_blank">Gardening Friend</a> y ofrece información, consejos y tutoriales sobre cultivos y huertos. Además, agregaremos emocionantes funcionalidades nuevas para brindarte una experiencia completa y conveniente en tu dispositivo móvil.
+
+## Características a implementar
 
 **Información Detallada:** Accede a una amplia gama de información sobre diversos cultivos y técnicas de jardinería. Desde consejos para el cuidado de plantas hasta calendarios de siembra, tenemos todo lo que necesitas para tener éxito en tu jardín.
 
@@ -19,7 +22,7 @@ Proyecto integrador II - Aplicación Móvil sobre cultivos
 
 **Comunidad Integrada:** Conéctate con otros entusiastas de la jardinería. Comparte tus éxitos, haz preguntas y aprende de la experiencia de otros.
 
-# Equipo
+## Equipo
 
 - Lucas Moyano (lucasm22)
 - Maximiliano Nicolás Nastrai (maxtheprogrammer98)
