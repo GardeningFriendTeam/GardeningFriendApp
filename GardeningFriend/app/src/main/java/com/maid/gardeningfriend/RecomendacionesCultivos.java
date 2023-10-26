@@ -11,14 +11,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AdditionalUserInfo;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -26,7 +20,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,7 +33,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
     String estSelec;
     String regSelec;
     // array que contiene los cultivos que coinciden con los parametros
-    ArrayList<CultivosGenerador> cultivosFiltrados = new ArrayList<>();
+    ArrayList<CultivosGenerador> cultivosRecomendaciones = new ArrayList<>();
 
 
     @Override
@@ -55,6 +48,10 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         tempSelec = opcSeleccionadas.getTemperaturaSelec();
         estSelec = opcSeleccionadas.getEstacionSelec();
         regSelec = opcSeleccionadas.getRegSelec();
+
+        Log.i("prueba", tempSelec);
+        Log.i("prueba", estSelec);
+        Log.i("prueba", regSelec);
 
         //se inicializa funcion para agregar las tarjetas
         addModelsCultivos();
@@ -91,7 +88,6 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 // se extraen las propiedades del elem iterado
-                                String ID = document.getId();
                                 String nombre = (String) document.get("nombre");
                                 String temperatura = (String) document.get("temperatura");
                                 String estacion = (String) document.get("estacion");
@@ -103,7 +99,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
 
                                 // se crea objeto para agregar cultivo al array
                                 CultivosGenerador nuevoCultivo = new CultivosGenerador(
-                                        ID,
+                                        nombre,
                                         nombre,
                                         tipo,
                                         crecimiento,
@@ -113,13 +109,15 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
                                         region,
                                         imagen);
 
+                                Log.i("prueba", nuevoCultivo.getID());
+                                Log.i("prueba", nuevoCultivo.getNombre());
                                 agregarCultivo(nuevoCultivo);
 
                             }
                             // una vez que se iteran todos los documentos se activa el recyclerview adapter
                             activarAdapter();
 
-                            Log.i("tag", "tamaño array: " + cultivosFiltrados.size());
+                            Log.i("tag", "tamaño array: " + cultivosRecomendaciones.size());
                         } else {
                             // fracaso la peticion & se muestra mensaje
                             Toast.makeText(RecomendacionesCultivos.this,"hubo un error al conectarse con la BD", Toast.LENGTH_SHORT).show();
@@ -142,7 +140,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      * parametro representa el cultivo validado por el filtro
      */
     public void agregarCultivo(CultivosGenerador cultivoSelec){
-        cultivosFiltrados.add(cultivoSelec);
+        cultivosRecomendaciones.add(cultivoSelec);
         Log.i("tag", "cultivo agreagado: " + cultivoSelec.nombre);
     }
 
@@ -152,14 +150,8 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      * guardados en el array "cultivosFiltrados"
      */
     public void activarAdapter(){
-        //se identifica el recyclerview de la activity
-        RecyclerView recycler = findViewById(R.id.rvcultivos);
-        // se activa el "adapter" para que pase las tarjetas al recycler
-        RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this,cultivosFiltrados,this);
-        recycler.setAdapter(adapter);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
         // mensaje de alerta si no hay coincidencias (si el array esta vacio)
-        if(cultivosFiltrados.isEmpty()){
+        if(cultivosRecomendaciones.isEmpty()){
             Toast.makeText(RecomendacionesCultivos.this,
                     "no se ha encontrado ningun resultado que coincida con los parametros seleccionados",
                     Toast.LENGTH_SHORT).show();
@@ -167,6 +159,15 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
             Toast.makeText(RecomendacionesCultivos.this,
                     "intenta seleccioando parametros diferentes",
                     Toast.LENGTH_SHORT).show();
+
+        } else {
+            //se identifica el recyclerview de la activity
+            RecyclerView recycler = findViewById(R.id.rvcultivos);
+            // se activa el "adapter" para que pase las tarjetas al recycler
+            RecomendacionesRecyclerView adapter = new RecomendacionesRecyclerView(this, cultivosRecomendaciones,this);
+            recycler.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            recycler.setLayoutManager(new LinearLayoutManager(this));
         }
     }
 
@@ -185,14 +186,14 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
         // 2 - se crea objeto parceable para pasar las propiedades del cult selec a la siguiente
         //pantalla
         CultivosDetallesParceable detallesCultivo = new CultivosDetallesParceable(
-                cultivosFiltrados.get(position).getNombre(),
-                cultivosFiltrados.get(position).getTemperatura(),
-                cultivosFiltrados.get(position).getEstacionSiembra(),
-                cultivosFiltrados.get(position).getRegion(),
-                cultivosFiltrados.get(position).getCaracteristicas(),
-                cultivosFiltrados.get(position).getImagen(),
-                cultivosFiltrados.get(position).getTipo(),
-                cultivosFiltrados.get(position).getDuracionCrecimiento()
+                cultivosRecomendaciones.get(position).getNombre(),
+                cultivosRecomendaciones.get(position).getTemperatura(),
+                cultivosRecomendaciones.get(position).getEstacionSiembra(),
+                cultivosRecomendaciones.get(position).getRegion(),
+                cultivosRecomendaciones.get(position).getCaracteristicas(),
+                cultivosRecomendaciones.get(position).getImagen(),
+                cultivosRecomendaciones.get(position).getTipo(),
+                cultivosRecomendaciones.get(position).getDuracionCrecimiento()
         );
 
         //prueba
@@ -213,7 +214,7 @@ public class RecomendacionesCultivos extends MainActivity implements Recomendaci
      */
     @Override
     public void onFavClick(int position) {
-        String cultivoSelec = cultivosFiltrados.get(position).getNombre();
+        String cultivoSelec = cultivosRecomendaciones.get(position).getNombre();
         getListaFavs(cultivoSelec);
     }
 
