@@ -1,18 +1,151 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    app:flow_verticalAlign="center"
+    android:background="@mipmap/madera2"
     tools:context=".Perfil">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text="@string/perfil"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        style="@style/SCREEN"
+        android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/titleProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_profile"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            style="@style/TEXT"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <ImageView
+            android:id="@+id/imageBtnVerifyEmail"
+            android:layout_width="52sp"
+            android:layout_height="52sp"
+            android:layout_toEndOf="@id/titleProfile"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="12dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_warning"
+            android:visibility="gone"
+            android:contentDescription="@string/warning_email_profile" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewProfile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="50dp"
+            android:layout_below="@id/titleProfile"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/imageViewProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/IMGREG"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/your_image_profile" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textViewUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:layout_below="@id/cardViewProfile"
+            android:text="@string/username_profile"
+            android:layout_marginTop="32dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            style="@style/USERPROFILE"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/textViewUsernameProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_name_profile"
+            android:textSize="18sp"
+            style="@style/TEXT"
+            android:layout_marginStart="32dp"
+            android:layout_below="@+id/textViewUsername"
+            android:layout_marginVertical="5dp"/>
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:layout_below="@id/textViewUsernameProfile"
+            android:text="@string/email_profile"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            style="@style/EMAILPROFILE"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/textViewEmailProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_email_profile"
+            android:textSize="18sp"
+            style="@style/TEXT"
+            android:layout_below="@+id/textViewEmail"
+            android:layout_marginStart="32dp"
+            android:layout_marginVertical="5dp"/>
+
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            style="@style/BUTTON"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewEmailProfile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_btn"
+            android:text="@string/edit_profile"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnLogoutProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnEditProfile"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_btn"
+            android:text="@string/singout_profile"
+            style="@style/BUTTON"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnVerifyEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnLogoutProfile"
+            android:visibility="gone"
+            android:background="@drawable/rounded_btn"
+            style="@style/BUTTON"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/send_verify_profile"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</ScrollView>

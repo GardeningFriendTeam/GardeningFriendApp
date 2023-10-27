@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    style="@style/SCREEN"
+    tools:context=".EditarPerfilActivity">
+
+    <TextView
+        android:id="@+id/titleEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_profile_title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        style="@style/TEXT"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:cardCornerRadius="50dp"
+        android:layout_below="@id/titleEditProfile"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/imageViewEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/IMGREG"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/your_image_profile" />
+
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/editTextEditProfileUsername"
+        style="@style/ICONUSEREDIT"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardViewProfile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:autofillHints="username"
+        android:background="@drawable/border_registro"
+        android:hint="@string/edit_username_profile"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:textSize="18sp"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/editTextEditProfileEmail"
+        style="@style/EDITEMAIL"
+        android:maxWidth="400dp"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextEditProfileUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:background="@drawable/border_registro"
+        android:hint="@string/edit_email_profile"
+        android:inputType="none"
+        android:focusable="false"
+        android:minHeight="48dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:textSize="18sp"
+        tools:ignore="TextContrastCheck,TextFields"
+        android:autofillHints="" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editTextEditProfileEmail">
+
+        <EditText
+            android:id="@+id/editTextEditProfilePassword"
+            android:maxWidth="400dp"
+            style="@style/ICONPASSEDIT"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:autofillHints="password"
+            android:background="@drawable/border_registro"
+            android:hint="@string/edit_password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/showPasswordIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/PASSEYE"
+            android:layout_alignEnd="@id/editTextEditProfilePassword"
+            android:layout_centerVertical="true"
+            android:paddingTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/show_password" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnSaveEditProfile"
+        style="@style/BUTTON"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_btn"
+        android:elevation="9dp"
+        android:text="@string/btn_edit_profile"
+        android:textSize="16sp"
+        tools:ignore="TextContrastCheck" />
+
+
+</RelativeLayout>

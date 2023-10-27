@@ -15,10 +15,10 @@ public class CultivosGenerador {
     String temperatura;
     String estacionSiembra;
     String region;
-    int imagen;
+    String imagen;
 
     //constructor
-    public CultivosGenerador(String ID, String nombre, String tipo, String duracionCrecimiento, String caracteristicas, String temperatura, String estacionSiembra, String region, int imagen) {
+    public CultivosGenerador(String ID, String nombre, String tipo, String duracionCrecimiento, String caracteristicas, String temperatura, String estacionSiembra, String region, String imagen) {
         this.ID = ID;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -63,7 +63,7 @@ public class CultivosGenerador {
         return region;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 }

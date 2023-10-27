@@ -2,14 +2,18 @@ package com.maid.gardeningfriend;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -49,7 +53,13 @@ public class RecomendacionesRecyclerView extends RecyclerView.Adapter<Recomendac
         holder.temperatura.setText(cultModel.get(position).getTemperatura());
         holder.estacion.setText(cultModel.get(position).getEstacionSiembra());
         holder.region.setText(cultModel.get(position).getRegion());
-        holder.icono.setImageResource(cultModel.get(position).getImagen());
+        // se procesa la imagen a traves de una libreria "picasso"
+        Picasso.get()
+                .load(cultModel.get(position).getImagen())
+                .error(R.mipmap.logo)
+                .into(holder.icono);
+        Log.i("tag", "url: " +cultModel.get(position).getImagen());
+
     }
 
     @Override
@@ -64,6 +74,7 @@ public class RecomendacionesRecyclerView extends RecyclerView.Adapter<Recomendac
         // atributos del modelo / tarjeta
         ImageView icono;
         TextView nombre, temperatura, estacion, region;
+        ImageButton fav;
 
         //constructor
         public MyViewHolder(@NonNull View itemView, RecomendacionesInterface recoInterfaz){
@@ -74,6 +85,7 @@ public class RecomendacionesRecyclerView extends RecyclerView.Adapter<Recomendac
             temperatura = itemView.findViewById(R.id.titulo_temp_card);
             estacion = itemView.findViewById(R.id.titulo_est_card);
             region = itemView.findViewById(R.id.titulo_reg_card);
+            fav = itemView.findViewById(R.id.btn_fav);
 
             // se agrega un "clicklistenerevent" a cada elemento
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +101,22 @@ public class RecomendacionesRecyclerView extends RecyclerView.Adapter<Recomendac
                     }
                 }
             });
+
+            fav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recoInterfaz != null){
+                        // si no es nulo se extrae su posicion
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            recoInterfaz.onFavClick(pos);
+                        }
+                    }
+                }
+            });
+
+
 
         }
     }

@@ -1,8 +1,120 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.GardeningFriend" parent="Theme.AppCompat.DayNight">
-        <!-- Customize your light theme here. -->
+    <style name="Base.Theme.GardeningFriend" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/verde_medio</item>
+        <item name="colorPrimaryVariant">@color/verde_oscuro</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/light_green</item>
+        <item name="colorSecondaryVariant">@color/kelly_green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <!--  Light Mode  -->
+    <!--  Screen background light mode  -->
+    <style name="SCREEN">
+        <item name="android:background">#fff</item>
+    </style>
+    <!--  Texts background light mode  -->
+    <style name="TEXT">
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+    <!--  editText background light mode  -->
+    <style name="EDIT_TEXT">
+        <item name="android:textColorHint">@color/edit_light</item>
+    </style>
+    <!--  button background light mode  -->
+    <style name="BUTTON">
+        <item name="android:background">@color/verde_medio</item>
+        <item name="android:textColor">#263238</item>
+    </style>
+    <!--  image registro light mode  -->
+    <style name="IMGREG">
+        <item name="android:src">@drawable/ic_user01</item>
+    </style>
+
+    <!--  icon username light mode  -->
+    <style name="USERPROFILE">
+        <item name="drawableLeftCompat">@drawable/ic_person</item>
+        <item name="android:textColorHint">@color/fuente_principal</item>
+    </style>
+
+    <!--  icon email light mode  -->
+    <style name="EMAILPROFILE">
+        <item name="drawableLeftCompat">@drawable/ic_email</item>
+        <item name="android:textColorHint">@color/fuente_principal</item>
+    </style>
+
+    <!--  add note btn light mode  -->
+    <style name="ADDNOTEBTN">
+        <item name="backgroundTint">@color/verde_medio</item>
+        <item name="android:src">@drawable/ic_add</item>
+    </style>
+
+    <!--  card note light mode  -->
+    <style name="CARDNOTE">
+        <item name="android:backgroundTint">@color/verde_medio</item>
+        <item name="android:background">@drawable/rounded_card</item>
+    </style>
+
+    <!--  editText email perfil background light mode  -->
+    <style name="EDITEMAIL">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableEnd">@drawable/ic_lock</item>
+        <item name="android:drawableStart">@drawable/ic_email</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText username perfil background light mode  -->
+    <style name="ICONUSEREDIT">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableStart">@drawable/ic_person</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background light mode  -->
+    <style name="ICONPASSEDIT">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableStart">@drawable/ic_key</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  email light mode  -->
+    <style name="ICOMEMAIL">
+        <item name="android:textColorHint">@color/edit_light</item>
+        <item name="android:drawableStart">@drawable/ic_email</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background light mode  -->
+    <style name="PASSEYE">
+        <item name="android:src">@drawable/ic_eye</item>
+    </style>
+
+    <!--  icon email light mode  -->
+    <style name="INICIOEMAIL">
+        <item name="drawableLeftCompat">@drawable/ic_email</item>
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+
+    <!--  icon phone light mode  -->
+    <style name="INICIOPHONE">
+        <item name="drawableLeftCompat">@drawable/ic_phone</item>
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+
+    <!--  icon location light mode  -->
+    <style name="INICIOLOCATION">
+        <item name="drawableLeftCompat">@drawable/ic_location</item>
+        <item name="android:textColor">@color/fuente_principal</item>
+    </style>
+
+    <!--  image github light mode  -->
+    <style name="IMGGITHUB">
+        <item name="android:src">@drawable/ic_github</item>
     </style>
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />

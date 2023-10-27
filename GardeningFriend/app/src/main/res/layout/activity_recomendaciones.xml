@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        style="@style/SCREEN">
 
         <include
             layout="@layout/header"/>
@@ -22,7 +23,8 @@
             android:text="@string/recomedaciones_descp"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            style="@style/TEXT"/>
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
@@ -37,7 +39,8 @@
             android:layout_below="@+id/titulo"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            style="@style/TEXT"/>
 
         <RadioGroup
             android:id="@+id/rango_temperatura"
@@ -53,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnTempClicked"
-                android:text="@string/rango_temp_0" />
+                android:text="@string/rango_temp_0"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/rango1"
@@ -61,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnTempClicked"
-                android:text="@string/rango_temp_1" />
+                android:text="@string/rango_temp_1"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/rango2"
@@ -69,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnTempClicked"
-                android:text="@string/rango_temp_2" />
+                android:text="@string/rango_temp_2"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/rango3"
@@ -77,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnTempClicked"
-                android:text="@string/rango_temp_3" />
+                android:text="@string/rango_temp_3"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/rango4"
@@ -85,7 +92,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnTempClicked"
-                android:text="@string/rango_temp_4" />
+                android:text="@string/rango_temp_4"
+                style="@style/TEXT"/>
 
 
         </RadioGroup>
@@ -103,7 +111,8 @@
             android:layout_below="@+id/rango_temperatura"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            style="@style/TEXT"/>
 
         <RadioGroup
             android:id="@+id/opc_estaciones"
@@ -119,7 +128,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnEstacClicked"
-                android:text="@string/est_verano" />
+                android:text="@string/est_verano"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc_otono"
@@ -127,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnEstacClicked"
-                android:text="@string/est_otono" />
+                android:text="@string/est_otono"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc_invierno"
@@ -135,7 +146,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnEstacClicked"
-                android:text="@string/est_invierno" />
+                android:text="@string/est_invierno"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/opc_primavera"
@@ -143,7 +155,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnEstacClicked"
-                android:text="@string/est_primavera" />
+                android:text="@string/est_primavera"
+                style="@style/TEXT"/>
 
         </RadioGroup>
 
@@ -160,7 +173,8 @@
             android:layout_below="@+id/opc_estaciones"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            style="@style/TEXT"/>
 
 
         <RadioGroup
@@ -177,7 +191,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnRegClicked"
-                android:text="@string/reg_norte" />
+                android:text="@string/reg_norte"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/reg_centro"
@@ -185,7 +200,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:onClick="btnRegClicked"
-                android:text="@string/reg_centro" />
+                android:text="@string/reg_centro"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/reg_cuyo"
@@ -193,7 +209,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reg_cuyo"
                 android:minHeight="48dp"
-                android:onClick="btnRegClicked"/>
+                android:onClick="btnRegClicked"
+                style="@style/TEXT"/>
 
             <RadioButton
                 android:id="@+id/reg_patagonica"
@@ -201,7 +218,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reg_patagonica"
                 android:minHeight="48dp"
-                android:onClick="btnRegClicked"/>
+                android:onClick="btnRegClicked"
+                style="@style/TEXT"/>
 
         </RadioGroup>
 

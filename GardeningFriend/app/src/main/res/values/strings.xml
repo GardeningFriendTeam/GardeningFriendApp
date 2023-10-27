@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Gardening Friend</string>
+    <!-- seccion "registro" -->
     <string name="registro_username">Username</string>
     <string name="registro_email">Email</string>
     <string name="registro_password">Password</string>
     <string name="registro_btn">Registrarse</string>
     <string name="registro_text">Ya tienes una cuenta? Inicia Sesión.</string>
     <string name="imagen_registro">user logo</string>
+    <string name="registro_username_editText">Ingrese su username</string>
+    <string name="registro_email_editText">Ingrese su email</string>
+    <string name="registro_password_editText">Ingrese su contraseña</string>
 
     <!-- nombre secciones !-->
     <string name="menu">Menu</string>
@@ -14,9 +18,42 @@
     <string name="recomendaciones">Recomendaciones</string>
     <string name="contacto">Contacto</string>
     <string name="registro">Registro</string>
-    <string name="login"> Login / logout</string>
+    <string name="login"> Login</string>
     <string name="perfil">Perfil</string>
     <string name="panel_admin">Panel admin</string>
+
+    <!-- seccion "panel admin" !-->
+    <string name="cultivos"> cultivos </string>
+    <string name="usuarios"> usuarios </string>
+    <string name="desc_panel_admin">Clickea el area que deseas administrar: </string>
+    <string name="eliminar">eliminar</string>
+    <string name="editar">editar</string>
+    <string name="btn_cultivo">AÑADIR </string>
+
+    <string name="nombre_cultivo">Nombre del cultivo</string>
+    <string name="info_cultivo">Informacion</string>
+    <string name="imagen_cultivo">Imagen del cultivo (link imgur)</string>
+    <string name="crecimiento"> Tiempo hasta dar frutos </string>
+    <string name="temperatura_cultivo">Temperatura del cultivo</string>
+    <string name="estacion_cultivo">Estacion del cultivo</string>
+    <string name="region_cultivo">Region del cultivo</string>
+    <string name="tipo_cultivo">Tipo de cultivo</string>
+    <string name="hint_imagen">copia el link de la imagen (200x200px max)</string>
+    <string name="tiempo_crecimiento">Tiempo hasta germinar</string>
+    <string name="pop_up">Deseas eliminar este cultivo de la BD?</string>
+    <string name="pop_up_especificacion">Esta accion no puede deshacerse</string>
+    <string name="pop_up_eliminar">Eliminar cultivo</string>
+    <string name="pop_up_cancelar"> Cancelar </string>
+
+    <string name="btn_actualizar">Actualizar</string>
+    <string name="rol">rol</string>
+    <string name="cambiar_rol">Cambiar Rol</string>
+
+    <string name="datos_user">Datos usuario</string>
+    <string name="user">Usuario</string>
+    <string name="admin">Admin</string>
+    <string name="guardar_cambios">Guardar Cambios</string>
+
 
     <!-- seccion "recomendaciones" !-->
     <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>
@@ -49,11 +86,12 @@
     <string name="cultivo">cultivo</string>
     <string name="buscar_otro">Buscar otro</string>
 
-    <!-- seccion "inicio" !-->
-    <string name="bienvenido">
-        Bienvenido a GardeningFriend! aqui encontraras todo lo que necesitas para comenzar a cultivar!
-    </string>
 
+    <!-- seccion "favoritos" !-->
+    <string name="buscador_favs">Ingresa el nombre del cultivo</string>
+    <string name="informacion">Info</string>
+    <string name="eliminar_fav">Eliminar de fav</string>
+    <string name="favoritos">Favoritos</string>
 
     <!-- contiene info de prueba para generar cultivos !-->
     <string-array name="cultivos_nombres">
@@ -162,5 +200,86 @@
         deserunt mollit anim id est laborum."
     </string>
 
+    <!-- arrays para validaciones !-->
+    <string-array name="array_temp">
+        <item name="rango_temp_0">-0°C</item>
+        <item name="rango_temp_1">0°C - 10°C</item>
+        <item name="rango_temp_2">10°C - 20°C</item>
+        <item name="rango_temp_3">20°C - 30°C</item>
+        <item name="rango_temp_4">+30°C</item>
+    </string-array>
+
+    <string-array name="array_est">
+        <item name="est_verano">Verano</item>
+        <item name="est_otono">Otoño</item>
+        <item name="est_invierno">Invierno</item>
+        <item name="est_primavera">Primavera</item>
+    </string-array>
+
+    <string-array name="array_reg">
+        <item name="reg_norte">Norte</item>
+        <item name="reg_centro">Centro - Pampeana</item>
+        <item name="reg_cuyo">Cuyo</item>
+        <item name="reg_patagonica">Patagonica</item>
+    </string-array>
+
+    <!--  Perfil  -->
+    <string name="title_profile">Tu Perfil</string>
+    <string name="user_icon_profile">Icono de usuario</string>
+    <string name="username_profile">Username:</string>
+    <string name="your_name_profile">John Doe</string>
+    <string name="email_icon_profile">Icono de email</string>
+    <string name="email_profile">Email:</string>
+    <string name="your_email_profile">johndoe@example.com</string>
+    <string name="singout_profile">Cerrar Sesión</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="change_pass_profile">Cambiar Contraseña</string>
+    <string name="send_verify_profile">Enviar Verificación</string>
+    <string name="warning_email_profile">Warning, email sin verificar</string>
+    <string name="your_image_profile">Imagen de perfil</string>
+    <string name="btn_edit_profile">Editar</string>
+    <string name="edit_email_profile">Edita tu email</string>
+    <string name="edit_username_profile">Edita tu username</string>
+    <string name="edit_profile_title">Editar Perfil</string>
+
+    <!-- seccion "Notas" !-->
+    <string name="disable_note">Inicia sesión para utilizar esta función</string>
+    <string name="add_note_btn">Agrega una nota</string>
+    <string name="note_title">Mis Notas</string>
+    <string name="example_txt_content_note">Cotenido de la nota que puede ser muy muy largo</string>
+    <string name="time_example_note">El tiempo</string>
+    <string name="example_title_note">Titulo Nota</string>
+    <string name="show_password">Mostrar / ocultar contraseña</string>
+    <string name="edit_password">Edita tu contraseña</string>
+    <string name="title_registro">Regístrate para disfrutar de todas las funciones</string>
+    <string name="save_note">Guardar nota</string>
+    <string name="delete_note">Eliminar Nota</string>
+    <string name="note_content">Contenido de la nota</string>
+    <string name="note_title_note">Titulo</string>
+    <string name="title_details_note">Nueva Nota</string>
+    <string name="edit_note_mode">Editar nota</string>
+    <string name="changed_to">Notificación cambiada a las %s</string>
+    <string name="time_selected_is">Crea una alarma</string>
+    <string name="change_time">Establecer</string>
+    <string name="select_time">Selecciona la hora</string>
+    <string name="new_notification">Nueva notificación</string>
+
+    <!-- seccion "inicio" !-->
+    <string name="text_view_inicio_title">¡Bienvenido a Gardening Friend!</string>
+    <string name="text_view_inicio_sub_title">Tu aplicación para la jardinería</string>
+    <string name="text_view_inicio_funciones_principales">Funciones principales:</string>
+    <string name="text_view_inicio_title_enciclopedia">Enciclopedia:</string>
+    <string name="text_view_inicio_content_enciclopedia">Accede a información detallada sobre diversos cultivos y guarda tus favoritos.</string>
+    <string name="text_view_inicio_title_recomendaciones">Recomendaciones:</string>
+    <string name="text_view_inicio_content_recomendaciones">Encuentra cultivos recomendados según tus preferencias y necesidades.</string>
+    <string name="text_view_inicio_title_notas">Notas:</string>
+    <string name="text_view_inicio_content_notas">Crea y guarda notas sobre tus cultivos, y establece recordatorios.</string>
+    <string name="btn_inicio_register">Registrarse</string>
+    <string name="btn_inicio_login">Iniciar Sesión</string>
+    <string name="text_view_inicio_last_part">Inicia sesión o Registrate para acceder a todas las funcionalidades.</string>
+    <string name="text_view_login_title">¡Bienvenido de nuevo! Inicia sesión para continuar</string>
+    <string name="text_view_go_to_registro">¿Aún no tienes cuenta? Registrate</string>
+    <string name="text_view_change_password">¿Olvidaste tu contraseña?</string>
+    <string name="btn_login">Login</string>
 
 </resources>

@@ -1,7 +1,5 @@
 package com.maid.gardeningfriend;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -136,7 +134,7 @@ public class Recomendaciones extends MainActivity {
 
         // 2 - se crea un objeto parceable que contiene los valores que se pasaran
         // a la siguiente activity (RecomendacionesCultivos)
-        CultivosReco datosRecomendaciones = new CultivosReco(temperatura, estacion, region);
+        CultivosRecoParceable datosRecomendaciones = new CultivosRecoParceable(temperatura, estacion, region);
 
         // 3 - se pasa el objeto parceable
         intent.putExtra("datosReco", datosRecomendaciones);

@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,8 +22,33 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
-            android:name=".RecomendacionesDetalles"
+            android:name=".NoteDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".NoteActivity"/>
+        <activity
+            android:name=".NoteActivity"
             android:exported="false" />
+        <activity
+            android:name=".favoritos.FavoritosSeccion"
+            android:exported="false" />
+        <activity
+            android:name=".PanelAdminEditarUsuario"
+            android:exported="false" />
+        <activity
+            android:name=".PanelAdminUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".PanelAdminEditarCultivo"
+            android:exported="false" />
+        <activity
+            android:name=".PanelAdminAgregarCultivo"
+            android:exported="false" />
+        <activity
+            android:name=".PanelAdminCultivos"
+            android:exported="false" />
+        <activity
+            android:name=".RecomendacionesDetalles"
+            android:exported="true" />
         <activity
             android:name=".PanelAdmin"
             android:exported="false" />
@@ -27,6 +61,10 @@
         <activity
             android:name=".Perfil"
             android:exported="false" />
+        <activity
+            android:name=".EditarPerfilActivity"
+            android:exported="false"
+            android:parentActivityName=".Perfil"/>
         <activity
             android:name=".Login"
             android:exported="false" />
@@ -44,13 +82,15 @@
         </activity>
         <activity
             android:name=".RecomendacionesCultivos"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Recomendaciones"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+        <receiver android:name=".AlarmReceiver"/>
     </application>
 
 </manifest>

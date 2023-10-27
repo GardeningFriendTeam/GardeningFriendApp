@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PanelAdminEditarCultivo">
+
+    <RelativeLayout
+        android:id="@+id/main_container_PAC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SCREEN">
+
+        <RelativeLayout
+            android:id="@+id/container_ic_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@mipmap/header">
+
+            <!-- ICONO CULTIVO !-->
+            <ImageView
+                android:id="@+id/icono_cultivo_PA"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_aceituna"
+                android:layout_marginVertical="15dp"/>
+
+        </RelativeLayout>
+
+        <!-- TITULO !-->
+        <TextView
+            android:id="@+id/titulo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cultivo"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_below="@+id/container_ic_edit_cultivo"
+            android:layout_marginBottom="15dp"
+            android:textStyle="bold"
+            style="@style/TEXT"/>
+
+        <!-- NOMBRE !-->
+        <TextView
+            android:id="@+id/titulo_nombre_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_cultivo"
+            android:layout_below="@id/titulo_edit_cultivo"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+
+        <EditText
+            android:id="@+id/inputNombre_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/titulo_nombre_edit_cultivo"
+            android:hint="@string/nombre_cultivo"
+            android:layout_margin="20dp"
+            style="@style/TEXT"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_nombre"
+            android:layout_below="@id/inputNombre_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:dividerColor="@color/verde_medio"
+            android:layout_marginHorizontal="20dp"
+            style="@style/TEXT"/>
+
+        <!-- INFORMACION !-->
+        <TextView
+            android:id="@+id/titulo_info_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/info_cultivo"
+            android:layout_below="@id/divider_nombre"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/inputInfo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/titulo_info_edit_cultivo"
+            android:hint="@string/info_cultivo"
+            android:layout_margin="20dp"
+            style="@style/TEXT"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_info"
+            android:layout_below="@id/inputInfo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:dividerColor="@color/verde_medio"
+            android:layout_marginHorizontal="20dp"/>
+
+
+        <!-- TIPO !-->
+        <TextView
+            android:id="@+id/titulo_tipo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tipo_cultivo"
+            android:layout_below="@id/divider_info"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+
+        <EditText
+            android:id="@+id/inputTipo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/titulo_tipo_edit_cultivo"
+            android:hint="@string/tipo_cultivo"
+            android:layout_margin="20dp"
+            style="@style/TEXT"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_tipo"
+            android:layout_below="@id/inputTipo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:dividerColor="@color/verde_medio"
+            android:layout_marginHorizontal="20dp"/>
+
+
+        <!-- TIEMPO / CRECIMIENTO !-->
+        <TextView
+            android:id="@+id/titulo_tiempo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tiempo_crecimiento"
+            android:layout_below="@id/inputTipo_edit_cultivo"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/inputTiempo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/titulo_tiempo_edit_cultivo"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/tipo_cultivo"
+            style="@style/TEXT"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_tiempo"
+            android:layout_below="@id/inputTiempo_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:dividerColor="@color/verde_medio"
+            android:layout_marginHorizontal="20dp"/>
+
+        <!-- LINK IMAGEN !-->
+        <TextView
+            android:id="@+id/titulo_imagen_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/imagen_cultivo"
+            android:layout_below="@id/divider_tiempo"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+
+        <EditText
+            android:id="@+id/inputImagen_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/titulo_imagen_edit_cultivo"
+            android:hint="@string/imagen_cultivo"
+            android:layout_margin="20dp"
+            style="@style/TEXT"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_imagen"
+            android:layout_below="@id/inputImagen_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:dividerColor="@color/verde_medio"
+            android:layout_marginHorizontal="20dp"/>
+
+        <!-- TEMPERATURA !-->
+        <TextView
+            android:id="@+id/titulo_temp_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/temperatura_cultivo"
+            android:layout_below="@id/divider_imagen"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+        <RadioGroup
+            android:id="@+id/opciones_temp_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titulo_temp_edit_cultivo"
+            android:paddingLeft="20dp">
+
+            <RadioButton
+                android:id="@+id/opc1_temp_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/rango_temp_0"
+                android:onClick="extraerTempSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc2_temp_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/rango_temp_1"
+                android:onClick="extraerTempSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc3_temp_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/rango_temp_2"
+                android:onClick="extraerTempSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc4_temp_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/rango_temp_3"
+                android:onClick="extraerTempSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc5_temp_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/rango_temp_4"
+                android:onClick="extraerTempSelec"
+                style="@style/TEXT"/>
+
+        </RadioGroup>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_temp"
+            android:layout_below="@id/opciones_temp_edit"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:dividerColor="@color/verde_medio"
+            android:layout_marginHorizontal="20dp" />
+
+        <!-- ESTACION !-->
+        <TextView
+            android:id="@+id/titulo_est_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/estacion_cultivo"
+            android:layout_below="@id/divider_temp"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+        <RadioGroup
+            android:id="@+id/opciones_est_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titulo_est_edit_cultivo"
+            android:paddingLeft="20dp">
+
+            <RadioButton
+                android:id="@+id/opc1_est_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/est_verano"
+                android:onClick="extraerEstSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc2_est_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/est_otono"
+                android:onClick="extraerEstSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc3_est_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/est_invierno"
+                android:onClick="extraerEstSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc4_est_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/est_primavera"
+                android:onClick="extraerEstSelec"
+                style="@style/TEXT"/>
+
+        </RadioGroup>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_est"
+            android:layout_below="@id/opciones_est_edit"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:dividerColor="@color/verde_medio"
+            android:layout_marginHorizontal="20dp"/>
+
+
+        <!-- REGION !-->
+        <TextView
+            android:id="@+id/titulo_reg_edit_cultivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/region_cultivo"
+            android:layout_below="@id/divider_est"
+            android:textStyle="italic | bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"/>
+
+        <RadioGroup
+            android:id="@+id/opciones_reg_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titulo_reg_edit_cultivo"
+            android:paddingLeft="20dp">
+
+            <RadioButton
+                android:id="@+id/opc1_reg_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/reg_norte"
+                android:onClick="extraerRegSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc2_reg_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/reg_centro"
+                android:onClick="extraerRegSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc3_reg_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:text="@string/reg_cuyo"
+                android:onClick="extraerRegSelec"
+                style="@style/TEXT"/>
+
+            <RadioButton
+                android:id="@+id/opc4_reg_PAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reg_patagonica"
+                android:layout_marginVertical="10dp"
+                android:onClick="extraerRegSelec"
+                style="@style/TEXT"/>
+
+        </RadioGroup>
+
+        <!-- BTN ACTUALIZAR !-->
+        <Button
+            android:id="@+id/btn_actualizar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/opciones_reg_edit"
+            android:text="@string/btn_actualizar"
+            android:textSize="17sp"
+            android:background="@drawable/btn_verde"
+            android:textColor="@color/white"
+            android:paddingVertical="10dp"
+            android:layout_margin="25dp"
+            android:layout_centerHorizontal="true"
+            android:onClick="validarFormulario"/>
+
+
+    </RelativeLayout>
+
+</ScrollView>

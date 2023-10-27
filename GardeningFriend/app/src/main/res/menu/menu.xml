@@ -19,6 +19,11 @@
         android:icon="@drawable/ic_recomendaciones"/>
 
     <item
+        android:id="@+id/favoritos"
+        android:title="@string/favoritos"
+        android:icon="@drawable/ic_favs"/>
+
+    <item
         android:id="@+id/registro"
         android:title="@string/registro"
         android:icon="@drawable/ic_registro"/>
@@ -41,6 +46,16 @@
     <item
         android:id="@+id/panel_admin"
         android:title="@string/panel_admin"
+        android:icon="@drawable/ic_admin"/>
+
+    <item
+        android:id="@+id/mis_notas"
+        android:title="Mis Notas"
+        android:icon="@drawable/ic_admin"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
         android:icon="@drawable/ic_admin"/>
 
 

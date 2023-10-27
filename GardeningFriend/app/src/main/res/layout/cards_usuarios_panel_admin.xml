@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="20dp"
+    android:background="@drawable/card_cutlivo"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp">
+
+    <RelativeLayout
+        android:id="@+id/container_icon"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_cutlivo"
+        android:backgroundTint="@color/verde_oscuro">
+
+        <ImageView
+            android:id="@+id/ic_usuario"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_user02"
+            android:contentDescription="@string/logo"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/nombre_user"
+        android:layout_toEndOf="@+id/container_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usuarios"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/rol_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombre_user"
+        android:layout_toEndOf="@id/container_icon"
+        android:text="@string/rol"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_eliminar_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/container_icon"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_verde"
+        android:backgroundTint="@color/verde_oscuro"
+        android:minHeight="48dp"
+        android:text="@string/eliminar"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="15dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_cambiar_rol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn_eliminar_user"
+        android:background="@drawable/btn_verde"
+        android:backgroundTint="@color/verde_oscuro"
+        android:minHeight="48dp"
+        android:text="@string/cambiar_rol"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:paddingHorizontal="20dp"/>
+
+
+</RelativeLayout>

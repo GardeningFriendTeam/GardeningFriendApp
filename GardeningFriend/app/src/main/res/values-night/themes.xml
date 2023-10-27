@@ -1,7 +1,123 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.GardeningFriend" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.GardeningFriend" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/verde_oscuro</item>
+        <item name="colorPrimaryVariant">@color/verde_muy_oscuro</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/light_green</item>
+        <item name="colorSecondaryVariant">@color/kelly_green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
+
+    <!--  Dark Mode  -->
+    <!--  Screen background dark mode  -->
+    <style name="SCREEN">
+        <item name="android:background">#232323</item>
+    </style>
+    <!--  Texts background dark mode  -->
+    <style name="TEXT">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <!--  editText background light mode  -->
+    <style name="EDIT_TEXT">
+        <item name="android:textColorHint">#D2FFFFFF</item>
+    </style>
+    <!--  button background dark mode  -->
+    <style name="BUTTON">
+        <item name="android:background">@color/verde_oscuro</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <!--  image registro dark mode  -->
+    <style name="IMGREG">
+        <item name="android:src">@drawable/ic_dark_user01</item>
+    </style>
+
+    <!--  icon username dark mode  -->
+    <style name="USERPROFILE">
+        <item name="drawableLeftCompat">@drawable/ic_person_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  icon email dark mode  -->
+    <style name="EMAILPROFILE">
+        <item name="drawableLeftCompat">@drawable/ic_email_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  add note btn dark mode  -->
+    <style name="ADDNOTEBTN">
+        <item name="android:backgroundTint">@color/verde_oscuro</item>
+        <item name="android:src">@drawable/ic_add_dark</item>
+    </style>
+
+    <!--  card note dark mode  -->
+    <style name="CARDNOTE">
+        <item name="android:backgroundTint">@color/verde_oscuro</item>
+        <item name="android:background">@drawable/rounded_card</item>
+    </style>
+
+    <!--  editText email perfil background dark mode  -->
+    <style name="EDITEMAIL">
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:drawableEnd">@drawable/ic_lock_dark</item>
+        <item name="android:drawableStart">@drawable/ic_email_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText username perfil background dark mode  -->
+    <style name="ICONUSEREDIT">
+        <item name="android:textColorHint">@color/edit_dark</item>
+        <item name="android:drawableStart">@drawable/ic_person_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background dark mode  -->
+    <style name="ICONPASSEDIT">
+        <item name="android:textColorHint">@color/edit_dark</item>
+        <item name="android:drawableStart">@drawable/ic_key_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  email light mode  -->
+    <style name="ICOMEMAIL">
+        <item name="android:textColorHint">@color/edit_dark</item>
+        <item name="android:drawableStart">@drawable/ic_email_dark</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <!--  editText passowrd perfil background dark mode  -->
+    <style name="PASSEYE">
+        <item name="android:src">@drawable/ic_eye_dark</item>
+    </style>
+
+    <!--  icon email dark mode  -->
+    <style name="INICIOEMAIL">
+        <item name="drawableLeftCompat">@drawable/ic_email_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  icon phone dark mode  -->
+    <style name="INICIOPHONE">
+        <item name="drawableLeftCompat">@drawable/ic_phone_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  icon location dark mode  -->
+    <style name="INICIOLOCATION">
+        <item name="drawableLeftCompat">@drawable/ic_location_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--  image github dark mode  -->
+    <style name="IMGGITHUB">
+        <item name="android:src">@drawable/ic_github_dark</item>
+    </style>
+
+
+    <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>
