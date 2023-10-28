@@ -1,6 +1,8 @@
 # Enlaces a la documentación y los videos
 Proyecto integrador II - Aplicación Móvil sobre cultivos
 
+- [Link al video](https://drive.google.com/file/d/1WAjETE45zziwWe28r9_8UTiBOua7STOb/view?usp=drivesdk) presentación de la App Gardening Friend
+
 - [Link al video](https://drive.google.com/file/d/1VIjhpI_Nku6v8bwuDAyCcFKDJtdoajDQ/view?usp=drive_link) sobre accesibilidad de la App.
 
 - [Link al video](https://drive.google.com/file/d/1sjodT6R2mdePSmKMmSdzwP4XeugKVAAr/view?usp=sharing) de explicación técnica del código.
