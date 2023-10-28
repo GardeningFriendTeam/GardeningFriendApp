@@ -1,11 +1,9 @@
 # Enlaces a la documentación y los videos
 Proyecto integrador II - Aplicación Móvil sobre cultivos
 
-- [Link al video](https://drive.google.com/file/d/1sjodT6R2mdePSmKMmSdzwP4XeugKVAAr/view?usp=sharing) de explicación técnica del código.
-
 - [Link al video](https://drive.google.com/file/d/1VIjhpI_Nku6v8bwuDAyCcFKDJtdoajDQ/view?usp=drive_link) sobre accesibilidad de la App.
 
-- [Link al video](https://www.loom.com/share/63aee668fad04bf1b2edbf2062ae7fef?sid=927b5baf-ef01-4d7b-8d30-3b3c88620c2e) que muestra la navegación.
+- [Link al video](https://drive.google.com/file/d/1sjodT6R2mdePSmKMmSdzwP4XeugKVAAr/view?usp=sharing) de explicación técnica del código.
   
 - [Link a la documentación IEEE-830](https://docs.google.com/document/d/1lRg-yKvwBIguV8TajI58RLuEXQpCmc4c/edit?usp=drive_link&ouid=116033859405214608468&rtpof=true&sd=true) actualizada con las normas APA.
   - (en la sección "anexo" cerca del final del doc esta el esquema que detalla la navegabilidad y el diseño de la IU )
