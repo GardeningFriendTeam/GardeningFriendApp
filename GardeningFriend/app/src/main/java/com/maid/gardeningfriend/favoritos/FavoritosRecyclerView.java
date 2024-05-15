@@ -1,7 +1,6 @@
 package com.maid.gardeningfriend.favoritos;
 
 import android.content.Context;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.maid.gardeningfriend.CultivosGenerador;
+import com.maid.gardeningfriend.recomendaciones.CultivosGenerador;
 import com.maid.gardeningfriend.R;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

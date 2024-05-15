@@ -22,57 +22,57 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
-            android:name=".NoteDetailsActivity"
+            android:name=".notas.NoteDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".NoteActivity"/>
+            android:parentActivityName=".notas.NoteActivity"/>
         <activity
-            android:name=".NoteActivity"
+            android:name=".notas.NoteActivity"
             android:exported="false" />
         <activity
             android:name=".favoritos.FavoritosSeccion"
             android:exported="false" />
         <activity
-            android:name=".PanelAdminEditarUsuario"
+            android:name=".panelAdmin.PanelAdminEditarUsuario"
             android:exported="false" />
         <activity
-            android:name=".PanelAdminUsuarios"
+            android:name=".panelAdmin.PanelAdminUsuarios"
             android:exported="false" />
         <activity
-            android:name=".PanelAdminEditarCultivo"
+            android:name=".panelAdmin.PanelAdminEditarCultivo"
             android:exported="false" />
         <activity
-            android:name=".PanelAdminAgregarCultivo"
+            android:name=".panelAdmin.PanelAdminAgregarCultivo"
             android:exported="false" />
         <activity
-            android:name=".PanelAdminCultivos"
+            android:name=".panelAdmin.PanelAdminCultivos"
             android:exported="false" />
         <activity
-            android:name=".RecomendacionesDetalles"
+            android:name=".recomendaciones.RecomendacionesDetalles"
             android:exported="true" />
         <activity
-            android:name=".PanelAdmin"
+            android:name=".panelAdmin.PanelAdmin"
             android:exported="false" />
         <activity
-            android:name=".RegistroActivity"
+            android:name=".registro.RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".ContactoSeccion"
+            android:name=".contacto.ContactoSeccion"
             android:exported="false" />
         <activity
-            android:name=".Perfil"
+            android:name=".perfil.Perfil"
             android:exported="false" />
         <activity
-            android:name=".EditarPerfilActivity"
+            android:name=".perfil.EditarPerfilActivity"
             android:exported="false"
-            android:parentActivityName=".Perfil"/>
+            android:parentActivityName=".perfil.Perfil"/>
         <activity
-            android:name=".Login"
+            android:name=".login.Login"
             android:exported="false" />
         <activity
-            android:name=".Enciclopedia"
+            android:name=".enciclopedia.Enciclopedia"
             android:exported="false" />
         <activity
-            android:name=".Inicio"
+            android:name=".inicio.Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,16 +81,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RecomendacionesCultivos"
+            android:name=".recomendaciones.RecomendacionesCultivos"
             android:exported="true" />
         <activity
-            android:name=".Recomendaciones"
+            android:name=".recomendaciones.Recomendaciones"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
 
-        <receiver android:name=".AlarmReceiver"/>
+        <receiver android:name=".recursosVarios.AlarmReceiver"/>
     </application>
 
 </manifest>

@@ -14,7 +14,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.maid.gardeningfriend.contacto.ContactoSeccion;
+import com.maid.gardeningfriend.enciclopedia.Enciclopedia;
 import com.maid.gardeningfriend.favoritos.FavoritosSeccion;
+import com.maid.gardeningfriend.inicio.Inicio;
+import com.maid.gardeningfriend.login.Login;
+import com.maid.gardeningfriend.notas.NoteActivity;
+import com.maid.gardeningfriend.panelAdmin.PanelAdmin;
+import com.maid.gardeningfriend.perfil.Perfil;
+import com.maid.gardeningfriend.recomendaciones.Recomendaciones;
+import com.maid.gardeningfriend.registro.RegistroActivity;
 
 /**
  * Contiene la logica / funcion para implementar el menu

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/madera2"
     android:padding="16dp"
-    tools:context=".Login">
+    tools:context=".login.Login">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -7,7 +7,7 @@
     android:padding="16dp"
     app:flow_verticalAlign="center"
     android:background="@mipmap/madera2"
-    tools:context=".Perfil">
+    tools:context=".perfil.Perfil">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -8,7 +8,7 @@
     android:padding="16dp"
     app:flow_verticalAlign="center"
     android:background="@mipmap/madera2"
-    tools:context=".Inicio">
+    tools:context=".inicio.Inicio">
 
     <RelativeLayout
         android:layout_width="match_parent"

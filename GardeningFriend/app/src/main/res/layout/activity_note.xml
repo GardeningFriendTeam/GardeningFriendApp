@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@mipmap/madera2"
-    tools:context=".NoteActivity">
+    tools:context=".notas.NoteActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

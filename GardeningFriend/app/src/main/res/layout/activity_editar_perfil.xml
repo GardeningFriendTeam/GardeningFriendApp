@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     style="@style/SCREEN"
-    tools:context=".EditarPerfilActivity">
+    tools:context=".perfil.EditarPerfilActivity">
 
     <TextView
         android:id="@+id/titleEditProfile"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     style="@style/SCREEN"
     android:layout_height="match_parent"
-    tools:context=".NoteDetailsActivity">
+    tools:context=".notas.NoteDetailsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

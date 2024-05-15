@@ -17,22 +17,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.maid.gardeningfriend.CultivosDetallesParceable;
-import com.maid.gardeningfriend.CultivosGenerador;
-import com.maid.gardeningfriend.Login;
+import com.maid.gardeningfriend.panelAdmin.CultivosDetallesParceable;
+import com.maid.gardeningfriend.recomendaciones.CultivosGenerador;
+import com.maid.gardeningfriend.login.Login;
 import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
-import com.maid.gardeningfriend.RecomendacionesDetalles;
-
-import org.checkerframework.checker.units.qual.C;
+import com.maid.gardeningfriend.recomendaciones.RecomendacionesDetalles;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
