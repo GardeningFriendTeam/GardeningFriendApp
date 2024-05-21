@@ -67,13 +67,10 @@
         <Button
             android:id="@+id/btn_subir_img"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_margin="20dp"
             android:layout_below="@id/tu_foto_ia"
             android:text="@string/btn_subir_img"/>
-
-
-
 
     </RelativeLayout>
 
