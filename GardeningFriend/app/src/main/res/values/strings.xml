@@ -21,6 +21,7 @@
     <string name="login"> Login</string>
     <string name="perfil">Perfil</string>
     <string name="panel_admin">Panel admin</string>
+    <string name="asistente_ia">Asistente IA</string>
 
     <!-- seccion "panel admin" !-->
     <string name="cultivos"> cultivos </string>

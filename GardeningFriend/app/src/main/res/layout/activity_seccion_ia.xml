@@ -26,12 +26,12 @@
             android:id="@+id/intro_seccion_ia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_margin="14dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
             android:layout_below="@+id/robot_icon"
-            android:text="@string/intro_seccion_ia"/>
+            android:layout_margin="14dp"
+            android:padding="5dp"
+            android:text="@string/intro_seccion_ia"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/ic_picture"
