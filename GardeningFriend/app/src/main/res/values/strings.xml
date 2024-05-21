@@ -282,4 +282,12 @@
     <string name="text_view_change_password">¿Olvidaste tu contraseña?</string>
     <string name="btn_login">Login</string>
 
+    <!-- seccion IA !-->
+    <string name="robot_icon">Robot Icon</string>
+    <string name="intro_seccion_ia">Aqui podrás subir una foto de una planta o cultivo y nuestra IA se encargara de identificarla</string>
+    <string name="img_upload">Imagen Subida</string>
+    <string name="img_display">Tu foto se mostrara aqui</string>
+    <string name="ai_response">Respuesta IA</string>
+    <string name="btn_subir_img">Subir foto</string>
+
 </resources>

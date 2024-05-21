@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
@@ -22,9 +22,12 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
+            android:name=".seccionIA.ActivitySeccionIA"
+            android:exported="false" />
+        <activity
             android:name=".notas.NoteDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".notas.NoteActivity"/>
+            android:parentActivityName=".notas.NoteActivity" />
         <activity
             android:name=".notas.NoteActivity"
             android:exported="false" />
@@ -64,7 +67,7 @@
         <activity
             android:name=".perfil.EditarPerfilActivity"
             android:exported="false"
-            android:parentActivityName=".perfil.Perfil"/>
+            android:parentActivityName=".perfil.Perfil" />
         <activity
             android:name=".login.Login"
             android:exported="false" />
@@ -90,7 +93,7 @@
             android:name=".MainActivity"
             android:exported="true" />
 
-        <receiver android:name=".recursosVarios.AlarmReceiver"/>
+        <receiver android:name=".recursosVarios.AlarmReceiver" />
     </application>
 
 </manifest>
