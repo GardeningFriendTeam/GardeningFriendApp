@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".seccionIA.ActivitySeccionIA">
+    tools:context=".seccionIA.ActivityAsistenteIA">
 
     <RelativeLayout
         android:id="@+id/seccion_ia_container"
@@ -42,35 +42,55 @@
             android:layout_margin="10dp"
             android:layout_below="@id/intro_seccion_ia"
             android:src="@drawable/ic_picture"/>
-        
+
         <TextView
             android:id="@+id/tu_foto_ia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/img_display"
             android:layout_below="@id/ic_picture"
+            android:layout_marginBottom="10dp"
             android:textAlignment="center"/>
-
-        <TextView
-            android:id="@+id/ia_response"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ai_response"
-            android:layout_below="@+id/btn_subir_img"
-            android:layout_margin="15dp"
-            android:textAlignment="center"
-            android:background="@color/cardview_light_background"
-            android:paddingVertical="50dp"
-            android:paddingHorizontal="16dp"/>
 
 
         <Button
             android:id="@+id/btn_subir_img"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
+            android:layout_height="60dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_below="@id/tu_foto_ia"
             android:text="@string/btn_subir_img"/>
+
+        <Button
+            android:id="@+id/btn_eliminar_img"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/btn_subir_img"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:text="@string/btn_eliminar_img" />
+
+        <TextView
+            android:id="@+id/ia_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_eliminar_img"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/cardview_light_background"
+            android:padding="30dp"
+            android:text="@string/ai_response"/>
+        
+        <TextView
+            android:id="@+id/footer_seccion_ia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/gardening_friend"
+            android:layout_below="@id/ia_response"
+            android:layout_marginBottom="10dp"/>
+
 
     </RelativeLayout>
 

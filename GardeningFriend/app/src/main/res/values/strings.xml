@@ -288,7 +288,9 @@
     <string name="intro_seccion_ia">Aqui podrás subir una foto de una planta o cultivo y nuestra IA se encargara de identificarla</string>
     <string name="img_upload">Imagen Subida</string>
     <string name="img_display">Tu foto se mostrara aqui</string>
-    <string name="ai_response">Respuesta IA</string>
+    <string name="ai_response">Respuesta IA (puede demorar unos segundos)</string>
     <string name="btn_subir_img">Subir foto</string>
+    <string name="btn_eliminar_img">Eliminar foto</string>
+    <string name="gardening_friend">Gardening Friend ©</string>
 
 </resources>
