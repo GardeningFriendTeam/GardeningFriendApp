@@ -4,13 +4,17 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.maid.gardeningfriend.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +34,8 @@ class ActivityAsistenteIA : AppCompatActivity() {
     private var imageUpload : Bitmap? = null
     private var geminiProVision: GenerativeModel? = null
     private var messagePrompt: String? = null
+    private var geminiResponse: String? = null
+    private var buttonAddToFavs: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,7 @@ class ActivityAsistenteIA : AppCompatActivity() {
         buttonUpload = findViewById(R.id.btn_subir_img)
         textViewResponseIA = findViewById(R.id.ia_response)
         buttonDelete = findViewById(R.id.btn_eliminar_img)
+        buttonAddToFavs = findViewById(R.id.btn_favs_ai)
 
         // adding function to btn upload
         buttonUpload!!.setOnClickListener(View.OnClickListener { v: View? -> openGallery() })
@@ -47,12 +54,15 @@ class ActivityAsistenteIA : AppCompatActivity() {
         // adding function to delete image
         buttonDelete!!.setOnClickListener { v: View? -> deletePhoto() }
 
+        // adding function to add to fav btn
+        buttonAddToFavs!!.setOnClickListener { v: View? -> addNewFav()}
+
         // defining LLM
         //TODO: hide apykey for security reasons!
         geminiProVision = GenerativeModel("gemini-pro-vision", "AIzaSyACRZhR_TnmticRhpOolXD00TVILiXhh_8")
 
         // defining prompt
-        messagePrompt = "puedes identificar que planta o cultivo es?"
+        messagePrompt = "puedes identificar que planta o cultivo es? ademas, dime sus principales caracteristicas"
     }
 
     /**
@@ -120,11 +130,57 @@ class ActivityAsistenteIA : AppCompatActivity() {
                 // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
                     textViewResponseIA?.text = feedback.text.toString()
+                    geminiResponse = feedback.text.toString()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
+    }
+
+    /**
+     * adds the AI response to a firebase collection "respuestasIA"
+     */
+    fun addNewFav(){
+        // instanciating firebase
+        val db = FirebaseFirestore.getInstance()
+        val collection = db.collection("respuestasIA")
+
+        // extracting user's info
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val userEmail = if (user != null) user.email else ""
+
+        // creating document object
+        val fav = FavRespuestaIA(
+            userEmail = userEmail.toString(),
+            texto = geminiResponse.toString()
+        )
+
+        // toast messages
+        val toastOK = Toast.makeText(
+            applicationContext,
+            "tu respuesta se ha agregado a favs!",
+            Toast.LENGTH_SHORT)
+
+        val toastError = Toast.makeText(
+            applicationContext,
+            "no se ha podido agregar a fav!",
+            Toast.LENGTH_SHORT
+        )
+
+        // executing add request
+        collection
+            .add(fav)
+            .addOnCompleteListener { task ->
+                // handling results
+                if (task.isSuccessful){
+                    toastOK.show()
+                } else {
+                    toastError.show()
+                    Log.e("AI_FAVS", "ERROR ADDING DOC", task.exception)
+                }
+            }
     }
 
 }

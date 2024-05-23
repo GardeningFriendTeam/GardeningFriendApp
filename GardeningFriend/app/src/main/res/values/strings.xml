@@ -292,5 +292,7 @@
     <string name="btn_subir_img">Subir foto</string>
     <string name="btn_eliminar_img">Eliminar foto</string>
     <string name="gardening_friend">Gardening Friend ©</string>
+    <string name="btn_add_fav">★ GUARDAR FAV</string>
+    <string name="section_ia_favs_btn">Ver Respuestas Favoritas</string>
 
 </resources>
