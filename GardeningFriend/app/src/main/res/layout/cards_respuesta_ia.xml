@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fav_container_main"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_margin="20dp"
+    android:background="@drawable/card_cutlivo"
+    android:elevation="10dp"
+    tools:ignore="TextSizeCheck">
+
+    <ImageView
+        android:id="@+id/ic_card_fav_ia"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_plant"
+        android:layout_marginVertical="35dp"
+        android:layout_marginHorizontal="20dp"/>
+
+    <TextView
+        android:id="@+id/titulo_card_fav_ia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="titulo"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_toEndOf="@+id/ic_card_fav_ia"
+        android:layout_marginVertical="10dp"/>
+
+    <Button
+        android:id="@+id/open_card_fav_ia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_card_fav_ia"
+        android:layout_toEndOf="@id/ic_card_fav_ia"
+        android:backgroundTint="@color/verde_oscuro"
+        android:text="@string/btn_open_card_response"/>
+
+    <Button
+        android:id="@+id/delete_card_fav_ia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_card_fav_ia"
+        android:layout_toEndOf="@id/open_card_fav_ia"
+        android:backgroundTint="@color/verde_oscuro"
+        android:text="@string/btn_delete_card_response"
+        android:layout_marginStart="14dp"/>
+
+</RelativeLayout>

@@ -294,5 +294,7 @@
     <string name="gardening_friend">Gardening Friend ©</string>
     <string name="btn_add_fav">★ GUARDAR FAV</string>
     <string name="section_ia_favs_btn">Ver Respuestas Favoritas</string>
+    <string name="btn_open_card_response">ABRIR</string>
+    <string name="btn_delete_card_response">ELIMINAR</string>
 
 </resources>
