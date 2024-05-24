@@ -1,5 +1,6 @@
 package com.maid.gardeningfriend.seccionIA
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -18,6 +19,18 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
 
     // state which contains all the fetched documents
     var favs = ArrayList<ModelRespuestaIA>()
+
+    // toast messages
+    val toastError = Toast.makeText(
+        applicationContext,
+        "no se ha podido completar la operacion",
+        Toast.LENGTH_SHORT)
+
+    val toastSuccess = Toast.makeText(
+        applicationContext,
+        "operacion completada!",
+        Toast.LENGTH_SHORT
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,12 +91,42 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
         recyclerAdmin.layoutManager = LinearLayoutManager(this)
     }
 
+    /**
+     * deletes the card from the state and also the DB
+     */
     override fun eliminarBtn(position: Int) {
-        TODO("Not yet implemented")
+        // identifying selected card
+        val selectedCard = favs.get(position)
+
+        // instantiating firebase and identifying document
+        val db = FirebaseFirestore.getInstance()
+        val collection = db.collection("respuestasIA")
+        val document = collection.document(selectedCard.id)
+
+        // removing from firebase
+        document
+            .delete()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    toastSuccess.show()
+                } else {
+                    toastError.show()
+                    Log.e("DELETE_IA_CARD", "ERROR REQUEST", task.exception)
+                }
+            }
+
+        // remocing locally
+        favs.remove(selectedCard)
     }
 
     override fun abrirBtn(position: Int) {
-        TODO("Not yet implemented")
+        // identifying selected card
+        val selectedCard = favs.get(position)
+        // defining intent to open new activity
+        val intent = Intent(applicationContext,ActivityShowResponse::class.java)
+        intent.putExtra("CARD_IA_SELECTED", selectedCard)
+        // starting new activity
+        startActivity(intent)
     }
 
 }

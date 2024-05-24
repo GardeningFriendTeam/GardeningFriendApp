@@ -22,13 +22,10 @@ class AdapterAsistenteIA
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // regex to select just the fist word
-        val regex = Regex("^((\\S+\\s+){2}\\S+)")
-        // asigna un index a cada elem
-        // y extrae las propiedades de cada objeto del cultivo
-        val text = regex.find(respuestas[position].texto)
-        val words = text?.value
-        holder.titulo.text = words.toString()
+        // selecting just the first 3 words for the title
+        val text = respuestas[position].texto.split("").take(3).joinToString("")
+        // assigning value to title
+        holder.titulo.text = text
 
     }
 
@@ -55,7 +52,7 @@ class AdapterAsistenteIA
             //permite identificar sobre que tarjeta se clickeo el botonC
             btnEliminar.setOnClickListener(View.OnClickListener {
                 // si no es nulo se obtiene la posicion (index) de la tarjeta
-                val pos = adapterPosition
+                val pos = getBindingAdapterPosition()
                 if (pos != RecyclerView.NO_POSITION) {
                     interfaceAsistenteIA.eliminarBtn(pos)
                 }
@@ -65,7 +62,7 @@ class AdapterAsistenteIA
             //permite identificar sobre que tarjeta se clickeo el boton
             btnAbrir.setOnClickListener(View.OnClickListener {
                 // si no es nulo se obtiene la posicion (index) de la tarjeta
-                val pos = adapterPosition
+                val pos = getBindingAdapterPosition()
                 if (pos != RecyclerView.NO_POSITION) {
                     interfaceAsistenteIA.abrirBtn(pos)
                 }

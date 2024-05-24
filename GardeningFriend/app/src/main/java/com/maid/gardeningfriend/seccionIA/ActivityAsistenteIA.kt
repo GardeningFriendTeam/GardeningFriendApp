@@ -51,7 +51,7 @@ class ActivityAsistenteIA : AppCompatActivity() {
         buttonDisplayFavs = findViewById(R.id.btn_open_favs_section_ia)
 
         // adding function to btn upload
-        buttonUpload!!.setOnClickListener(View.OnClickListener { v: View? -> openGallery() })
+        buttonUpload!!.setOnClickListener{ v: View? -> openGallery() }
 
         // adding function to delete image
         buttonDelete!!.setOnClickListener { v: View? -> deletePhoto() }
@@ -151,21 +151,6 @@ class ActivityAsistenteIA : AppCompatActivity() {
      * adds the AI response to a firebase collection "respuestasIA"
      */
     fun addNewFav(){
-        // instanciating firebase
-        val db = FirebaseFirestore.getInstance()
-        val collection = db.collection("respuestasIA")
-
-        // extracting user's info
-        val auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-        val userEmail = if (user != null) user.email else ""
-
-        // creating document object
-        val fav = ModelRespuestaIA(
-            userEmail = userEmail.toString(),
-            texto = geminiResponse.toString()
-        )
-
         // toast messages
         val toastOK = Toast.makeText(
             applicationContext,
@@ -176,6 +161,32 @@ class ActivityAsistenteIA : AppCompatActivity() {
             applicationContext,
             "no se ha podido agregar a fav!",
             Toast.LENGTH_SHORT
+        )
+
+        val toastLoginFirst = Toast.makeText(
+            applicationContext,
+            "debes loguearte para acceder a esta funcionalidad!",
+            Toast.LENGTH_SHORT
+        )
+
+        // instanciating firebase
+        val db = FirebaseFirestore.getInstance()
+        val collection = db.collection("respuestasIA")
+
+        // extracting user's info
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val userEmail = if (user != null){
+            user.email.toString()
+        } else {
+            toastLoginFirst.show()
+            return
+        }
+
+        // creating document object
+        val fav = ModelRespuestaIA(
+            userEmail = userEmail.toString(),
+            texto = geminiResponse.toString()
         )
 
         // executing add request
