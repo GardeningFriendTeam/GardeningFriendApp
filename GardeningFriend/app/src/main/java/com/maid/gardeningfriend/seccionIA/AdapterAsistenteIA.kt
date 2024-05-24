@@ -22,10 +22,17 @@ class AdapterAsistenteIA
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // selecting just the first 3 words for the title
-        val text = respuestas[position].texto.split("").take(3).joinToString("")
+        // base text
+        val text = respuestas[position].texto
+
+        // splitting text
+        val words = text.split(" ")
+
+        // Take the first 5 words from the list of words
+        val firstSixWords = words.take(6)
+
         // assigning value to title
-        holder.titulo.text = text
+        holder.titulo.text = firstSixWords.toString()
 
     }
 
@@ -57,7 +64,6 @@ class AdapterAsistenteIA
                     interfaceAsistenteIA.eliminarBtn(pos)
                 }
             })
-
 
             //permite identificar sobre que tarjeta se clickeo el boton
             btnAbrir.setOnClickListener(View.OnClickListener {

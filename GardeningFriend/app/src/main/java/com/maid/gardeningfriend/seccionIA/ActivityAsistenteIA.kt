@@ -60,9 +60,9 @@ class ActivityAsistenteIA : AppCompatActivity() {
         buttonAddToFavs!!.setOnClickListener { v: View? -> addNewFav()}
 
         // adding function to display fav responses
-        buttonDisplayFavs?.setOnClickListener {
+        buttonDisplayFavs!!.setOnClickListener {
             Log.i("OPEN_AI_FAVS", "ACTIVITY OPEN")
-            val intent = Intent(applicationContext, ActivityDisplayFavs::class.java)
+            val intent = Intent(this, ActivityDisplayFavs::class.java)
             startActivity(intent)
         }
 

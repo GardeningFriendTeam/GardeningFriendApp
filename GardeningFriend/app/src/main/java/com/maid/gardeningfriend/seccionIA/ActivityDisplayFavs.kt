@@ -20,19 +20,7 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
     // state which contains all the fetched documents
     var favs = ArrayList<ModelRespuestaIA>()
 
-    // toast messages
-    val toastError = Toast.makeText(
-        applicationContext,
-        "no se ha podido completar la operacion",
-        Toast.LENGTH_SHORT)
-
-    val toastSuccess = Toast.makeText(
-        applicationContext,
-        "operacion completada!",
-        Toast.LENGTH_SHORT
-    )
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_favs)
         // calling fetch request
@@ -95,6 +83,18 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
      * deletes the card from the state and also the DB
      */
     override fun eliminarBtn(position: Int) {
+        // defining toast messages
+        val toastError = Toast.makeText(
+            applicationContext,
+            "no se ha podido completar la operacion",
+            Toast.LENGTH_SHORT)
+
+        val toastSuccess = Toast.makeText(
+            applicationContext,
+            "operacion completada!",
+            Toast.LENGTH_SHORT
+        )
+
         // identifying selected card
         val selectedCard = favs.get(position)
 
@@ -123,7 +123,7 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
         // identifying selected card
         val selectedCard = favs.get(position)
         // defining intent to open new activity
-        val intent = Intent(applicationContext,ActivityShowResponse::class.java)
+        val intent = Intent(this,ActivityShowResponse::class.java)
         intent.putExtra("CARD_IA_SELECTED", selectedCard)
         // starting new activity
         startActivity(intent)
