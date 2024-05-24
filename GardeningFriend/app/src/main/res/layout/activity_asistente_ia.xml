@@ -92,6 +92,15 @@
             android:layout_marginHorizontal="20dp"
             android:text="@string/btn_add_fav"/>
 
+        <Button
+            android:id="@+id/btn_open_favs_section_ia"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/btn_favs_ai"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/section_ia_favs_btn"/>
+
 
         <TextView
             android:id="@+id/footer_seccion_ia"
@@ -99,19 +108,22 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="@string/gardening_friend"
-            android:layout_below="@id/btn_favs_ai"
+            android:layout_below="@id/btn_open_favs_section_ia"
             android:layout_marginVertical="10dp"/>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_open_favs_section"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/section_ia_favs_btn"
-            android:layout_margin="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_favs"/>
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_open_favs_section"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:contentDescription="@string/section_ia_favs_btn"-->
+<!--            android:src="@drawable/ic_favs"/>-->
 
     </RelativeLayout>
 

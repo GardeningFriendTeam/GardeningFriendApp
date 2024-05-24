@@ -1,6 +1,6 @@
 package com.maid.gardeningfriend.seccionIA
 
-data class FavRespuestaIA(
+data class ModelRespuestaIA(
     var userEmail: String = "",
     var texto:String = ""
 )

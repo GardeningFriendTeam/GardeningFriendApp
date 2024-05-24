@@ -36,6 +36,7 @@ class ActivityAsistenteIA : AppCompatActivity() {
     private var messagePrompt: String? = null
     private var geminiResponse: String? = null
     private var buttonAddToFavs: Button? = null
+    private var buttonDisplayFavs : Button? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +48,7 @@ class ActivityAsistenteIA : AppCompatActivity() {
         textViewResponseIA = findViewById(R.id.ia_response)
         buttonDelete = findViewById(R.id.btn_eliminar_img)
         buttonAddToFavs = findViewById(R.id.btn_favs_ai)
+        buttonDisplayFavs = findViewById(R.id.btn_open_favs_section_ia)
 
         // adding function to btn upload
         buttonUpload!!.setOnClickListener(View.OnClickListener { v: View? -> openGallery() })
@@ -56,6 +58,13 @@ class ActivityAsistenteIA : AppCompatActivity() {
 
         // adding function to add to fav btn
         buttonAddToFavs!!.setOnClickListener { v: View? -> addNewFav()}
+
+        // adding function to display fav responses
+        buttonDisplayFavs?.setOnClickListener {
+            Log.i("OPEN_AI_FAVS", "ACTIVITY OPEN")
+            val intent = Intent(applicationContext, ActivityDisplayFavs::class.java)
+            startActivity(intent)
+        }
 
         // defining LLM
         //TODO: hide apykey for security reasons!
@@ -152,7 +161,7 @@ class ActivityAsistenteIA : AppCompatActivity() {
         val userEmail = if (user != null) user.email else ""
 
         // creating document object
-        val fav = FavRespuestaIA(
+        val fav = ModelRespuestaIA(
             userEmail = userEmail.toString(),
             texto = geminiResponse.toString()
         )

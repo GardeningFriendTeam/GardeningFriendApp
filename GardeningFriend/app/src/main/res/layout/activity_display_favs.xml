@@ -11,11 +11,13 @@
         android:id="@+id/container_display_ai_resp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/madera2"/>
+        android:background="@mipmap/madera2">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ai_favs_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ai_favs_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 </ScrollView>
