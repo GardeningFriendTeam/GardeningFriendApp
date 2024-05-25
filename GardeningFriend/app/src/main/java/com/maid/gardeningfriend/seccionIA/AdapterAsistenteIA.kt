@@ -33,7 +33,7 @@ class AdapterAsistenteIA
         // Take the first 5 words from the list of words
         val firstSixWords = words.take(6)
         // joins the strings back
-        val finalText = firstSixWords.joinToString(""," ")
+        val finalText = firstSixWords.joinToString(" ")
         // assigning value to title
         holder.titulo.text = finalText
         // ------------------- IMAGE -------------------------//

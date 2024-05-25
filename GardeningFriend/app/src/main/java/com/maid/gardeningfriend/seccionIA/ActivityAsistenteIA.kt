@@ -23,8 +23,8 @@ import com.google.firebase.storage.StorageReference
 import com.maid.gardeningfriend.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
@@ -135,7 +135,7 @@ class ActivityAsistenteIA : AppCompatActivity() {
         if (imageUpload == null) return
 
         // sending request to LLM
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val feedback = geminiProVision!!.generateContent(
                     content {
@@ -190,36 +190,42 @@ class ActivityAsistenteIA : AppCompatActivity() {
             toastLoginFirst.show()
             return
         }
-        val userID = user.tenantId
+        val userID = user.uid
 
         // uploading image to firebase storage
         // instantiating storage service and necessary resources
         val firebaseStorage = FirebaseStorage.getInstance()
         val filename = UUID.randomUUID().toString() + ".jpg"
         val imageRef = firebaseStorage.reference.child("usuarios/$userID/$filename")
-        val imageUri = saveBitmapToFile(applicationContext,imageUpload!!,filename)
-        // executing request to upload image and saving its download link
-        val imageLink = uploadImageToStorage(imageRef!!,imageUri!!)
-
-        // creating document object
-        val fav = ModelRespuestaIA(
-            userEmail = userEmail,
-            texto = geminiResponse.toString(),
-            imagenLink = imageLink
-        )
-
-        // executing add request
-        collection
-            .add(fav)
-            .addOnCompleteListener { task ->
-                // handling results
-                if (task.isSuccessful){
-                    toastOK.show()
-                } else {
-                    toastError.show()
-                    Log.e("AI_FAVS", "ERROR ADDING DOC", task.exception)
-                }
+        val imageUri = saveBitmapToFile(this,imageUpload!!,filename)
+        // executing async function to get download link
+        lifecycleScope.launch {
+            val imgLink = uploadImageToStorage(imageRef, imageUri!!)
+            // Use imgLink as needed
+            if (imgLink.isNotEmpty()) {
+                // creating document object
+                val fav = ModelRespuestaIA(
+                    userEmail = userEmail,
+                    texto = geminiResponse.toString(),
+                    imagenLink = imgLink
+                )
+                // executing add request
+                collection
+                    .add(fav)
+                    .addOnCompleteListener { task ->
+                        // handling results
+                        if (task.isSuccessful){
+                            toastOK.show()
+                        } else {
+                            toastError.show()
+                            Log.e("AI_FAVS", "ERROR ADDING DOC", task.exception)
+                        }
+                    }
+            } else {
+                Log.e("UPLOAD_FAILURE", "Failed to upload image.")
             }
+        }
+
     }
 
     /**
@@ -256,25 +262,19 @@ class ActivityAsistenteIA : AppCompatActivity() {
     }
 
     /**
-     * async function that uploads image to storage and returns its download link
+     *  function that uploads image to storage and returns its download link
      */
-    fun uploadImageToStorage(path: StorageReference, imageUri: Uri) : String{
-        // reference variable
-        var link = ""
-        // async request
-        lifecycleScope.launch{
-            path
-                .putFile(imageUri)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful){
-                        link = task.result.storage.downloadUrl.toString()
-                    } else {
-                        Log.e("STORAGE_ERROR", "OPERATION FAILED", task.exception)
-                    }
-                }
+    suspend fun uploadImageToStorage(path: StorageReference, imageUri: Uri): String {
+        return try {
+            val uploadTask = path.putFile(imageUri).await()
+            val downloadUrl = uploadTask.storage.downloadUrl.await()
+            downloadUrl.toString()
+        } catch (e: Exception) {
+            Log.e("ERROR_UPLOADING_IMG_STORAGE", "OPERATION_FAILED", e)
+            ""
         }
-        // return statement
-        return link
     }
+
+
 
 }
