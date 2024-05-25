@@ -11,11 +11,12 @@
 
     <ImageView
         android:id="@+id/ic_card_fav_ia"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/ic_plant"
         android:layout_marginVertical="35dp"
-        android:layout_marginHorizontal="20dp"/>
+        android:layout_marginHorizontal="20dp"
+        android:contentDescription="@string/asistente_ia"/>
 
     <TextView
         android:id="@+id/titulo_card_fav_ia"
