@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -12,7 +13,6 @@ import com.maid.gardeningfriend.MainActivity
 import com.maid.gardeningfriend.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
@@ -47,7 +47,7 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
         )
 
         // using global scope to avoid concurrency problems
-        GlobalScope.launch(Dispatchers.IO){
+        lifecycleScope.launch(Dispatchers.IO){
             collection
                 // filtering documents
                 .whereEqualTo("userEmail", userEmail)

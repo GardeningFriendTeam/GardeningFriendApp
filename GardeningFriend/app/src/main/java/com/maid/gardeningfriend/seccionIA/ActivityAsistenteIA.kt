@@ -1,7 +1,9 @@
 package com.maid.gardeningfriend.seccionIA
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -11,17 +13,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.maid.gardeningfriend.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.util.UUID
 
 @Suppress("DEPRECATION")
 class ActivityAsistenteIA : AppCompatActivity() {
@@ -182,11 +190,22 @@ class ActivityAsistenteIA : AppCompatActivity() {
             toastLoginFirst.show()
             return
         }
+        val userID = user.tenantId
+
+        // uploading image to firebase storage
+        // instantiating storage service and necessary resources
+        val firebaseStorage = FirebaseStorage.getInstance()
+        val filename = UUID.randomUUID().toString() + ".jpg"
+        val imageRef = firebaseStorage.reference.child("usuarios/$userID/$filename")
+        val imageUri = saveBitmapToFile(applicationContext,imageUpload!!,filename)
+        // executing request to upload image and saving its download link
+        val imageLink = uploadImageToStorage(imageRef!!,imageUri!!)
 
         // creating document object
         val fav = ModelRespuestaIA(
-            userEmail = userEmail.toString(),
-            texto = geminiResponse.toString()
+            userEmail = userEmail,
+            texto = geminiResponse.toString(),
+            imagenLink = imageLink
         )
 
         // executing add request
@@ -201,6 +220,61 @@ class ActivityAsistenteIA : AppCompatActivity() {
                     Log.e("AI_FAVS", "ERROR ADDING DOC", task.exception)
                 }
             }
+    }
+
+    /**
+     * converts the bitmap file into a uri one
+     */
+    fun saveBitmapToFile(context: Context, bitmap: Bitmap, fileName: String): Uri? {
+        // Get the directory for the app's private pictures directory
+        val directory = context.getExternalFilesDir("images")
+        if (directory == null) {
+            return null
+        }
+
+        // Create a file in the specified directory
+        val file = File(directory, fileName)
+        var fileOutputStream: FileOutputStream? = null
+        try {
+            fileOutputStream = FileOutputStream(file)
+            // Use the compress method on the Bitmap object to write the image to the OutputStream
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+            // Flush and close the OutputStream
+            fileOutputStream.flush()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return null
+        } finally {
+            try {
+                fileOutputStream?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        // Return the URI of the file
+        return Uri.fromFile(file)
+    }
+
+    /**
+     * async function that uploads image to storage and returns its download link
+     */
+    fun uploadImageToStorage(path: StorageReference, imageUri: Uri) : String{
+        // reference variable
+        var link = ""
+        // async request
+        lifecycleScope.launch{
+            path
+                .putFile(imageUri)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful){
+                        link = task.result.storage.downloadUrl.toString()
+                    } else {
+                        Log.e("STORAGE_ERROR", "OPERATION FAILED", task.exception)
+                    }
+                }
+        }
+        // return statement
+        return link
     }
 
 }
