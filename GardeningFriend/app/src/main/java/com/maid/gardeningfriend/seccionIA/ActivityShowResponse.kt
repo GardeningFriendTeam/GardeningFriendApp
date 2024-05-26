@@ -1,17 +1,17 @@
 package com.maid.gardeningfriend.seccionIA
 
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.TextView
+import com.google.android.material.imageview.ShapeableImageView
 import com.maid.gardeningfriend.MainActivity
 import com.maid.gardeningfriend.R
 import com.squareup.picasso.Picasso
 
 class ActivityShowResponse : MainActivity() {
     // setting properties
-    var text: TextView? = null;
-    var model: ModelRespuestaIA? = null;
-    var image: ImageView? = null
+    var text: TextView? = null
+    var model: ModelRespuestaIA? = null
+    var image: ShapeableImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

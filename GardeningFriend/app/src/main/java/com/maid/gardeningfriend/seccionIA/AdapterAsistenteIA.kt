@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.imageview.ShapeableImageView
 import com.maid.gardeningfriend.R
 import com.squareup.picasso.Picasso
 
@@ -56,7 +56,7 @@ class AdapterAsistenteIA
         var titulo: TextView
         var btnEliminar: Button
         var btnAbrir: Button
-        var imagePlant : ImageView
+        var imagePlant : ShapeableImageView
 
         //constructor
         init {
