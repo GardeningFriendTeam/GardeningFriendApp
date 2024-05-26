@@ -297,5 +297,7 @@
     <string name="btn_open_card_response">ABRIR</string>
     <string name="btn_delete_card_response">ELIMINAR</string>
     <string name="info_ia_card_selected"> AQUI SE MOSTRARA LA INFORMACION</string>
+    <string name="no_results_found">No se encontraron respuestas</string>
+
 
 </resources>

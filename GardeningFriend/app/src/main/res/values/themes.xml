@@ -123,4 +123,12 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+<style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+    <!-- Cambiar color de fondo a blanco -->
+    <item name="android:background">@android:color/white</item>
+    <!-- Cambiar texto de la barra de búsqueda -->
+    <item name="android:queryHint">Buscar</item>
+</style>
+
 </resources>
