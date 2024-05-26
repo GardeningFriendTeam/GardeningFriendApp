@@ -19,6 +19,8 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
 
     // state which contains all the fetched documents
     var favs = ArrayList<ModelRespuestaIA>()
+    var recyclerView : RecyclerView? = null
+    var adapter : AdapterAsistenteIA? = null
 
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,11 +74,11 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
 
     fun activarAdapterSeccionAI() {
         //se identifica el recycler view
-        val recyclerAdmin = findViewById<RecyclerView>(R.id.ai_favs_recyclerview)
+        recyclerView = findViewById<RecyclerView>(R.id.ai_favs_recyclerview)
         // se crea el adapter para recyclerview
-        val adapter = AdapterAsistenteIA(applicationContext,favs, this)
-        recyclerAdmin.adapter = adapter
-        recyclerAdmin.layoutManager = LinearLayoutManager(this)
+        adapter = AdapterAsistenteIA(applicationContext,favs, this)
+        recyclerView!!.adapter = adapter
+        recyclerView!!.layoutManager = LinearLayoutManager(this)
     }
 
     /**
@@ -115,8 +117,9 @@ class ActivityDisplayFavs : MainActivity(), InterfaceAsistenteIA{
                 }
             }
 
-        // remocing locally
+        // removing locally (updating recyclerView to show changes automatically)
         favs.remove(selectedCard)
+        adapter!!.removeItem(position)
     }
 
     override fun abrirBtn(position: Int) {

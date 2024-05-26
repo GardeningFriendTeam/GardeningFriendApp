@@ -85,4 +85,11 @@ class AdapterAsistenteIA
             })
         }
     }
+
+    fun removeItem(position: Int) {
+        if (respuestas.size > 1){
+            respuestas.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
 }
