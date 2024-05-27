@@ -291,4 +291,9 @@
     <string name="ai_response">Respuesta IA</string>
     <string name="btn_subir_img">Subir foto</string>
 
+    <!-- seccion Clima !-->
+    <string name="text_view_clima_title">Clima</string>
+    <string name="edit_ciudad">Ingrese Ciudad</string>
+    <string name="btn_clima">Ver Clima</string>
+
 </resources>

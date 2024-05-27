@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.maid.gardeningfriend.clima.clima;
 import com.maid.gardeningfriend.contacto.ContactoSeccion;
 import com.maid.gardeningfriend.enciclopedia.Enciclopedia;
 import com.maid.gardeningfriend.favoritos.FavoritosSeccion;
@@ -90,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
         // valida que seccion fue seleccionada
         if(item.getItemId() == R.id.inicio){
             startActivity(new Intent(this, Inicio.class));
+            return true;
+
+        } else if(item.getItemId() == R.id.clima) {
+            startActivity(new Intent(this, clima.class));
             return true;
 
         } else if(item.getItemId() == R.id.enciclopedia) {
