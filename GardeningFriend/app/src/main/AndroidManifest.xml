@@ -30,7 +30,13 @@
             android:name=".clima.clima"
             android:exported="false" />
         <activity
-            android:name=".seccionIA.ActivitySeccionIA"
+            android:name=".seccionIA.ActivityShowResponse"
+            android:exported="false" />
+        <activity
+            android:name=".seccionIA.ActivityDisplayFavs"
+            android:exported="false" />
+        <activity
+            android:name=".seccionIA.ActivityAsistenteIA"
             android:exported="false" />
         <activity
             android:name=".notas.NoteDetailsActivity"

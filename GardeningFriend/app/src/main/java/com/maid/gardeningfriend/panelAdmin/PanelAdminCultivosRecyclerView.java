@@ -19,12 +19,12 @@ import java.util.ArrayList;
 
 public class PanelAdminCultivosRecyclerView extends RecyclerView.Adapter<PanelAdminCultivosRecyclerView.MyViewHolder> {
     //atributos
-    private final PanelAdminInterface panelAdminInterface;
+    private final PanelAdminInterfaceCultivos panelAdminInterface;
     Context context;
     ArrayList<CultivosGenerador> cultivos;
 
     //constructor
-    public PanelAdminCultivosRecyclerView(Context context, ArrayList<CultivosGenerador> cultivos, PanelAdminInterface panelAdminInterface) {
+    public PanelAdminCultivosRecyclerView(Context context, ArrayList<CultivosGenerador> cultivos, PanelAdminInterfaceCultivos panelAdminInterface) {
         this.context = context;
         this.cultivos = cultivos;
         this.panelAdminInterface = panelAdminInterface;
@@ -67,7 +67,7 @@ public class PanelAdminCultivosRecyclerView extends RecyclerView.Adapter<PanelAd
         Button btnEliminar, btnEditar;
 
         //constructor
-        public MyViewHolder(@NonNull View itemView, PanelAdminInterface panelAdminInterface){
+        public MyViewHolder(@NonNull View itemView, PanelAdminInterfaceCultivos panelAdminInterface){
             super(itemView);
             icono = itemView.findViewById(R.id.ic_card_cultivos);
             titulo = itemView.findViewById(R.id.nombre_cultivo);

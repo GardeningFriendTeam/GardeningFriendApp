@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".seccionIA.ActivityAsistenteIA">
+
+    <RelativeLayout
+        android:id="@+id/seccion_ia_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/madera2"
+        style="@style/SCREEN"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/robot_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/robot_icon"
+            android:layout_marginVertical="20dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_robot"/>
+
+        <TextView
+            android:id="@+id/intro_seccion_ia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/robot_icon"
+            android:layout_margin="14dp"
+            android:padding="5dp"
+            android:text="@string/intro_seccion_ia"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ic_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/img_upload"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:layout_below="@id/intro_seccion_ia"
+            android:src="@drawable/ic_picture"/>
+
+        <TextView
+            android:id="@+id/tu_foto_ia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/img_display"
+            android:layout_below="@id/ic_picture"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center"/>
+
+
+        <Button
+            android:id="@+id/btn_subir_img"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_below="@id/tu_foto_ia"
+            android:text="@string/btn_subir_img"/>
+
+        <Button
+            android:id="@+id/btn_eliminar_img"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/btn_subir_img"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:text="@string/btn_eliminar_img" />
+
+        <RelativeLayout
+            android:id="@+id/ia_response_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_eliminar_img"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/cardview_light_background"
+            android:padding="30dp"
+            style="@style/SCREEN">
+
+            <TextView
+                android:id="@+id/ia_response"
+                android:text="@string/ai_response"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                style="@style/TEXT"/>
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_favs_ai"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/ia_response_wrapper"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/btn_add_fav"/>
+
+        <Button
+            android:id="@+id/btn_open_favs_section_ia"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/btn_favs_ai"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/section_ia_favs_btn"/>
+
+
+        <TextView
+            android:id="@+id/footer_seccion_ia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/gardening_friend"
+            android:layout_below="@id/btn_open_favs_section_ia"
+            android:layout_marginVertical="10dp"/>
+
+    </RelativeLayout>
+
+</ScrollView>

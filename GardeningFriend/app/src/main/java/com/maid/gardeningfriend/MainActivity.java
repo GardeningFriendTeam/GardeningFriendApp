@@ -25,7 +25,7 @@ import com.maid.gardeningfriend.panelAdmin.PanelAdmin;
 import com.maid.gardeningfriend.perfil.Perfil;
 import com.maid.gardeningfriend.recomendaciones.Recomendaciones;
 import com.maid.gardeningfriend.registro.RegistroActivity;
-import com.maid.gardeningfriend.seccionIA.ActivitySeccionIA;
+import com.maid.gardeningfriend.seccionIA.ActivityAsistenteIA;
 
 /**
  * Contiene la logica / funcion para implementar el menu
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
 
         } else if(item.getItemId() == R.id.asistente_ia){
-            startActivity(new Intent(this, ActivitySeccionIA.class));
+            startActivity(new Intent(this, ActivityAsistenteIA.class));
             return true;
 
         }else{
