@@ -30,8 +30,8 @@ android {
         viewBinding = true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions{
         jvmTarget = "17"
@@ -55,4 +55,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.google.guava:guava:30.0-jre")
     implementation("com.google.ai.client.generativeai:generativeai:0.6.0")
+    implementation("com.android.volley:volley:1.2.1")
 }

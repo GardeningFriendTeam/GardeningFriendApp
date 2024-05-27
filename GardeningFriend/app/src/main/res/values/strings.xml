@@ -300,4 +300,9 @@
     <string name="no_results_found">No se encontraron respuestas</string>
 
 
+    <!-- seccion Clima !-->
+    <string name="text_view_clima_title">Clima</string>
+    <string name="edit_ciudad">Ingrese Ciudad</string>
+    <string name="btn_clima">Ver Clima</string>
+
 </resources>
