@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
+            style="@style/TEXT"
             android:textStyle="bold"
             android:paddingTop="8dp" />
 
@@ -30,24 +31,28 @@
             android:id="@+id/textViewIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:paddingTop="8dp" />
 
         <TextView
             android:id="@+id/textViewInstructions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:paddingTop="8dp" />
 
         <TextView
             android:id="@+id/textViewCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:paddingTop="8dp" />
 
         <TextView
             android:id="@+id/textViewCookTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:paddingTop="8dp" />
     </LinearLayout>
 </ScrollView>

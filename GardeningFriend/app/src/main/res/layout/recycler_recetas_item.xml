@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/CARDNOTE"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/CARDRECIPE"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -8,11 +9,13 @@
     android:layout_marginHorizontal="8dp"
     android:padding="12dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageViewRecipe"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/transformImageView" />
+
 
     <LinearLayout
         android:layout_width="0dp"
@@ -24,7 +27,7 @@
 
         <TextView
             android:id="@+id/textViewRecipeName"
-            style="@style/TEXT"
+            style="@style/TEXT_RECIPE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre Receta"
@@ -33,7 +36,7 @@
 
         <TextView
             android:id="@+id/textViewRecipeCookTime"
-            style="@style/TEXT"
+            style="@style/TEXT_RECIPE"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginVertical="4dp"
