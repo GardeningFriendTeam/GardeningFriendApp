@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.maid.gardeningfriend.clima.clima;
 import com.maid.gardeningfriend.contacto.ContactoSeccion;
 import com.maid.gardeningfriend.enciclopedia.Enciclopedia;
 import com.maid.gardeningfriend.favoritos.FavoritosSeccion;
@@ -24,6 +25,7 @@ import com.maid.gardeningfriend.panelAdmin.PanelAdmin;
 import com.maid.gardeningfriend.perfil.Perfil;
 import com.maid.gardeningfriend.recomendaciones.Recomendaciones;
 import com.maid.gardeningfriend.registro.RegistroActivity;
+import com.maid.gardeningfriend.seccionIA.ActivityAsistenteIA;
 
 /**
  * Contiene la logica / funcion para implementar el menu
@@ -91,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, Inicio.class));
             return true;
 
+        } else if(item.getItemId() == R.id.clima) {
+            startActivity(new Intent(this, clima.class));
+            return true;
+
         } else if(item.getItemId() == R.id.enciclopedia) {
             startActivity(new Intent(this, Enciclopedia.class));
             return true;
@@ -133,7 +139,11 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return true;
 
-        } else{
+        } else if(item.getItemId() == R.id.asistente_ia){
+            startActivity(new Intent(this, ActivityAsistenteIA.class));
+            return true;
+
+        }else{
             Toast.makeText(this, "opcion invalida", Toast.LENGTH_SHORT).show();
             return true;
         }

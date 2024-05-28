@@ -34,7 +34,7 @@ import java.util.Map;
  * Aca se muestran todos los cultivos que estan en la BD
  * para poder modificarlos / eliminarlos / agregar mas
  */
-public class PanelAdminCultivos extends MainActivity implements PanelAdminInterface{
+public class PanelAdminCultivos extends MainActivity implements PanelAdminInterfaceCultivos {
     //array que contiene todos los cultivos
     ArrayList<CultivosGenerador> cultivosBD = new ArrayList<>();
 

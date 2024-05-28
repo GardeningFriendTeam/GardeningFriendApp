@@ -5,7 +5,7 @@ package com.maid.gardeningfriend.panelAdmin;
  * para despues identificar sobre que elem se clickeo
  * la opcion de "eliminar" o "añadir sobre el area de CULTIVOS
  */
-public interface PanelAdminInterface {
+public interface PanelAdminInterfaceCultivos {
     void eliminarBtn(int position);
     void editarBtn(int position);
 }

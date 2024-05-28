@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_inicio"/>
 
     <item
+        android:id="@+id/clima"
+        android:title="Clima"/>
+
+    <item
         android:id="@+id/enciclopedia"
         android:title="@string/enciclopedia"
         android:icon="@drawable/ic_enciclopedia"/>
@@ -57,6 +61,11 @@
         android:id="@+id/logout"
         android:title="Logout"
         android:icon="@drawable/ic_admin"/>
+
+    <item
+        android:id="@+id/asistente_ia"
+        android:title="@string/asistente_ia"
+        android:icon="@drawable/ic_robot"/>
 
 
 </menu>
