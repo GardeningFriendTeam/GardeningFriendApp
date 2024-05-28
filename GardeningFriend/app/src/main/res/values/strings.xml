@@ -305,5 +305,6 @@
     <string name="edit_ciudad">Ingrese Ciudad</string>
     <string name="btn_clima">Ver Clima</string>
     <string name="edit_codigo_pais">Ingrese Código Del País (Opcional)</string>
+    <string name="recetas">Recetas</string>
 
 </resources>

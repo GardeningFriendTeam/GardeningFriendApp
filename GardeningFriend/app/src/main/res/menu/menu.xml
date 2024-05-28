@@ -28,6 +28,11 @@
         android:icon="@drawable/ic_favs"/>
 
     <item
+        android:id="@+id/recetas"
+        android:title="@string/recetas"
+        android:icon="@drawable/ic_enciclopedia"/>
+
+    <item
         android:id="@+id/registro"
         android:title="@string/registro"
         android:icon="@drawable/ic_registro"/>

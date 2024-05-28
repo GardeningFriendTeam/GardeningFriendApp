@@ -1,7 +1,5 @@
 package com.maid.gardeningfriend;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,6 +23,7 @@ import com.maid.gardeningfriend.login.Login;
 import com.maid.gardeningfriend.notas.NoteActivity;
 import com.maid.gardeningfriend.panelAdmin.PanelAdmin;
 import com.maid.gardeningfriend.perfil.Perfil;
+import com.maid.gardeningfriend.recetas.RecetasActivity;
 import com.maid.gardeningfriend.recomendaciones.Recomendaciones;
 import com.maid.gardeningfriend.registro.RegistroActivity;
 import com.maid.gardeningfriend.seccionIA.ActivityAsistenteIA;
@@ -107,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (item.getItemId() == R.id.favoritos) {
             startActivity(new Intent(this, FavoritosSeccion.class));
+            return true;
+
+        } else if (item.getItemId() == R.id.recetas) {
+            startActivity(new Intent(this, RecetasActivity.class));
             return true;
 
         } else if(item.getItemId() == R.id.registro){
