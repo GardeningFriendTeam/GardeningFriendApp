@@ -36,7 +36,7 @@ public class RecetasAdapter extends FirestoreRecyclerAdapter<Receta, RecetasAdap
             Intent intent = new Intent(context, RecetasDetailsActivity.class);
             intent.putExtra("nombre", receta.getNombre());
             intent.putExtra("cookTime", receta.getCookTime());
-            intent.putExtra("ingredientes", String.join("\n", receta.getIngredientes()));
+            intent.putExtra("ingredientes", String.join("<br /><br />- ", receta.getIngredientes()));
             intent.putExtra("instrucciones", receta.getInstrucciones());
             intent.putExtra("categoria", receta.getCategoria());
             intent.putExtra("imageUrl", receta.getImageUrl());
