@@ -2,6 +2,7 @@ package com.maid.gardeningfriend.recetas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,6 @@ public class RecetasDetailsActivity extends AppCompatActivity {
             recetaCookTimeTextView, recetaInstruccionesTextView,
             recetaCategoriaTextView;
     ImageView recetaImageViewDetails;
-    private String docId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +41,13 @@ public class RecetasDetailsActivity extends AppCompatActivity {
             String imageUrl = intent.getStringExtra("imageUrl");
 
             recetaNombreTextView.setText(nombre);
-            recetaCookTimeTextView.setText("tiempo de elaboracion: " + cookTime);
-            recetaIngredientesTextView.setText("Ingredientes: \n" + ingredientes);
-            recetaInstruccionesTextView.setText("Instrucciones: \n" + instrucciones);
-            recetaCategoriaTextView.setText("Categoria: " + categoria);
+            recetaCookTimeTextView.setText(Html.fromHtml("<h3>Tiempo de Preparacion:</h3>"+cookTime, Html.FROM_HTML_MODE_LEGACY));
+            recetaIngredientesTextView.setText(Html.fromHtml("<h3>Ingredientes:</h3>"+ingredientes, Html.FROM_HTML_MODE_LEGACY));
+            recetaCategoriaTextView.setText(Html.fromHtml("<h3>Categoria:</h3>"+categoria, Html.FROM_HTML_MODE_LEGACY));
+            recetaInstruccionesTextView.setText(Html.fromHtml("<h3>Instrucciones:</h3>"+instrucciones, Html.FROM_HTML_MODE_LEGACY));
 
             Picasso.get().load(imageUrl).into(recetaImageViewDetails);
+            recetaImageViewDetails.setContentDescription("Imagen de "+nombre);
         }
 
     }

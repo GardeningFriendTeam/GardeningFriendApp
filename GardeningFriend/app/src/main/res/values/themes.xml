@@ -22,6 +22,14 @@
     <style name="TEXT">
         <item name="android:textColor">@color/fuente_principal</item>
     </style>
+    <!---  Texts title light mode  -->
+    <style name="TEXT_TITLE">
+        <item name="android:textColor">@color/fuente_principal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
     <!--  Texts recipe background light mode  -->
     <style name="TEXT_RECIPE">
         <item name="android:textColor">@color/cream</item>
