@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.maid.gardeningfriend.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,7 +25,7 @@ import java.text.DecimalFormat;
 
 
 public class clima extends AppCompatActivity {
-    EditText etCity;
+    EditText etCity, etCountry;
     TextView tvResult;
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
     private final String appid = "466d16634da02465cc9c56127129c567";
@@ -38,16 +39,22 @@ public class clima extends AppCompatActivity {
         setContentView(R.layout.activity_clima);
 
         etCity = findViewById(R.id.etCity);
+        etCountry = findViewById(R.id.etCountry);
         tvResult = findViewById(R.id.tvResult);
     }
 
     public void getWeatherDetails(View view) {
         String tempUrl = "";
         String city = etCity.getText().toString().trim();
+        String country = etCountry.getText().toString().trim();
         if(city.equals("")){
             tvResult.setText("El campo ciudad no puede estar vacío!");
-        } else{
-            tempUrl = url + "?q=" + city + "&appid=" + appid;
+        }else{
+            if(!country.equals("")){
+                tempUrl = url + "?q=" + city + "," + country + "&appid=" + appid;
+            }else{
+                tempUrl = url + "?q=" + city + "&appid=" + appid;
+            }
             StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

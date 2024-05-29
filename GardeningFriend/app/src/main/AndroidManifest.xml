@@ -20,12 +20,18 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.GardeningFriend"
-        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
-
+        <activity
+            android:name=".recetas.RecetasDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".recetas.RecetasActivity" />
+        <activity
+            android:name=".recetas.RecetasActivity"
+            android:exported="false" />
         <activity
             android:name=".clima.clima"
             android:exported="false" />
