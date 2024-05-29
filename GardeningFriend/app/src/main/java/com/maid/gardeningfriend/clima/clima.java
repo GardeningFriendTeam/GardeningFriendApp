@@ -21,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 
 
@@ -39,23 +41,26 @@ public class clima extends AppCompatActivity {
         setContentView(R.layout.activity_clima);
 
         etCity = findViewById(R.id.etCity);
-        etCountry = findViewById(R.id.etCountry);
+        //etCountry = findViewById(R.id.etCountry);
         tvResult = findViewById(R.id.tvResult);
     }
 
     public void getWeatherDetails(View view) {
         String tempUrl = "";
         String city = etCity.getText().toString().trim();
-        String country = etCountry.getText().toString().trim();
+        //String country = etCountry.getText().toString().trim();
         if(city.equals("")){
             tvResult.setText("El campo ciudad no puede estar vacío!");
         }else{
-            if(!country.equals("")){
-                tempUrl = url + "?q=" + city + "," + country + "&appid=" + appid;
-            }else{
-                tempUrl = url + "?q=" + city + "&appid=" + appid;
+            try {
+                String encodedCity = URLEncoder.encode(city + ",AR", "UTF-8");
+                tempUrl = url + "?q=" + encodedCity + "&appid=" + appid;
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                tvResult.setText("Error al codificar la ciudad.");
+                return;
             }
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, tempUrl, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     String output = "";
