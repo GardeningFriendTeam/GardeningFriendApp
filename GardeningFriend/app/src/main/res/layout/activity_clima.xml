@@ -40,23 +40,16 @@
             android:autofillHints="postalAddress"
             android:hint="@string/edit_ciudad"
             android:inputType="textPersonName" />
-        <!--<EditText
-            android:id="@+id/etCountry"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="@string/edit_codigo_pais"
-            android:inputType="textPersonName" />  -->
 
         <Button
             android:id="@+id/btnGet"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/verde_muy_oscuro"
+            android:background="@drawable/btn_verde"
             android:onClick="getWeatherDetails"
             android:text="@string/btn_clima"
+            android:textSize="18dp"
             android:textColor="@android:color/white" />
 
         <ScrollView
