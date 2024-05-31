@@ -10,9 +10,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
@@ -22,7 +22,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.maid.gardeningfriend.MainActivity
 import com.maid.gardeningfriend.R
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -45,7 +44,11 @@ class ActivityAsistenteIA : MainActivity() {
     private var messagePrompt: String? = null
     private var geminiResponse: String? = null
     private var buttonAddToFavs: Button? = null
-    private var buttonDisplayFavs : Button? = null;
+    private var buttonDisplayFavs : Button? = null
+    private var progressBarFav: ProgressBar? = null
+    private var textViewProgressBarFav: TextView? = null
+    private var progressBarResponse : ProgressBar? = null
+    private var textViewProgressBarResponse : TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +61,10 @@ class ActivityAsistenteIA : MainActivity() {
         buttonDelete = findViewById(R.id.btn_eliminar_img)
         buttonAddToFavs = findViewById(R.id.btn_favs_ai)
         buttonDisplayFavs = findViewById(R.id.btn_open_favs_section_ia)
+        progressBarFav = findViewById(R.id.progressbar_ia)
+        textViewProgressBarFav = findViewById(R.id.progressbar_ia_textView)
+        progressBarResponse = findViewById(R.id.progressbar_ia_response)
+        textViewProgressBarResponse = findViewById(R.id.progressbar_ia_response_textView)
 
         // adding function to btn upload
         buttonUpload!!.setOnClickListener{ v: View? -> openGallery() }
@@ -129,8 +136,10 @@ class ActivityAsistenteIA : MainActivity() {
         imageUpload = null
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     fun getGeminiResponse() {
+        // displaying loader
+        progressBarResponse!!.visibility = View.VISIBLE
+        textViewProgressBarResponse!!.visibility = View.VISIBLE
 
         // if image is null the function ends
         if (imageUpload == null) return
@@ -150,9 +159,14 @@ class ActivityAsistenteIA : MainActivity() {
                     textViewResponseIA?.text = feedback.text.toString()
                     geminiResponse = feedback.text.toString()
                 }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+
+            // hidding loader once the operation was performed
+            progressBarResponse!!.visibility = View.GONE
+            textViewProgressBarResponse!!.visibility = View.GONE
         }
     }
 
@@ -160,6 +174,10 @@ class ActivityAsistenteIA : MainActivity() {
      * adds the AI response to a firebase collection "respuestasIA"
      */
     fun addNewFav(){
+        // displaying loader
+        progressBarFav!!.visibility = View.VISIBLE
+        textViewProgressBarFav!!.visibility = View.VISIBLE
+
         // toast messages
         val toastOK = Toast.makeText(
             applicationContext,
@@ -216,8 +234,10 @@ class ActivityAsistenteIA : MainActivity() {
                     .addOnCompleteListener { task ->
                         // handling results
                         if (task.isSuccessful){
+                            // success message
                             toastOK.show()
                         } else {
+                            // error message
                             toastError.show()
                             Log.e("AI_FAVS", "ERROR ADDING DOC", task.exception)
                         }
@@ -225,6 +245,9 @@ class ActivityAsistenteIA : MainActivity() {
             } else {
                 Log.e("UPLOAD_FAILURE", "Failed to upload image.")
             }
+            // hiding loader once the operation was performed
+            progressBarFav!!.visibility = View.GONE
+            textViewProgressBarFav!!.visibility = View.GONE
         }
 
     }
@@ -275,7 +298,4 @@ class ActivityAsistenteIA : MainActivity() {
             ""
         }
     }
-
-
-
 }

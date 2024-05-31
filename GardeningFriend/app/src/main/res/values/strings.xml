@@ -298,7 +298,8 @@
     <string name="btn_delete_card_response">ELIMINAR</string>
     <string name="info_ia_card_selected"> AQUI SE MOSTRARA LA INFORMACION</string>
     <string name="no_results_found">No se encontraron respuestas</string>
-
+    <string name="progressbar_ia_text">Procesando Solicitud</string>
+    <string name="processing_ia_response">Procesando Respuesta</string>
 
     <!-- seccion Clima !-->
     <string name="text_view_clima_title">Clima</string>
