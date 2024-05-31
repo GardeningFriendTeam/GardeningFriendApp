@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.maid.gardeningfriend.MainActivity
 import com.maid.gardeningfriend.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,7 @@ import java.io.IOException
 import java.util.UUID
 
 @Suppress("DEPRECATION")
-class ActivityAsistenteIA : AppCompatActivity() {
+class ActivityAsistenteIA : MainActivity() {
     // properties
     private val PICK_IMAGE = 1
     private var imageView: ImageView? = null
@@ -76,7 +77,7 @@ class ActivityAsistenteIA : AppCompatActivity() {
 
         // defining LLM
         //TODO: hide apykey for security reasons!
-        geminiProVision = GenerativeModel("gemini-pro-vision", "AIzaSyACRZhR_TnmticRhpOolXD00TVILiXhh_8")
+        geminiProVision = GenerativeModel("gemini-pro-vision", "AIzaSyAHT3CMJzRwgZCmBOKPe6afpjFUKqvQ3-0")
 
         // defining prompt
         messagePrompt = "puedes identificar que planta o cultivo es? ademas, dime sus principales caracteristicas"

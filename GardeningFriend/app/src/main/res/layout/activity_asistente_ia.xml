@@ -80,7 +80,6 @@
             android:layout_below="@+id/btn_eliminar_img"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
-            android:background="@color/cardview_light_background"
             android:padding="30dp"
             style="@style/SCREEN">
 
