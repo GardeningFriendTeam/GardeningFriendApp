@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.maid.gardeningfriend.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,9 +29,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 
+import com.bumptech.glide.Glide;
+
 public class clima extends AppCompatActivity {
     private EditText etCity;
     private TextView tvResult;
+    private ImageView weatherIcon;
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
     private final String appid = "466d16634da02465cc9c56127129c567";
     private DecimalFormat df = new DecimalFormat("#.##");
@@ -43,6 +48,7 @@ public class clima extends AppCompatActivity {
 
         etCity = findViewById(R.id.etCity);
         tvResult = findViewById(R.id.tvResult);
+        weatherIcon = findViewById(R.id.weatherIcon);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String savedCity = preferences.getString("city", "");
@@ -107,13 +113,23 @@ public class clima extends AppCompatActivity {
                         JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
                         String countryName = jsonObjectSys.getString("country");
                         String cityName = jsonResponse.getString("name");
+
+                        // Obtener el código del ícono
+                        JSONArray weatherArray = jsonResponse.getJSONArray("weather");
+                        String iconCode = weatherArray.getJSONObject(0).getString("icon");
+
+                        String iconUrl = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+
+                        // Cargar el ícono en la ImageView usando Glide
+                        Glide.with(clima.this).load(iconUrl).into(weatherIcon);
                         tvResult.setTextColor(Color.rgb(0,0,0));
                         output += "Clima actual de " + cityName + " (" + countryName + ")"
-                                + "\n Temperatura: " + df.format(temp) + " °C"
-                                + "\n Sensación térmica de: " + df.format(feelsLike) + " °C"
-                                + "\n Humedad: " + humidity + "%"
-                                + "\n Viento: " + wind + "m/s (metros por segundo)"
-                                + "\n Nubosidad: " + clouds + "%";
+                                + "\nTemperatura: " + df.format(temp) + " °C"
+                                + "\nSensación térmica de: " + df.format(feelsLike) + " °C"
+                                + "\nHumedad: " + humidity + "%"
+                                + "\nViento: " + wind + "m/s (metros por segundo)"
+                                + "\nNubosidad: " + clouds + "%";
+
                         tvResult.setText(output);
                     } catch (JSONException e) {
                         e.printStackTrace();
