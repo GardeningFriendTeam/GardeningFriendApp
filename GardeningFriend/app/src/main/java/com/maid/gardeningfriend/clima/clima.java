@@ -2,8 +2,11 @@ package com.maid.gardeningfriend.clima;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +20,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.maid.gardeningfriend.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,15 +27,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 
-
 public class clima extends AppCompatActivity {
-    EditText etCity, etCountry;
-    TextView tvResult;
+    private EditText etCity;
+    private TextView tvResult;
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
     private final String appid = "466d16634da02465cc9c56127129c567";
-    DecimalFormat df = new DecimalFormat("#.##");
-
-
+    private DecimalFormat df = new DecimalFormat("#.##");
+    private Handler handler;
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +42,43 @@ public class clima extends AppCompatActivity {
         setContentView(R.layout.activity_clima);
 
         etCity = findViewById(R.id.etCity);
-        //etCountry = findViewById(R.id.etCountry);
         tvResult = findViewById(R.id.tvResult);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedCity = preferences.getString("city", "");
+        etCity.setText(savedCity);
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                getWeatherDetails(null);
+                handler.postDelayed(this, 60000);
+            }
+        };
+        handler.postDelayed(runnable, 60000);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("city", etCity.getText().toString().trim());
+        editor.apply();
+
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable, 60000);
     }
 
     public void getWeatherDetails(View view) {
         String tempUrl = "";
         String city = etCity.getText().toString().trim();
-        //String country = etCountry.getText().toString().trim();
         if(city.equals("")){
             tvResult.setText("El campo ciudad no puede estar vacío!");
         }else{

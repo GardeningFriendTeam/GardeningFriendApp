@@ -23,8 +23,18 @@
             style="@style/TEXT"
             android:padding="6dp"
             android:layout_centerHorizontal="true"
-            android:text="Recetas de Comida"
+            android:text="@string/recetas_de_comida"
             android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/spinner_categoria"
+            style="@style/TEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/page_title"
+            android:entries="@array/categorias_array"
+            android:minHeight="48dp"
+            android:prompt="@string/categoria_prompt" />
 
     </RelativeLayout>
 

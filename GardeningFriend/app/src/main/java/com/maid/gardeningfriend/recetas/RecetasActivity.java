@@ -1,6 +1,9 @@
 package com.maid.gardeningfriend.recetas;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +17,8 @@ import com.maid.gardeningfriend.R;
 public class RecetasActivity extends MainActivity {
 
     RecyclerView recyclerViewRecetas;
+    Spinner spinnerCategoria;
 
-    private static final String TAG = "RecetasActivity";
     RecetasAdapter recetasAdapter;
 
     @Override
@@ -25,23 +28,50 @@ public class RecetasActivity extends MainActivity {
 
         // Obtener referencias a elementos de la interfaz de usuario
         recyclerViewRecetas = findViewById(R.id.recycler_recetas);
+        spinnerCategoria = findViewById(R.id.spinner_categoria);
+
+        // Configurar el Spinner
+        spinnerCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String categoria = parent.getItemAtPosition(position).toString();
+                setupRecyclerView(categoria);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // No hacer nada
+            }
+        });
 
         // Configura y muestra las recetas en el RecyclerView
-        setupRecyclerView();
-
-    };
+        setupRecyclerView("Todas");
+    }
 
     // Configura el RecyclerView para mostrar las recetas
-    void setupRecyclerView() {
+    void setupRecyclerView(String categoria) {
         // Obtener una consulta de Firestore para las recetas
-        Query query = FirebaseFirestore.getInstance().collection("recetas");
+        Query query;
+        if (categoria.equals("Todas")) {
+            query = FirebaseFirestore.getInstance().collection("recetas");
+        } else {
+            query = FirebaseFirestore.getInstance().collection("recetas")
+                    .whereEqualTo("categoria", categoria);
+        }
+
         // Configurar las opciones del adaptador para Firebase Firestore
         FirestoreRecyclerOptions<Receta> options = new FirestoreRecyclerOptions.Builder<Receta>()
-                .setQuery(query, Receta.class).build();
+                .setQuery(query, Receta.class)
+                .build();
+
         // configurar el administrador de diseño y el adaptador para el RecyclerView
         recyclerViewRecetas.setLayoutManager(new LinearLayoutManager(this));
+        if (recetasAdapter != null) {
+            recetasAdapter.stopListening();
+        }
         recetasAdapter = new RecetasAdapter(options, this);
         recyclerViewRecetas.setAdapter(recetasAdapter);
+        recetasAdapter.startListening();
     }
 
     @Override

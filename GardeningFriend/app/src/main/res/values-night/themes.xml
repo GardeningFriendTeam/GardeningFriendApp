@@ -23,6 +23,14 @@
     <style name="TEXT">
         <item name="android:textColor">@color/white</item>
     </style>
+    <!---  Texts title dark mode  -->
+    <style name="TEXT_TITLE">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
     <!--  Texts recipe background dark mode  -->
     <style name="TEXT_RECIPE">
         <item name="android:textColor">@color/cream</item>
@@ -128,6 +136,12 @@
         <item name="android:src">@drawable/ic_github_dark</item>
     </style>
 
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Cambiar color de fondo a blanco -->
+        <item name="android:background">@android:color/black</item>
+        <!-- Cambiar texto de la barra de búsqueda -->
+        <item name="android:queryHint">Buscar</item>
+    </style>
 
     <style name="Theme.GardeningFriend" parent="Base.Theme.GardeningFriend" />
 </resources>

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.maid.gardeningfriend"
-        minSdk = 23
+        minSdk = 24
         //noinspection EditedTargetSdkVersion
         targetSdk = 34
         versionCode = 1
@@ -30,11 +30,11 @@ android {
         viewBinding = true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions{
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
 }
 
