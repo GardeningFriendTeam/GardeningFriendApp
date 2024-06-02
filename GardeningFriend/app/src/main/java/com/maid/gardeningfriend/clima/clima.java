@@ -1,12 +1,16 @@
 package com.maid.gardeningfriend.clima;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.maid.gardeningfriend.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,9 +35,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 
-import com.bumptech.glide.Glide;
+
 
 public class clima extends AppCompatActivity {
+
     private EditText etCity;
     private TextView tvResult;
     private ImageView weatherIcon;
@@ -40,6 +47,7 @@ public class clima extends AppCompatActivity {
     private DecimalFormat df = new DecimalFormat("#.##");
     private Handler handler;
     private Runnable runnable;
+    private static final String TAG = "clima";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +99,8 @@ public class clima extends AppCompatActivity {
             try {
                 String encodedCity = URLEncoder.encode(city + ",AR", "UTF-8");
                 tempUrl = url + "?q=" + encodedCity + "&appid=" + appid;
+                //SSLUtil.allowAllSSL(); // Permitir todas las versiones de TLS
+
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 tvResult.setText("Error al codificar la ciudad.");
@@ -118,10 +128,16 @@ public class clima extends AppCompatActivity {
                         JSONArray weatherArray = jsonResponse.getJSONArray("weather");
                         String iconCode = weatherArray.getJSONObject(0).getString("icon");
 
-                        String iconUrl = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+                        String iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png";
 
-                        // Cargar el ícono en la ImageView usando Glide
-                        Glide.with(clima.this).load(iconUrl).into(weatherIcon);
+                        // Verificar URL del ícono
+                        Log.d(TAG, "Icon URL: " + iconUrl);
+
+                         //Cargar el ícono en la ImageView usando Picasso
+                                 Picasso.get()
+                                .load(iconUrl)
+                                .into(weatherIcon);
+
                         tvResult.setTextColor(Color.rgb(0,0,0));
                         output += "Clima actual de " + cityName + " (" + countryName + ")"
                                 + "\nTemperatura: " + df.format(temp) + " °C"
