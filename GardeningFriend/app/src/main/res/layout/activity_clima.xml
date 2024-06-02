@@ -10,27 +10,41 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="194dp"
+        android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/text_view_clima_title"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="411dp"
+        android:layout_height="420dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <!--<EditText
+            android:id="@+id/etCountry"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/edit_codigo_pais"
+            android:inputType="textPersonName" />  -->
 
         <EditText
             android:id="@+id/etCity"
@@ -39,7 +53,8 @@
             android:layout_marginBottom="10dp"
             android:autofillHints="postalAddress"
             android:hint="@string/edit_ciudad"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btnGet"
@@ -49,17 +64,48 @@
             android:background="@drawable/btn_verde"
             android:onClick="getWeatherDetails"
             android:text="@string/btn_clima"
-            android:textSize="18dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="18dp" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvResult"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/weatherIcon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Weather icon" />
+
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/barraMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/verde_muy_oscuro"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

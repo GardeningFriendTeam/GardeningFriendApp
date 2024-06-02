@@ -1,16 +1,21 @@
 package com.maid.gardeningfriend.clima;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,8 +23,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.maid.gardeningfriend.R;
+import com.maid.gardeningfriend.favoritos.FavoritosSeccion;
+import com.maid.gardeningfriend.inicio.Inicio;
+import com.maid.gardeningfriend.login.Login;
+import com.maid.gardeningfriend.perfil.Perfil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +43,7 @@ import java.text.DecimalFormat;
 public class clima extends AppCompatActivity {
     private EditText etCity;
     private TextView tvResult;
+    private ImageView weatherIcon;
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
     private final String appid = "466d16634da02465cc9c56127129c567";
     private DecimalFormat df = new DecimalFormat("#.##");
@@ -43,6 +57,7 @@ public class clima extends AppCompatActivity {
 
         etCity = findViewById(R.id.etCity);
         tvResult = findViewById(R.id.tvResult);
+        weatherIcon = findViewById(R.id.weatherIcon);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String savedCity = preferences.getString("city", "");
@@ -57,7 +72,38 @@ public class clima extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable, 60000);
+
+        //Inicia logica para la barra de navegacion de abajo
+        BottomNavigationView bottomNavigationView = findViewById(R.id.barraMenu);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.inicio) {
+                    Intent inicio = new Intent(clima.this, Inicio.class);
+                    startActivity(inicio);
+                    return true;
+                } else if(item.getItemId() == R.id.perfil) {
+                    Intent perfil = new Intent(clima.this, Perfil.class);
+                    startActivity(perfil);
+                    return true;
+                } else if (item.getItemId() == R.id.favorito) {
+                    Intent fav = new Intent(clima.this, FavoritosSeccion.class);
+                    startActivity(fav);
+                    return true;
+                } else if (item.getItemId() == R.id.logout) {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent logout = new Intent(clima.this, Login.class);
+                    startActivity(logout);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        //Termina logica para la barra de navegacion de abajo
     }
+
 
     @Override
     protected void onPause() {
@@ -107,13 +153,23 @@ public class clima extends AppCompatActivity {
                         JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
                         String countryName = jsonObjectSys.getString("country");
                         String cityName = jsonResponse.getString("name");
+
+                        // Obtener el código del ícono
+                        JSONArray weatherArray = jsonResponse.getJSONArray("weather");
+                        String iconCode = weatherArray.getJSONObject(0).getString("icon");
+
+                        String iconUrl = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+
+                        // Cargar el ícono en la ImageView usando Glide
+                        Glide.with(clima.this).load(iconUrl).into(weatherIcon);
                         tvResult.setTextColor(Color.rgb(0,0,0));
                         output += "Clima actual de " + cityName + " (" + countryName + ")"
-                                + "\n Temperatura: " + df.format(temp) + " °C"
-                                + "\n Sensación térmica de: " + df.format(feelsLike) + " °C"
-                                + "\n Humedad: " + humidity + "%"
-                                + "\n Viento: " + wind + "m/s (metros por segundo)"
-                                + "\n Nubosidad: " + clouds + "%";
+                                + "\nTemperatura: " + df.format(temp) + " °C"
+                                + "\nSensación térmica de: " + df.format(feelsLike) + " °C"
+                                + "\nHumedad: " + humidity + "%"
+                                + "\nViento: " + wind + "m/s (metros por segundo)"
+                                + "\nNubosidad: " + clouds + "%";
+
                         tvResult.setText(output);
                     } catch (JSONException e) {
                         e.printStackTrace();

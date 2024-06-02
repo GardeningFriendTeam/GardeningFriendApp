@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/inicio"
+        android:title="@string/inicio_menu"
+        android:icon="@drawable/ic_inicio"/>
+    <item
+        android:id="@+id/perfil"
+        android:title="@string/menu_perfil"
+        android:icon="@drawable/ic_perfil"/>
+    <item
+        android:id="@+id/favorito"
+        android:title="@string/favoritos_menu"
+        android:icon="@drawable/favorito"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="@string/cerrar_sesion"
+        android:icon="@drawable/log_out"/>
+
+</menu>
