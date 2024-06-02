@@ -12,16 +12,17 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.maid.gardeningfriend.MainActivity
 import com.maid.gardeningfriend.R
+import com.maid.gardeningfriend.login.Login
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,10 +47,23 @@ class ActivityAsistenteIA : MainActivity() {
     private var geminiResponse: String? = null
     private var buttonAddToFavs: Button? = null
     private var buttonDisplayFavs : Button? = null;
+    private var auth: FirebaseAuth? = null;
+    private var currentUser: FirebaseUser? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_asistente_ia)
+
+        // instatiating firebase auth
+        auth = FirebaseAuth.getInstance()
+        currentUser = auth?.currentUser
+
+        // if user is not loged in, it's redirected lo login page
+        if (currentUser == null){
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // identificando propiedades
         imageView = findViewById(R.id.ic_picture)
