@@ -298,7 +298,8 @@
     <string name="btn_delete_card_response">ELIMINAR</string>
     <string name="info_ia_card_selected"> AQUI SE MOSTRARA LA INFORMACION</string>
     <string name="no_results_found">No se encontraron respuestas</string>
-
+    <string name="popup_remove_card_ia">Deseas elimiar esta respuesta de favs?</string>
+    <string name="remove">Eliminar</string>
 
     <!-- seccion Clima !-->
     <string name="text_view_clima_title">Clima</string>

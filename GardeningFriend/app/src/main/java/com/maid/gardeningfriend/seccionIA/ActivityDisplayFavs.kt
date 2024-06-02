@@ -3,16 +3,21 @@ package com.maid.gardeningfriend.seccionIA
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.animation.Animation
+import android.view.animation.TranslateAnimation
+import android.widget.PopupWindow
+import android.widget.RelativeLayout
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.maid.gardeningfriend.R
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -48,7 +53,6 @@ class ActivityDisplayFavs : AppCompatActivity(), InterfaceAsistenteIA {
         })
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     private fun getFavResponsesAI() {
         val db = FirebaseFirestore.getInstance()
         val collection = db.collection("respuestasIA")
@@ -86,6 +90,11 @@ class ActivityDisplayFavs : AppCompatActivity(), InterfaceAsistenteIA {
     }
 
     override fun eliminarBtn(position: Int) {
+        // ---------------------------- IDENTIFYING ELEM SELEC --------------------------//
+        val selectedCard = favs[position]
+
+        // ---------------------------- TOAST MESSAGES --------------------------//
+
         val toastError = Toast.makeText(
             applicationContext,
             "no se ha podido completar la operacion",
@@ -98,25 +107,67 @@ class ActivityDisplayFavs : AppCompatActivity(), InterfaceAsistenteIA {
             Toast.LENGTH_SHORT
         )
 
-        val selectedCard = favs[position]
+        // ---------------------------- DISPLAYING POP UP --------------------------//
 
-        val db = FirebaseFirestore.getInstance()
-        val collection = db.collection("respuestasIA")
-        val document = collection.document(selectedCard.id)
+        // se crea un pop up para confirmar la operacion
+        val popupWindow = PopupWindow(this)
 
-        document
-            .delete()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    toastSuccess.show()
-                } else {
-                    toastError.show()
-                    Log.e("DELETE_IA_CARD", "ERROR REQUEST", task.exception)
+        // se identifica el contenedor padre
+        val parentElem = findViewById<RelativeLayout>(R.id.container_display_favs_ia)
+
+        //efectos para animacion:
+        val anim = TranslateAnimation(
+            Animation.RELATIVE_TO_PARENT, 0.0f,
+            Animation.RELATIVE_TO_PARENT, 0.0f,
+            Animation.RELATIVE_TO_PARENT, -1.0f,
+            Animation.RELATIVE_TO_PARENT, 0.0f
+        )
+        anim.duration = 200
+
+        // se infla el elemento
+        val popUpView = layoutInflater.inflate(R.layout.popup_displaying_favs_ia, null)
+        popupWindow.contentView = popUpView
+        popupWindow.contentView.startAnimation(anim)
+
+        // se especifica su tamaño (ocupa toda la pantalla)
+        popupWindow.height = 1000
+        popupWindow.width = 1000
+
+        // se especifica la ubicacion del elem:
+        popupWindow.showAtLocation(parentElem, Gravity.CENTER, 0, 0)
+
+        //se identifican los botones del pop up:
+        val btnEliminar = popUpView.findViewById<AppCompatButton>(R.id.btn_eliminar_popup_ia)
+        val btnCancelar = popUpView.findViewById<AppCompatButton>(R.id.btn_cancelar_popup_ia)
+
+        //se programan los eventos:
+        btnEliminar.setOnClickListener {
+            // ---------------------------- REMOVING ELEM --------------------------//
+
+            val db = FirebaseFirestore.getInstance()
+            val collection = db.collection("respuestasIA")
+            val document = collection.document(selectedCard.id)
+
+            document
+                .delete()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        toastSuccess.show()
+                    } else {
+                        toastError.show()
+                        Log.e("DELETE_IA_CARD", "ERROR REQUEST", task.exception)
+                    }
                 }
-            }
 
-        favs.remove(selectedCard)
-        adapter?.removeItem(position)
+            //favs.remove(selectedCard)
+            adapter?.removeItem(position)
+
+            // once the item is removed the dialog is dismissed
+            popupWindow.dismiss()
+        }
+        btnCancelar.setOnClickListener { // se cierra el popup
+            popupWindow.dismiss()
+        }
     }
 
     override fun abrirBtn(position: Int) {
@@ -135,4 +186,6 @@ class ActivityDisplayFavs : AppCompatActivity(), InterfaceAsistenteIA {
         }
         adapter?.filterList(filteredList)
     }
+
+
 }
