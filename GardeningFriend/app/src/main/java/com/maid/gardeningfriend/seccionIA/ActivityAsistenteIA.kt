@@ -24,7 +24,6 @@ import com.google.firebase.storage.StorageReference
 import com.maid.gardeningfriend.MainActivity
 import com.maid.gardeningfriend.R
 import com.maid.gardeningfriend.login.Login
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -152,7 +151,7 @@ class ActivityAsistenteIA : MainActivity() {
         imageUpload = null
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
+
     fun getGeminiResponse() {
         // displaying loader
         progressBarResponse!!.visibility = View.VISIBLE

@@ -55,6 +55,9 @@
     <string name="admin">Admin</string>
     <string name="guardar_cambios">Guardar Cambios</string>
 
+    <string name="recetas_panel_admin">Recetas</string>
+    <string name="recetas_titulo_admin">Administrar Recetas</string>
+
 
     <!-- seccion "recomendaciones" !-->
     <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>
@@ -292,7 +295,7 @@
     <string name="btn_subir_img">Subir foto</string>
     <string name="btn_eliminar_img">Eliminar foto</string>
     <string name="gardening_friend">Gardening Friend ©</string>
-    <string name="btn_add_fav">★ GUARDAR FAV</string>
+    <string name="btn_add_fav">★ GUARDAR EN FAVORITOS</string>
     <string name="section_ia_favs_btn">Ver Respuestas Favoritas</string>
     <string name="btn_open_card_response">ABRIR</string>
     <string name="btn_delete_card_response">ELIMINAR</string>
@@ -300,6 +303,8 @@
     <string name="no_results_found">No se encontraron respuestas</string>
     <string name="popup_remove_card_ia">Deseas elimiar esta respuesta de favs?</string>
     <string name="remove">Eliminar</string>
+    <string name="progressbar_ia_text">Procesando Solicitud</string>
+    <string name="processing_ia_response">Procesando Respuesta</string>
 
     <!-- seccion Clima !-->
     <string name="text_view_clima_title">Clima</string>

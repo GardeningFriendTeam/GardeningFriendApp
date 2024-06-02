@@ -26,6 +26,9 @@
         android:theme="@style/Theme.GardeningFriend"
         tools:targetApi="31">
         <activity
+            android:name=".panelAdmin.PanelAdminRecetas"
+            android:exported="false" />
+        <activity
             android:name=".recetas.RecetasDetailsActivity"
             android:exported="false"
             android:parentActivityName=".recetas.RecetasActivity" />

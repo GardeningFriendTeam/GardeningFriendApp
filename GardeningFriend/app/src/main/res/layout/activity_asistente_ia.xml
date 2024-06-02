@@ -106,7 +106,7 @@
             android:id="@+id/ia_response_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_eliminar_img"
+            android:layout_below="@+id/progressbar_response_wrapper"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
             android:padding="30dp"
@@ -162,7 +162,7 @@
             android:id="@+id/btn_open_favs_section_ia"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/btn_favs_ai"
+            android:layout_below="@id/progressbar_ia_wrapper"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:text="@string/section_ia_favs_btn"/>

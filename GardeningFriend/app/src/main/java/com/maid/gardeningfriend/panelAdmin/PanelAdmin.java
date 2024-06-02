@@ -3,9 +3,15 @@ package com.maid.gardeningfriend.panelAdmin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
+import com.maid.gardeningfriend.login.Login;
 
 /**
  * Primera pantalla del panel de admin
@@ -13,11 +19,11 @@ import com.maid.gardeningfriend.R;
  * administrar la coleccion de "cultivos o usuarios"
  */
 public class PanelAdmin extends MainActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_admin);
+
     }
 
     /**
@@ -43,8 +49,14 @@ public class PanelAdmin extends MainActivity {
         startActivity(intent);
     }
 
-    //TODO: agregar funcion que identifique si el user logueado es admin
-    // recien alli, el user podra ir a la siguiente pantalla
-    // de lo contrario se muestra una alerta
-    // (quizas se podria restringir el acceso a esta pantalla directamente?)
+    /**
+     * inicia la actividad donde se muestran
+     * todas las recetas:
+     * @param view
+     * btn que dispara el evento
+     */
+    public void abrirPanelRecetas(View view){
+        Intent intent = new Intent(PanelAdmin.this, PanelAdminRecetas.class);
+        startActivity(intent);
+    }
 }
