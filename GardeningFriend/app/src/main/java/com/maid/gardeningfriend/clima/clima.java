@@ -1,15 +1,20 @@
 package com.maid.gardeningfriend.clima;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,8 +23,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.maid.gardeningfriend.R;
 
+import com.maid.gardeningfriend.R;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,14 +35,19 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 
+
+
 public class clima extends AppCompatActivity {
+
     private EditText etCity;
     private TextView tvResult;
+    private ImageView weatherIcon;
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
     private final String appid = "466d16634da02465cc9c56127129c567";
     private DecimalFormat df = new DecimalFormat("#.##");
     private Handler handler;
     private Runnable runnable;
+    private static final String TAG = "clima";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +56,7 @@ public class clima extends AppCompatActivity {
 
         etCity = findViewById(R.id.etCity);
         tvResult = findViewById(R.id.tvResult);
+        weatherIcon = findViewById(R.id.weatherIcon);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String savedCity = preferences.getString("city", "");
@@ -85,6 +99,8 @@ public class clima extends AppCompatActivity {
             try {
                 String encodedCity = URLEncoder.encode(city + ",AR", "UTF-8");
                 tempUrl = url + "?q=" + encodedCity + "&appid=" + appid;
+                //SSLUtil.allowAllSSL(); // Permitir todas las versiones de TLS
+
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 tvResult.setText("Error al codificar la ciudad.");
@@ -107,13 +123,29 @@ public class clima extends AppCompatActivity {
                         JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
                         String countryName = jsonObjectSys.getString("country");
                         String cityName = jsonResponse.getString("name");
+
+                        // Obtener el código del ícono
+                        JSONArray weatherArray = jsonResponse.getJSONArray("weather");
+                        String iconCode = weatherArray.getJSONObject(0).getString("icon");
+
+                        String iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+
+                        // Verificar URL del ícono
+                        Log.d(TAG, "Icon URL: " + iconUrl);
+
+                         //Cargar el ícono en la ImageView usando Picasso
+                                 Picasso.get()
+                                .load(iconUrl)
+                                .into(weatherIcon);
+
                         tvResult.setTextColor(Color.rgb(0,0,0));
                         output += "Clima actual de " + cityName + " (" + countryName + ")"
-                                + "\n Temperatura: " + df.format(temp) + " °C"
-                                + "\n Sensación térmica de: " + df.format(feelsLike) + " °C"
-                                + "\n Humedad: " + humidity + "%"
-                                + "\n Viento: " + wind + "m/s (metros por segundo)"
-                                + "\n Nubosidad: " + clouds + "%";
+                                + "\nTemperatura: " + df.format(temp) + " °C"
+                                + "\nSensación térmica de: " + df.format(feelsLike) + " °C"
+                                + "\nHumedad: " + humidity + "%"
+                                + "\nViento: " + wind + "m/s (metros por segundo)"
+                                + "\nNubosidad: " + clouds + "%";
+
                         tvResult.setText(output);
                     } catch (JSONException e) {
                         e.printStackTrace();
