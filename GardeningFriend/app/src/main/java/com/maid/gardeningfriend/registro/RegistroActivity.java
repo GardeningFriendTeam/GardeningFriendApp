@@ -47,7 +47,7 @@ public class RegistroActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        getLayoutInflater().inflate(R.layout.activity_registro, findViewById(R.id.content_frame));
 
         //Cambiando el titulo de la ActionBar
         Objects.requireNonNull(getSupportActionBar()).setTitle("Registro");

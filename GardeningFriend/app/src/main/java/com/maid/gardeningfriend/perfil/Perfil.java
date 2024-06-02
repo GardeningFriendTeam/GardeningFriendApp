@@ -1,7 +1,5 @@
 package com.maid.gardeningfriend.perfil;
 
-import androidx.annotation.Nullable;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,15 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.maid.gardeningfriend.login.Login;
 import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
+import com.maid.gardeningfriend.login.Login;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -43,7 +43,7 @@ public class Perfil extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        getLayoutInflater().inflate(R.layout.activity_perfil, findViewById(R.id.content_frame));
 
 
         usernameProfile = findViewById(R.id.textViewUsernameProfile);

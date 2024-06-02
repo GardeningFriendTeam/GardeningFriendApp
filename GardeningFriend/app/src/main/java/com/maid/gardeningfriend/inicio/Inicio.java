@@ -25,7 +25,7 @@ public class Inicio extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        getLayoutInflater().inflate(R.layout.activity_inicio, findViewById(R.id.content_frame));
 
         // Configurar video de YT
         WebView webView = findViewById(R.id.youtube_video);
