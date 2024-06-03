@@ -1,0 +1,12 @@
+Versión: 2.0.0
+Fecha: 03/06/2024
+Equipo de trabajo:
+    Scrum Master: Braian Maximiliano Oviedo (BraianOviedo)
+    Developer Team:
+        Maximiliano Nicolás Nastrai (maxtheprogrammer98)
+        Angelica Soledad Quiroz (SoledadQuiroz)
+        Cristian Valles (Valles1710)
+        Mariquena Allosa (mariquenaallosa)
+        Tamara Sorsaburu (TamiSorsaburu)
+        Evana Daniela Sabatella (EvanaSabatella1989)
+
