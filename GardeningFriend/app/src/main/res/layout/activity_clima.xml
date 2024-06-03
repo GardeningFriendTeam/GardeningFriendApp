@@ -8,27 +8,39 @@
     tools:context=".clima.clima">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="194dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/text_view_clima_title"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@mipmap/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/text_view_clima_title"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="411dp"
-        android:layout_height="420dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="104dp"
+        android:background="@drawable/card_clima"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="10dp"
@@ -36,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!--<EditText
             android:id="@+id/etCountry"
@@ -51,16 +63,21 @@
             android:id="@+id/etCity"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:autofillHints="postalAddress"
+            android:backgroundTint="@color/black"
             android:hint="@string/edit_ciudad"
             android:inputType="textPersonName"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="#9E9E9E" />
 
         <Button
             android:id="@+id/btnGet"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/btn_verde"
             android:onClick="getWeatherDetails"
@@ -70,10 +87,12 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="70dp">
 
 
             <LinearLayout
+                android:id="@+id/layout_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -97,6 +116,7 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/barraMenu"
         android:layout_width="0dp"
