@@ -27,7 +27,7 @@ public class Recomendaciones extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recomendaciones);
+        getLayoutInflater().inflate(R.layout.activity_recomendaciones, findViewById(R.id.content_frame));
     }
 
     public void btnTempClicked(View view){

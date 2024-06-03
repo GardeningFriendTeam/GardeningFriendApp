@@ -1,14 +1,14 @@
 package com.maid.gardeningfriend.enciclopedia;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -16,10 +16,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.maid.gardeningfriend.panelAdmin.CultivosDetallesParceable;
-import com.maid.gardeningfriend.recomendaciones.CultivosGenerador;
 import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
+import com.maid.gardeningfriend.panelAdmin.CultivosDetallesParceable;
+import com.maid.gardeningfriend.recomendaciones.CultivosGenerador;
 import com.maid.gardeningfriend.recomendaciones.RecomendacionesDetalles;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enciclopedia);
+        getLayoutInflater().inflate(R.layout.activity_enciclopedia, findViewById(R.id.content_frame));
 
         getCultivosEnc();
 

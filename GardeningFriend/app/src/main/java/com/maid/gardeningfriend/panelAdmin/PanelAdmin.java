@@ -19,11 +19,11 @@ import com.maid.gardeningfriend.login.Login;
  * administrar la coleccion de "cultivos o usuarios"
  */
 public class PanelAdmin extends MainActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_panel_admin);
-
+        getLayoutInflater().inflate(R.layout.activity_panel_admin, findViewById(R.id.content_frame));
     }
 
     /**

@@ -333,5 +333,11 @@
         <item>Almuerzos</item>
     </string-array>
 
+    <!-- seccion menu2 !-->
+    <string name="inicio_menu">Inicio</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="favoritos_menu">Favorito</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
+
 
 </resources>

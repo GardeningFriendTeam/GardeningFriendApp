@@ -50,7 +50,7 @@ public class FavoritosSeccion extends MainActivity implements FavoritosInterface
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favoritos);;
+        getLayoutInflater().inflate(R.layout.activity_favoritos, findViewById(R.id.content_frame));
 
         authUser();
 

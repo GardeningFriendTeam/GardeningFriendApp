@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -40,6 +41,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.barraMenu);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.inicio) {
+                startActivity(new Intent(MainActivity.this, Inicio.class));
+                return true;
+            } else if(item.getItemId() == R.id.perfil) {
+                startActivity(new Intent(MainActivity.this, Perfil.class));
+                return true;
+            } else if (item.getItemId() == R.id.favorito) {
+                startActivity(new Intent(MainActivity.this, FavoritosSeccion.class));
+                return true;
+            } else if (item.getItemId() == R.id.logout) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, Login.class));
+                finish();
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override

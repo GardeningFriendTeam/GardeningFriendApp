@@ -17,7 +17,7 @@ public class ContactoSeccion extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacto_seccion);
+        getLayoutInflater().inflate(R.layout.activity_contacto_seccion, findViewById(R.id.content_frame));
 
         imgFacebook = findViewById(R.id.imageViewFacebook);
         imgTwitter = findViewById(R.id.imageViewTwitter);

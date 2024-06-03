@@ -24,7 +24,7 @@ public class RecetasActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recetas);
+        getLayoutInflater().inflate(R.layout.activity_recetas, findViewById(R.id.content_frame));
 
         // Obtener referencias a elementos de la interfaz de usuario
         recyclerViewRecetas = findViewById(R.id.recycler_recetas);

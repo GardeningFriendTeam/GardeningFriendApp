@@ -56,7 +56,7 @@ class ActivityAsistenteIA : MainActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_asistente_ia)
+        layoutInflater.inflate(R.layout.activity_asistente_ia, findViewById(R.id.content_frame))
 
         // instatiating firebase auth
         auth = FirebaseAuth.getInstance()
