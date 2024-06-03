@@ -340,6 +340,17 @@
     <string name="menu_perfil">Perfil</string>
     <string name="favoritos_menu">Favorito</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="contacto_title">Información de Contacto</string>
+    <string name="contacto_email">Email: info@tudominio.com</string>
+    <string name="contacto_number">Teléfono: +123 456 7890</string>
+    <string name="contacto_address">Dirección: Calle Principal, Ciudad, País</string>
+    <string name="contacto_social_media">Redes Sociales</string>
+    <string name="contacto_go_to_facebook">Ir a Facebook de Gardening Friend</string>
+    <string name="contacto_go_to_twitter">Ir a Twitter de Gardening Friend</string>
+    <string name="contacto_go_to_instagram">Ir a Instagram de Gardening Friend</string>
+    <string name="contacto_go_to_linkedin">Ir a Linkedin de Gardening Friend</string>
+    <string name="contacto_go_to_github">Ir a GitHub de Gardening Friend</string>
+    <string name="contacto_go_to_web">Visita nuestra web</string>
 
 
 </resources>

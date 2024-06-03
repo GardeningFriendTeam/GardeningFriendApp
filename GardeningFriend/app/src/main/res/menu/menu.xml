@@ -63,14 +63,15 @@
         android:icon="@drawable/ic_admin"/>
 
     <item
+        android:id="@+id/asistente_ia"
+        android:title="@string/asistente_ia"
+        android:icon="@drawable/ic_robot"/>
+
+    <item
         android:id="@+id/logout"
         android:title="Logout"
         android:icon="@drawable/ic_admin"/>
 
-    <item
-        android:id="@+id/asistente_ia"
-        android:title="@string/asistente_ia"
-        android:icon="@drawable/ic_robot"/>
 
 
 </menu>

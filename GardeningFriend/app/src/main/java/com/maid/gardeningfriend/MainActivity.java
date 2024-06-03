@@ -103,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.perfil).setVisible(false);
             menu.findItem(R.id.panel_admin).setVisible(false);
             menu.findItem(R.id.logout).setVisible(false);
+            menu.findItem(R.id.clima).setVisible(false);
+            menu.findItem(R.id.recomendaciones).setVisible(false);
+            menu.findItem(R.id.favoritos).setVisible(false);
+            menu.findItem(R.id.mis_notas).setVisible(false);
+            menu.findItem(R.id.asistente_ia).setVisible(false);
         }
 
         return true;

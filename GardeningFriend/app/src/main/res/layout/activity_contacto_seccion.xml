@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,145 +7,137 @@
     style="@style/SCREEN"
     tools:context=".contacto.ContactoSeccion">
 
-    <include
-        android:id="@+id/includeHeader"
-        layout="@layout/header"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewtitleContacto"
-        android:text="Información de Contacto"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginVertical="10dp"
-        style="@style/TEXT"
-        android:layout_below="@id/includeHeader"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email: info@tudominio.com"
-        style="@style/INICIOEMAIL"
-        android:drawablePadding="8dp"
-        android:textSize="16sp"
-        android:layout_marginStart="16dp"
-        android:layout_below="@id/textViewtitleContacto"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/textViewPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Teléfono: +123 456 7890"
-        style="@style/INICIOPHONE"
-        android:drawablePadding="8dp"
-        android:textSize="16sp"
-        android:layout_marginStart="16dp"
-        android:layout_below="@id/textViewEmail"
-        android:layout_marginTop="8dp" />
-
-    <TextView
-        android:id="@+id/textViewAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dirección: Calle Principal, Ciudad, País"
-        style="@style/INICIOLOCATION"
-        android:drawablePadding="8dp"
-        android:textSize="16sp"
-        android:layout_marginStart="16dp"
-        android:layout_below="@id/textViewPhone"
-        android:layout_marginTop="8dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewRedesSociales"
-        android:text="Redes Sociales"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        style="@style/TEXT"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/textViewAddress"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="12dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutSocialA"
-        android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="20dp"
-        android:layout_below="@id/textViewRedesSociales"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:id="@+id/imageViewFacebook"
-            android:src="@drawable/ic_facebook"
-            android:contentDescription="Ir a Facebook de Gardening Friend" />
+        <include
+            android:id="@+id/includeHeader"
+            layout="@layout/header" />
 
-        <ImageView
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:id="@+id/imageViewTwitter"
-            android:src="@drawable/ic_twitter"
-            android:layout_marginHorizontal="64dp"
-            android:contentDescription="Ir a Twitter de Gardening Friend" />
+        <TextView
+            android:id="@+id/textViewtitleContacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacto_title"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginVertical="10dp"
+            style="@style/TEXT"
+            android:layout_gravity="center_horizontal" />
 
-        <ImageView
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:id="@+id/imageViewInstagram"
-            android:src="@drawable/ic_instagram"
-            android:contentDescription="Ir a Instagram de Gardening Friend" />
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacto_email"
+            style="@style/INICIOEMAIL"
+            android:drawablePadding="8dp"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacto_number"
+            style="@style/INICIOPHONE"
+            android:drawablePadding="8dp"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacto_address"
+            style="@style/INICIOLOCATION"
+            android:drawablePadding="8dp"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewRedesSociales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacto_social_media"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            style="@style/TEXT"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSocialA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginVertical="20dp">
+
+            <ImageView
+                android:id="@+id/imageViewFacebook"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:src="@drawable/ic_facebook"
+                android:contentDescription="@string/contacto_go_to_facebook" />
+
+            <ImageView
+                android:id="@+id/imageViewTwitter"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:src="@drawable/ic_twitter"
+                android:layout_marginHorizontal="64dp"
+                android:contentDescription="@string/contacto_go_to_twitter" />
+
+            <ImageView
+                android:id="@+id/imageViewInstagram"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:src="@drawable/ic_instagram"
+                android:contentDescription="@string/contacto_go_to_instagram" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSocialB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:id="@+id/imageViewLinkedin"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_linkedin"
+                android:contentDescription="@string/contacto_go_to_linkedin" />
+
+            <ImageView
+                android:id="@+id/imageViewGithub"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                style="@style/IMGGITHUB"
+                android:layout_marginStart="40dp"
+                android:contentDescription="@string/contacto_go_to_github" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonWeb"
+            android:layout_width="215dp"
+            android:layout_height="49dp"
+            android:text="@string/contacto_go_to_web"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="46dp"
+            android:layout_marginBottom="73dp" />
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutSocialB"
-        android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="10dp"
-        android:layout_below="@id/linearLayoutSocialA"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="8dp"
-            android:id="@+id/imageViewLinkedin"
-            android:src="@drawable/ic_linkedin"
-            android:contentDescription="Ir a Linkedin de Gardening Friend" />
-
-        <ImageView
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:id="@+id/imageViewGithub"
-            style="@style/IMGGITHUB"
-            android:layout_marginStart="40dp"
-            android:contentDescription="Ir a GitHub de Gardening Friend" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonWeb"
-        android:layout_width="215dp"
-        android:layout_height="49dp"
-        android:layout_below="@+id/linearLayoutSocialB"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="73dp"
-        android:layout_weight="1"
-        android:text="Visita nuestra web" />
-
-</RelativeLayout>
+</ScrollView>
