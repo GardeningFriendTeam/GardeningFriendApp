@@ -130,7 +130,7 @@ class ActivityDisplayFavs : AppCompatActivity(), InterfaceAsistenteIA {
         popupWindow.contentView.startAnimation(anim)
 
         // se especifica su tamaño (ocupa toda la pantalla)
-        popupWindow.height = 500
+        popupWindow.height = 600
         popupWindow.width = 500
 
         // se especifica la ubicacion del elem:
