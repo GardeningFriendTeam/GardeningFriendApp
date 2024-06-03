@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,8 +32,11 @@ public class PanelAdminAgregarReceta extends MainActivity{
     EditText ingrediente1;
     EditText ingrediente2;
     EditText ingrediente3;
+    EditText ingrediente4;
+    EditText ingrediente5;
 
     Button btnAddReceta;
+    ImageView loaderReceta;
 
     FirebaseFirestore bd = FirebaseFirestore.getInstance();
 
@@ -51,6 +55,8 @@ public class PanelAdminAgregarReceta extends MainActivity{
         ingrediente1 = findViewById(R.id.editText_ingrediente1_receta);
         ingrediente2 = findViewById(R.id.editText_ingrediente2_receta);
         ingrediente3 = findViewById(R.id.editText_ingrediente3_receta);
+        ingrediente4 = findViewById(R.id.editText_ingrediente4_receta);
+        ingrediente5 = findViewById(R.id.editText_ingrediente5_receta);
         btnAddReceta = findViewById(R.id.btn_add_receta);
         btnAddReceta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,15 +64,20 @@ public class PanelAdminAgregarReceta extends MainActivity{
                 addReceta();
             }
         });
-
+        loaderReceta = findViewById(R.id.loader_add_receta);
     }
 
     private void addReceta(){
+        // displaying loader
+        loaderReceta.setVisibility(View.VISIBLE);
+
         // creating arraylist with ingredients
         ArrayList<String> ingredients = new ArrayList<>();
         ingredients.add(ingrediente1.getText().toString());
         ingredients.add(ingrediente2.getText().toString());
         ingredients.add(ingrediente3.getText().toString());
+        ingredients.add(ingrediente4.getText().toString());
+        ingredients.add(ingrediente5.getText().toString());
 
         // reference object
         RecetasGenerador recetasGenerador = new RecetasGenerador(
@@ -104,5 +115,8 @@ public class PanelAdminAgregarReceta extends MainActivity{
                         }
                     }
                 });
+
+        // hiding loader
+        loaderReceta.setVisibility(View.GONE);
     }
 }

@@ -138,10 +138,11 @@ public class PanelAdminRecetas extends AppCompatActivity implements PanelAdminIn
 
     @Override
     public void editarBtn(int position) {
-        Toast.makeText(
-                this,
-                "funcion aun no disponible!",
-                Toast.LENGTH_SHORT
-        ).show();
+        // creating intent
+        Intent intent = new Intent(PanelAdminRecetas.this,PanelAdminEditarRecetas.class);
+        // passing data via serializable
+        intent.putExtra("RECETA_SELEC", recetas.get(position));
+        // starting activity
+        startActivity(intent);
     }
 }

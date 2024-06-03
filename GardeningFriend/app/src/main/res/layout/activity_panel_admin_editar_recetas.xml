@@ -14,7 +14,7 @@
         style="@style/SCREEN">
 
         <TextView
-            android:id="@+id/textView_nombre_receta"
+            android:id="@+id/textView_nombre_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -25,18 +25,18 @@
             style="@style/TEXT"/>
 
         <EditText
-            android:id="@+id/editText_nombre_receta"
+            android:id="@+id/editText_nombre_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_nombre_receta"
+            android:layout_below="@+id/textView_nombre_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:hint="@string/receta_nombre"
             android:inputType="text"
             android:minHeight="48dp" />
 
         <TextView
-            android:id="@+id/textView_categoria_receta"
+            android:id="@+id/textView_categoria_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/receta_categoria"
@@ -44,15 +44,15 @@
             android:layout_margin="20dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_below="@+id/editText_nombre_receta"
+            android:layout_below="@+id/editText_nombre_receta_edit"
             style="@style/TEXT"/>
 
         <EditText
-            android:id="@+id/editText_categoria_receta"
+            android:id="@+id/editText_categoria_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_categoria_receta"
+            android:layout_below="@+id/textView_categoria_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:hint="@string/receta_categoria"
             android:minHeight="48dp"
@@ -60,10 +60,10 @@
 
 
         <TextView
-            android:id="@+id/textView_cookTime_receta"
+            android:id="@+id/textView_cookTime_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_categoria_receta"
+            android:layout_below="@+id/editText_categoria_receta_edit"
             android:layout_margin="20dp"
             android:text="@string/receta_cookTime"
             android:textAlignment="center"
@@ -72,21 +72,21 @@
             style="@style/TEXT"/>
 
         <EditText
-            android:id="@+id/editText_cookTime_receta"
+            android:id="@+id/editText_cookTime_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_cookTime_receta"
+            android:layout_below="@+id/textView_cookTime_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:hint="@string/receta_cookTime"
             android:minHeight="48dp"
             android:inputType="text"/>
 
         <TextView
-            android:id="@+id/textView_instrucciones_receta"
+            android:id="@+id/textView_instrucciones_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_cookTime_receta"
+            android:layout_below="@+id/editText_cookTime_receta_edit"
             android:layout_margin="20dp"
             android:text="@string/receta_instrucciones"
             android:textAlignment="center"
@@ -95,20 +95,20 @@
             style="@style/TEXT"/>
 
         <EditText
-            android:id="@+id/editText_instrucciones_receta"
+            android:id="@+id/editText_instrucciones_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:hint="@string/receta_instrucciones"
             android:layout_marginHorizontal="20dp"
-            android:layout_below="@+id/textView_instrucciones_receta"
+            android:layout_below="@+id/textView_instrucciones_receta_edit"
             android:inputType="text"
             style="@style/TEXT"/>
 
         <TextView
-            android:id="@+id/textView_url_receta"
+            android:id="@+id/textView_url_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_instrucciones_receta"
+            android:layout_below="@+id/editText_instrucciones_receta_edit"
             android:layout_margin="20dp"
             android:text="@string/receta_imgUrl"
             android:textAlignment="center"
@@ -117,11 +117,11 @@
             style="@style/TEXT"/>
 
         <EditText
-            android:id="@+id/editText_url_receta"
+            android:id="@+id/editText_url_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_url_receta"
+            android:layout_below="@+id/textView_url_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:hint="@string/receta_imgUrl"
             android:inputType="text"
@@ -129,10 +129,10 @@
             tools:ignore="TextFields" />
 
         <TextView
-            android:id="@+id/textView_ingredientes_receta"
+            android:id="@+id/textView_ingredientes_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_url_receta"
+            android:layout_below="@+id/editText_url_receta_edit"
             android:layout_margin="20dp"
             android:text="@string/receta_ingredientes"
             android:textAlignment="center"
@@ -141,11 +141,11 @@
             style="@style/TEXT"/>
 
         <EditText
-            android:id="@+id/editText_ingrediente1_receta"
+            android:id="@+id/editText_ingrediente1_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_ingredientes_receta"
+            android:layout_below="@+id/textView_ingredientes_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:hint="@string/receta_ingredientes"
@@ -153,11 +153,11 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editText_ingrediente2_receta"
+            android:id="@+id/editText_ingrediente2_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_ingrediente1_receta"
+            android:layout_below="@+id/editText_ingrediente1_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:hint="@string/receta_ingredientes"
@@ -165,11 +165,11 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editText_ingrediente3_receta"
+            android:id="@+id/editText_ingrediente3_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_ingrediente2_receta"
+            android:layout_below="@+id/editText_ingrediente2_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:hint="@string/receta_ingredientes"
@@ -177,11 +177,11 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editText_ingrediente4_receta"
+            android:id="@+id/editText_ingrediente4_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_ingrediente3_receta"
+            android:layout_below="@+id/editText_ingrediente3_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:hint="@string/receta_ingredientes"
@@ -189,11 +189,11 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editText_ingrediente5_receta"
+            android:id="@+id/editText_ingrediente5_receta_edit"
             style="@style/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_ingrediente4_receta"
+            android:layout_below="@+id/editText_ingrediente4_receta_edit"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:hint="@string/receta_ingredientes"
@@ -201,21 +201,21 @@
             android:minHeight="48dp" />
 
         <ImageView
-            android:id="@+id/loader_add_receta"
+            android:id="@+id/loader_add_receta_edit"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/loading_bar"
-            android:layout_below="@id/editText_ingrediente5_receta"
+            android:layout_below="@id/editText_ingrediente5_receta_edit"
             android:layout_centerHorizontal="true"
             android:visibility="gone"/>
 
         <Button
-            android:id="@+id/btn_add_receta"
+            android:id="@+id/btn_receta_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="50dp"
-            android:text="@string/add_new_receta"
-            android:layout_below="@+id/loader_add_receta"
+            android:text="@string/btn_editar_receta"
+            android:layout_below="@+id/loader_add_receta_edit"
             android:layout_margin="12dp"/>
 
     </RelativeLayout>

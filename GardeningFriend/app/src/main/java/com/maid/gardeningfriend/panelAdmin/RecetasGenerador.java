@@ -2,9 +2,12 @@ package com.maid.gardeningfriend.panelAdmin;
 
 import com.google.firebase.firestore.DocumentId;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class RecetasGenerador {
+public class RecetasGenerador implements Serializable {
 
     // atributos
     String nombre;
@@ -86,6 +89,17 @@ public class RecetasGenerador {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("nombre", nombre);
+        map.put("categoria", categoria);
+        map.put("cookTime", cookTime);
+        map.put("imageUrl", imageUrl);
+        map.put("ingredientes", Ingredientes);
+        map.put("instrucciones", instrucciones);
+        return map;
     }
 
 }
