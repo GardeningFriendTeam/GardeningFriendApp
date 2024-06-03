@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".panelAdmin.PanelAdminAgregarReceta">
+
+
+    <RelativeLayout
+        android:id="@+id/container_add_receta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SCREEN">
+
+        <TextView
+            android:id="@+id/textView_nombre_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/receta_nombre"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/editText_nombre_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/receta_nombre"
+            android:layout_marginHorizontal="20dp"
+            android:layout_below="@+id/textView_nombre_receta"
+            style="@style/TEXT"/>
+
+        <TextView
+            android:id="@+id/textView_categoria_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/receta_categoria"
+            android:textAlignment="center"
+            android:layout_margin="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/editText_nombre_receta"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/editText_categoria_receta"
+            style="@style/TEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_categoria_receta"
+            android:layout_marginHorizontal="20dp"
+            android:hint="@string/receta_categoria"
+            android:minHeight="48dp" />
+
+
+        <TextView
+            android:id="@+id/textView_cookTime_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_categoria_receta"
+            android:layout_margin="20dp"
+            android:text="@string/receta_cookTime"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/editText_cookTime_receta"
+            style="@style/TEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_cookTime_receta"
+            android:layout_marginHorizontal="20dp"
+            android:hint="@string/receta_cookTime"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/textView_instrucciones_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_cookTime_receta"
+            android:layout_margin="20dp"
+            android:text="@string/receta_instrucciones"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/editText_instrucciones_receta"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="@string/receta_instrucciones"
+            android:layout_marginHorizontal="20dp"
+            android:layout_below="@+id/textView_instrucciones_receta"
+            style="@style/TEXT"/>
+
+        <TextView
+            android:id="@+id/textView_url_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_instrucciones_receta"
+            android:layout_margin="20dp"
+            android:text="@string/receta_imgUrl"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/editText_url_receta"
+            style="@style/TEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_url_receta"
+            android:layout_marginHorizontal="20dp"
+            android:hint="@string/receta_imgUrl"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/textView_ingredientes_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_url_receta"
+            android:layout_margin="20dp"
+            android:text="@string/receta_ingredientes"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            style="@style/TEXT"/>
+
+        <EditText
+            android:id="@+id/editText_ingrediente1_receta"
+            style="@style/TEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_ingredientes_receta"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/receta_ingredientes"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/editText_ingrediente2_receta"
+            style="@style/TEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_ingrediente1_receta"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/receta_ingredientes"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/editText_ingrediente3_receta"
+            style="@style/TEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_ingrediente2_receta"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/receta_ingredientes"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/btn_add_receta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
+            android:text="@string/add_new_receta"
+            android:layout_below="@+id/editText_ingrediente3_receta"
+            android:layout_margin="12dp"/>
+
+
+    </RelativeLayout>
+
+</ScrollView>

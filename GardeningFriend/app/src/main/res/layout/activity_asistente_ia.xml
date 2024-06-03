@@ -64,6 +64,7 @@
             android:layout_below="@id/tu_foto_ia"
             android:text="@string/btn_subir_img"/>
 
+
         <Button
             android:id="@+id/btn_eliminar_img"
             android:layout_width="match_parent"
@@ -73,11 +74,39 @@
             android:layout_marginVertical="10dp"
             android:text="@string/btn_eliminar_img" />
 
+        <FrameLayout
+            android:id="@+id/progressbar_response_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/btn_eliminar_img">
+
+            <ProgressBar
+                android:id="@+id/progressbar_ia_response"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:visibility="gone"
+                android:layout_marginStart="60dp"/>
+
+            <TextView
+                android:id="@+id/progressbar_ia_response_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text = "@string/processing_ia_response"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textStyle="bold"/>
+
+        </FrameLayout>
+
         <RelativeLayout
             android:id="@+id/ia_response_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_eliminar_img"
+            android:layout_below="@+id/progressbar_response_wrapper"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
             android:padding="30dp"
@@ -101,11 +130,39 @@
             android:layout_marginHorizontal="20dp"
             android:text="@string/btn_add_fav"/>
 
+        <FrameLayout
+            android:id="@+id/progressbar_ia_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/btn_favs_ai">
+
+            <ProgressBar
+                android:id="@+id/progressbar_ia"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:visibility="gone"
+                android:layout_marginStart="60dp"/>
+
+            <TextView
+                android:id="@+id/progressbar_ia_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text = "@string/progressbar_ia_text"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textStyle="bold"/>
+
+        </FrameLayout>
+
         <Button
             android:id="@+id/btn_open_favs_section_ia"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/btn_favs_ai"
+            android:layout_below="@id/progressbar_ia_wrapper"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:text="@string/section_ia_favs_btn"/>

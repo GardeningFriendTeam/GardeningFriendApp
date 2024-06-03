@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/admin_pop_up_ia"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:background="@color/white"
+    android:layout_margin="30dp"
+    android:elevation="15dp"
+    android:layout_centerInParent="true">
+
+    <TextView
+        android:id="@+id/titulo_pop_up_ia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/popup_remove_card_ia"
+        android:textAlignment="center"
+        android:layout_marginVertical="20dp"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/aclaracion_pop_up_ia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pop_up_especificacion"
+        android:layout_below="@id/titulo_pop_up_ia"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_eliminar_popup_ia"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/aclaracion_pop_up_ia"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/btn_verde"
+        android:text="@string/remove"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_cancelar_popup_ia"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btn_eliminar_popup_ia"
+        android:text="@string/pop_up_cancelar"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/btn_verde"
+        android:layout_margin="15dp"/>
+
+</RelativeLayout>

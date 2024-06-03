@@ -24,9 +24,9 @@
     <RelativeLayout
         android:id="@+id/bd_cultivos"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="150dp"
         android:background="@drawable/card_cutlivo"
-        android:layout_margin="25dp"
+        android:layout_margin="20dp"
         android:layout_below="@id/descripcion"
         android:onClick="abrirCultivos"
         android:elevation="10dp">
@@ -55,9 +55,9 @@
     <RelativeLayout
         android:id="@+id/bd_usuarios"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="150dp"
         android:background="@drawable/card_cutlivo"
-        android:layout_margin="25dp"
+        android:layout_margin="20dp"
         android:layout_below="@id/bd_cultivos"
         android:onClick="abrirPanelUsuarios"
         android:elevation="10dp">
@@ -80,6 +80,37 @@
             android:textSize="40sp"
             android:layout_marginVertical="50dp"
             android:layout_marginStart="20dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/db_recetas"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/bd_usuarios"
+        android:layout_margin="20dp"
+        android:background="@drawable/card_cutlivo"
+        android:elevation="10dp"
+        android:onClick="abrirPanelRecetas">
+
+        <ImageView
+            android:id="@+id/ic_bd_recetas"
+            android:layout_width="110dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/cook_book" />
+
+        <TextView
+            android:id="@+id/titulo_bd_recetas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/ic_bd_recetas"
+            android:text="@string/recetas_panel_admin"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
 
     </RelativeLayout>
 
