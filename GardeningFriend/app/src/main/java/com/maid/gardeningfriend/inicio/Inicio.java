@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.maid.gardeningfriend.MainActivity;
 import com.maid.gardeningfriend.R;
@@ -21,6 +22,7 @@ import com.maid.gardeningfriend.registro.RegistroActivity;
 public class Inicio extends MainActivity {
     Button toLogin, toRegister;
     TextView textViewRegisterOrLogin;
+    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +41,18 @@ public class Inicio extends MainActivity {
         toLogin = findViewById(R.id.btnLoginInicio);
         toRegister = findViewById(R.id.btnRegisterInicio);
         textViewRegisterOrLogin = findViewById(R.id.textViewLoginToAllFunctions);
+        bottomNavigation = findViewById(R.id.barraMenu);
 
         if (auth.getCurrentUser() != null){
             toLogin.setVisibility(View.GONE);
             toRegister.setVisibility(View.GONE);
             textViewRegisterOrLogin.setVisibility(View.GONE);
+            bottomNavigation.setVisibility(View.VISIBLE);
         }else {
             toLogin.setVisibility(View.VISIBLE);
             toRegister.setVisibility(View.VISIBLE);
             textViewRegisterOrLogin.setVisibility(View.VISIBLE);
+            bottomNavigation.setVisibility(View.GONE);
         }
 
         toLogin.setOnClickListener((v)->{

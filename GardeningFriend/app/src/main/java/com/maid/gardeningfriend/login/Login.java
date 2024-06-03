@@ -36,7 +36,8 @@ public class Login extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_login, findViewById(R.id.content_frame));
+        setContentView(R.layout.activity_login);
+        //getLayoutInflater().inflate(R.layout.activity_login, findViewById(R.id.content_frame));
 
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Login");
