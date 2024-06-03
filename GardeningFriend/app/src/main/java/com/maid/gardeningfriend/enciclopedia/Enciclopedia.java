@@ -3,6 +3,7 @@ package com.maid.gardeningfriend.enciclopedia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -30,10 +33,21 @@ public class Enciclopedia extends MainActivity implements EnciclopediaInterface{
     RecyclerView recyclerView;
     EnciclopediaRecyclerViewAdapter adapter;
     ArrayList<CultivosGenerador> cultivosBD = new ArrayList<>();
+    BottomNavigationView bottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_enciclopedia, findViewById(R.id.content_frame));
+
+        // Mostrar u Ocultar el menu inferior
+        bottomNavigation = findViewById(R.id.barraMenu);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        bottomNavigation = findViewById(R.id.barraMenu);
+        if (auth.getCurrentUser() != null){
+            bottomNavigation.setVisibility(View.VISIBLE);
+        }else {
+            bottomNavigation.setVisibility(View.GONE);
+        }
 
         getCultivosEnc();
 
