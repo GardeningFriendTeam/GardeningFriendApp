@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.internal.LifecycleFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -34,10 +37,21 @@ public class PanelAdminRecetas extends AppCompatActivity implements PanelAdminIn
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference collectionRef = db.collection("recetas");
 
+    FloatingActionButton btnAddNewReceta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_admin_recetas);
+        // identifying btn
+        btnAddNewReceta = findViewById(R.id.btn_add_new_receta);
+        btnAddNewReceta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PanelAdminRecetas.this,PanelAdminAgregarReceta.class);
+                startActivity(intent);
+            }
+        });
         // fetching recetas
         getRecetas();
     }

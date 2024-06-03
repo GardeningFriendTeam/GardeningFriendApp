@@ -57,6 +57,14 @@
 
     <string name="recetas_panel_admin">Recetas</string>
     <string name="recetas_titulo_admin">Administrar Recetas</string>
+    <string name="add_new_receta">Agregar Receta</string>
+    <string name="receta_nombre">Nombre Receta</string>
+    <string name="receta_categoria">Categoria Receta</string>
+    <string name="receta_cookTime">Tiempo de preparación</string>
+    <string name="receta_instrucciones">Instrucciones Receta</string>
+    <string name="receta_imgUrl">URL Imagen Receta</string>
+    <string name="receta_ingredientes">Ingredientes Receta</string>
+    <string name="btn_add_receta">Agregar receta</string>
 
 
     <!-- seccion "recomendaciones" !-->
