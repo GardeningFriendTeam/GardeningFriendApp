@@ -66,6 +66,8 @@
     <string name="receta_ingredientes">Ingredientes Receta</string>
     <string name="btn_add_receta">Agregar receta</string>
 
+    <string name="btn_editar_receta">Editar receta</string>
+
 
     <!-- seccion "recomendaciones" !-->
     <string name="recomedaciones_descp">Esta seccion te permite encontrar el cultivo mas adecuado para tu caso en funcion de los siguientes parametros: </string>

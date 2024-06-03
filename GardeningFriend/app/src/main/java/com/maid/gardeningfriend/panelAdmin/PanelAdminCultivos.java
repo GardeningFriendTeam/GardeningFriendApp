@@ -175,8 +175,8 @@ public class PanelAdminCultivos extends MainActivity implements PanelAdminInterf
         popupWindow.setContentView(popUpView);
         popupWindow.getContentView().startAnimation(anim);
         // se especifica su tamaño (ocupa toda la pantalla)
-        popupWindow.setHeight(1000);
-        popupWindow.setWidth(1000);
+        popupWindow.setHeight(800);
+        popupWindow.setWidth(500);
         // se especifica la ubicacion del elem:
         popupWindow.showAtLocation(parentElem, Gravity.CENTER, 0, 0);
 
