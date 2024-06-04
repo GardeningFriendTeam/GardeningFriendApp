@@ -24,9 +24,9 @@ Nombre completo y cuenta de GitHub:
 - [Link a la documentación IEEE-830](https://docs.google.com/document/d/1lRg-yKvwBIguV8TajI58RLuEXQpCmc4c/edit?usp=drive_link&ouid=116033859405214608468&rtpof=true&sd=true) actualizada con las normas APA.
   - (en la sección "anexo" cerca del final del doc esta el esquema que detalla la navegabilidad y el diseño de la IU )
 
-- [Link al Drive](https://drive.google.com/drive/folders/1jvOtI5ZTYeYy9Uwog_EuemVVGawyfB4N?usp=sharing) con toda la documentación del proyecto.
+- [Link a Drive](https://drive.google.com/drive/folders/1jvOtI5ZTYeYy9Uwog_EuemVVGawyfB4N?usp=sharing) con toda la documentación del proyecto.
 
-- Descarga la versión 1.0 de nuestra App: [Gardening Friend v1.apk](https://drive.google.com/file/d/1J9ZS8jawghdPS9GDCG8Hn0-p5L570W4k/view?usp=sharing)
+- Descarga la versión 2.0 de nuestra App: [Gardening Friend v2.0.apk](https://drive.google.com/file/d/15bvYgmbomvGBRLEAlcgqPp098Ou-ZDVj/view?usp=drive_link)
 
 - [Link al ZIP](https://drive.google.com/file/d/1pHD9osVugMQpW2kJladFfys5OeivdFMP/view?usp=drive_link) del proyecto exportado
 
@@ -35,15 +35,7 @@ Nombre completo y cuenta de GitHub:
 
 ¡Bienvenido al repositorio de Gardening Friend, la aplicación nativa de Android para entusiastas de la jardinería y la agricultura! Esta aplicación se basa en nuestra aplicación web [Gardening Friend](https://github.com/GardeningFriendTeam/GardeningFriendWeb) y ofrece información, consejos y tutoriales sobre cultivos y huertos. Además, agregaremos emocionantes funcionalidades nuevas para brindarte una experiencia completa y conveniente en tu dispositivo móvil.
 
-**Información Detallada:** Accede a una amplia gama de información sobre diversos cultivos y técnicas de jardinería. Desde consejos para el cuidado de plantas hasta calendarios de siembra, tenemos todo lo que necesitas para tener éxito en tu jardín.
-
-**Consejos y Tutoriales:** Explora nuestros consejos prácticos y tutoriales paso a paso. Aprende a manejar plagas, enfermedades y otros desafíos comunes en tus cultivos de manera efectiva.
-
-**Recomendaciones Personalizadas** De esta forma podrás encontrar el cultivo perfecto en base a tu region!
-
-**Comunidad Integrada:** Conéctate con otros entusiastas de la jardinería. Comparte tus éxitos, haz preguntas y aprende de la experiencia de otros.
-
 ¡Esperamos que disfrutes usando Gardening Friend tanto como nosotros disfrutamos creándolo! Si tienes preguntas, problemas o sugerencias, no dudes en abrir un issue en este repositorio. ¡Feliz jardinería! 🌱🌼🌿
 
-Diseño de la app y sus secciones:
-![diseño interfaces final](https://github.com/GardeningFriendTeam/GardeningFriendApp/assets/72700320/a7949f07-3a0f-4b44-9224-5db5af58b041)
+![emprededurismo - muestra app](https://github.com/GardeningFriendTeam/GardeningFriendApp/assets/72700320/d688af20-78a2-4843-bca7-0a0de6e21191)
+
