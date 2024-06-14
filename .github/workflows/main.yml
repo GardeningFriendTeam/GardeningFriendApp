@@ -37,8 +37,8 @@ jobs:
         run: |
           mkdir -p ./app/src/main/res/values
           echo "<resources>
-            <string name=\"firebase_api_key\">${{ secrets.GEMINI_API_KEY }}</string>
-            <string name=\"another_api_key\">${{ secrets.CLIMA_API_KEY }}</string>
+            <string name=\"gemini_api_key\">${secrets.GEMINI_API_KEY}</string>
+            <string name=\"clima_api_key\">${secrets.CLIMA_API_KEY}</string>
             </resources>" > ./app/src/main/res/values/secrets.xml
           echo "Contents of secrets.xml:"
           cat ./app/src/main/res/values/secrets.xml
