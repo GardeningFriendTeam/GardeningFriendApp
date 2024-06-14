@@ -3,10 +3,10 @@ name: Android CI
 on:
   push:
     branches:
-      - main
+      - fixings
   pull_request:
     branches:
-      - main
+      - fixings
 
 jobs:
   build:
@@ -22,8 +22,28 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
 
-      - name: Decrypt API keys
-        run: echo "${{ secrets.FIREBASE_API_KEY }}" > ./app/src/main/res/values/secrets.xml
+      - name: Debug Environment
+        run: |
+          echo "Checking environment"
+          env
+          echo "Checking directory structure"
+          ls -la
+          echo "Checking app directory"
+          ls -la app
+          echo "Checking app/src/main/res/values directory"
+          ls -la app/src/main/res/values || echo "Directory does not exist"
+
+      - name: Set up API keys
+        run: |
+          mkdir -p ./app/src/main/res/values
+          echo "<resources>
+            <string name=\"firebase_api_key\">${{ secrets.GEMINI_API_KEY }}</string>
+            <string name=\"another_api_key\">${{ secrets.CLIMA_API_KEY }}</string>
+            </resources>" > ./app/src/main/res/values/secrets.xml
+          echo "Contents of secrets.xml:"
+          cat ./app/src/main/res/values/secrets.xml
+          echo "Listing contents of values directory:"
+          ls -la ./app/src/main/res/values
 
       - name: Build with Gradle
         run: ./gradlew build

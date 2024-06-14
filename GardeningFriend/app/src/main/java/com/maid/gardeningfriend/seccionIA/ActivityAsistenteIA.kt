@@ -102,7 +102,6 @@ class ActivityAsistenteIA : MainActivity() {
         }
 
         // defining LLM
-        //TODO: hide apykey for security reasons!
         geminiProVision = GenerativeModel("gemini-pro-vision", geminiApiKey!!)
 
         // defining prompt
