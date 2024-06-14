@@ -103,7 +103,7 @@ class ActivityAsistenteIA : MainActivity() {
 
         // defining LLM
         //TODO: hide apykey for security reasons!
-        geminiProVision = GenerativeModel("gemini-pro-vision", "AIzaSyAHT3CMJzRwgZCmBOKPe6afpjFUKqvQ3-0")
+        geminiProVision = GenerativeModel("gemini-pro-vision", geminiApiKey!!)
 
         // defining prompt
         messagePrompt = "puedes identificar que planta o cultivo es? ademas, dime sus principales caracteristicas"
