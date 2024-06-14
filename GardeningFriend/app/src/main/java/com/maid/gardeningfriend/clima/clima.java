@@ -45,7 +45,7 @@ public class clima extends MainActivity {
     private TextView tvResult;
     private ImageView weatherIcon;
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
-    private final String appid = "466d16634da02465cc9c56127129c567";
+    private final String appid = getResources().getString(R.string.clima_api_key);
     private DecimalFormat df = new DecimalFormat("#.##");
     private Handler handler;
     private Runnable runnable;

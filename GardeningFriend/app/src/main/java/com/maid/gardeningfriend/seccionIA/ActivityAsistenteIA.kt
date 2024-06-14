@@ -53,6 +53,7 @@ class ActivityAsistenteIA : MainActivity() {
     private var textViewProgressBarFav: TextView? = null
     private var progressBarResponse : ProgressBar? = null
     private var textViewProgressBarResponse : TextView? = null
+    private var geminiApiKey: String? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +81,9 @@ class ActivityAsistenteIA : MainActivity() {
         textViewProgressBarFav = findViewById(R.id.progressbar_ia_textView)
         progressBarResponse = findViewById(R.id.progressbar_ia_response)
         textViewProgressBarResponse = findViewById(R.id.progressbar_ia_response_textView)
+
+        // extracting apiKeys
+        geminiApiKey = resources.getString(R.string.gemini_api_key);
 
         // adding function to btn upload
         buttonUpload!!.setOnClickListener{ v: View? -> openGallery() }
